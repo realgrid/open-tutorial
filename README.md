@@ -10,6 +10,6 @@
 
 ## 예제 보기
 
-* [빈 그리드 화면에 표시 (Hello, world!)](http://10bun.tv/samples/realgrid2/part-1/01){: target="_blank"}
+* [빈 그리드 화면에 표시 (Hello, world!)](http://10bun.tv/samples/realgrid2/part-1/01)
 * [JSON 데이터 가져와서 뿌려주기](http://10bun.tv/samples/realgrid2/part-1/02)
 * [마스터 디테일](http://10bun.tv/samples/realgrid2/part-1/03)
