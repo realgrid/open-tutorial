@@ -1,7 +1,6 @@
 # Hello, World? I'm RealGrid!
 
-<iframe width="800" height="450" src="https://www.youtube.com/embed/xck4lfhmdQ0" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-
+[![](youtube-01.jpg)](https://youtu.be/xck4lfhmdQ0)
 
 ## 리얼그리드를 사용하는 최소한의 코드
 
@@ -135,7 +134,7 @@ WebServer.exe와 같은 폴더에 있는 index.html 파일을 열어서
 
 ## 라이센스 파일 및 리얼그리드2 다운받기
 
-<iframe width="800" height="450" src="https://www.youtube.com/embed/M8bWc0p86lM" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+[![](youtube-02.jpg)](https://youtu.be/M8bWc0p86lM)
 
 만약 리얼그리드를 여러분들의 웹 사이트에서 동작하는 것을 확인하고 싶을 실 때에는 라이센스를 신청하시고 발급받아야 합니다.
 라이센스 신청페이지의 링크는 아래와 같습니다.
