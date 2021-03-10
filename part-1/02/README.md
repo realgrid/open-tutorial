@@ -1,6 +1,6 @@
 # 데이터 가져와서 그리드에 표시하기
 
-<iframe width="800" height="450" src="https://www.youtube.com/embed/LH84dpk76mo" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+[![](youtube-01.jpg)](https://youtu.be/LH84dpk76mo)
 
 Rest API 서버로부터 JSON 데이터를 가져와서 그리드에 표시하는 방법에 대해서 알아보겠습니다.
 실행 예제는 아래의 링크를 통해서 확인하실 수가 있습니다.
