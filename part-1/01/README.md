@@ -4,29 +4,7 @@
 
 ## 리얼그리드를 사용하는 최소한의 코드
 
-``` html
-<!DOCTYPE html>
-<html>
-	<head>
-		<meta charset="utf-8">
-		<link href="/lib/realgrid-style.css" rel="stylesheet" />
-		<script type="text/javascript" src="/lib/realgrid-lic.js"></script>
-		<script type="text/javascript" src="/lib/realgrid.2.2.2.min.js"></script>
-	</head>
-	<body>
-		<div id="realgrid" style="width: 100%; height: 440px;">
-		</div>
-	</body>
-</html>
-
-<script>
-	document.addEventListener("DOMContentLoaded", function () {
-		const provider = new RealGrid.LocalDataProvider();
-		const gridView = new RealGrid.GridView("realgrid");
-		gridView.setDataSource(provider);
-	});
-</script>
-```
+![](code-01.png)
 * 4: 한글을 사용하는 경우 인코딩을 지정하지 않으면 오류가 발생할 수 있습니다.
 * 5: 리얼그리드의 스타일이 담겨진 파일을 가져옵니다.
   * 다른 스타일을 지정하여 색상 등을 마음대로 변경하실 수 있습니다.
