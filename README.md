@@ -1,21 +1,15 @@
-# open-tutorial
-
-
-## 참고자료 및 링크
+# 참고자료 및 링크
 
 * [작성중인 문서 확인](http://realgrid2.s3-website.ap-northeast-2.amazonaws.com/)
 * [미니 웹서버 다운로드](https://github.com/realgrid/open-tutorial/raw/main/realgrid2.zip)
 * [라이선스 발급](https://service.realgrid.com/join)
 
 
-## 예제 보기
+# Part 1. RealGrid2 시작하기
 
-
-### Part 1. RealGrid2 시작하기
-
-* [빈 그리드 화면에 표시 (Hello, world!)](http://10bun.tv/samples/realgrid2/part-1/01)
-* [JSON 데이터 가져와서 뿌려주기](http://10bun.tv/samples/realgrid2/part-1/02)
-* [마스터 디테일](http://10bun.tv/samples/realgrid2/part-1/03)
+* [Hello, World? I'm RealGrid!](./part-1/01)
+* [데이터 가져와서 그리드에 표시하기](./part-1/02)
+* [Hello, World? I'm RealGrid!](./part-1/03)
 * 순서대로 표시하기
 * 그룹으로 묶어서 보여주기
 * 필터로 걸러서 보여주기
@@ -28,13 +22,13 @@
 * 엑셀 파일로 내보내기
 
 
-### Part 2. 상황별로 배우는 RealGrid2
+# Part 2. 상황별로 배우는 RealGrid2
 
 * 간단한 회원관리 프로젝트를 위한 예제
 * ...
 
 
-### Part 3. 고급 사용자를 위한 Tip
+# Part 3. 고급 사용자를 위한 Tip
 
 * 짝수, 홀수 행의 스타일을 다르게 표현하기
 * 상단 합계 표시
