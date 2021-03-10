@@ -9,7 +9,7 @@
 
 * [Hello, World? I'm RealGrid!](./part-1/01)
 * [데이터 가져와서 그리드에 표시하기](./part-1/02)
-* [Hello, World? I'm RealGrid!](./part-1/03)
+* 마스터 
 * 순서대로 표시하기
 * 그룹으로 묶어서 보여주기
 * 필터로 걸러서 보여주기
