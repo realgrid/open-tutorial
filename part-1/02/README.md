@@ -9,9 +9,8 @@ Rest API 서버로부터 JSON 데이터를 가져와서 그리드에 표시하�
   * 그리드에 번호와 제목 컬럼을 추가하여 표시합니다.
   * [https://jsonplaceholder.typicode.com/posts](https://jsonplaceholder.typicode.com/posts) 링크의 호출 결과를 그리드에 표시합니다.
 
-::: tip
-[https://jsonplaceholder.typicode.com/](https://jsonplaceholder.typicode.com/) 사이트에 가보시면 가상의 API를 서버를 통해서 기본적인 Rest API 테스트를 할 수 있는 URI들을 확인하실 수 있습니다.
-:::
+
+	[https://jsonplaceholder.typicode.com/](https://jsonplaceholder.typicode.com/) 사이트에 가보시면 가상의 API를 서버를 통해서 기본적인 Rest API 테스트를 할 수 있는 URI들을 확인하실 수 있습니다.
 
 
 # 그리드의 필드 설정 방법
@@ -21,35 +20,7 @@ Rest API 서버로부터 JSON 데이터를 가져와서 그리드에 표시하�
 여기서는 기본적인 필드 설정 방법에 대해서 알아봅니다.
 세밀한 부분은 "Part 3. 고급 사용자를 위한 Tip"에서 다루도록 하겠습니다.
 
-``` html
-<!DOCTYPE html>
-<html>
-	<head>
-		<meta charset="utf-8">
-		<link href="/lib/realgrid-style.css" rel="stylesheet" />
-		<script type="text/javascript" src="/lib/realgrid-lic.js"></script>
-		<script type="text/javascript" src="/lib/realgrid.2.2.2.min.js"></script>
-		<script type="text/javascript" src="/js/jquery-3.4.0.min.js"></script>
-	</head>
-	<body>
-		<div id="realgrid" style="width: 100%; height: 440px;">
-		</div>
-	</body>
-</html>
-
-<script>
-	document.addEventListener("DOMContentLoaded", function () {
-		const provider = new RealGrid.LocalDataProvider();
-		const gridView = new RealGrid.GridView("realgrid");
-		gridView.setDataSource(provider);
-
-		provider.setFields([
-			{ fieldName: "id" },
-			{ fieldName: "title" },
-		]);
-	});
-</script>
-```
+![](code-01)
 [예제-01](http://10bun.tv/samples/realgrid2/part-1/01)의 기본 형태의 코드에서 아래의 몇 가지가 변경되었습니다.
 
 * 8: 웹에서 JSON 데이터를 가져오기 위해서 JQuery를 가져옵니다.
@@ -231,12 +202,7 @@ JSON 데이터 가져오기 관련 코드만 분리하면 아래와 같습니다
 데이터를 가져오는 부분은 독자분들의 상황에 따라 달라질 수 있기 때문에
 JQuery에 대한 설명은 생략하도록 하겠습니다.
 
-``` js
-$.getJSON("https://jsonplaceholder.typicode.com/posts", function (data) {
-	console.log(data);
-	provider.fillJsonData(data, { fillMode: "set" });
-});
-```
+![](code-02)
 * 1: https://jsonplaceholder.typicode.com/posts 에서 JSON 데이터를 가져옵니다.
 * 2: 가져온 데이터를 콘솔에 확인합니다.
 * 3: 가져온 데이터를 Provider에 집어넣습니다. 데이터가 입력되면 Provider에 연결된 모든 그리드에 데이터가 표시됩니다.
