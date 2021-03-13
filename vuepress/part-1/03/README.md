@@ -1,5 +1,7 @@
 # 마스터 디테일
 
+<iframe width="800" height="450" src="https://www.youtube.com/embed/O_HJPnxDM8k" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
 이번 포스트에서는 마스터 디테일 형식으로 그리드를 표현하는 방법에 대해서 알아보겠습니다.
 실행 예제는 아래의 링크를 통해서 확인하실 수가 있습니다.
 
