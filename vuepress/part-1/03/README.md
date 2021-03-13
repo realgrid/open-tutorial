@@ -98,16 +98,23 @@
 	document.addEventListener('DOMContentLoaded', function () {
         ...
 		var master_data = [
-			{ OrderID: 10248, CustomerID: "VINET", CompayName: "Vins et alcools Chevalier" },
-			{ OrderID: 10249, CustomerID: "TOMSP", CompayName: "Toms Spezialitäten" },
+			{ OrderID: 10248, CustomerID: "VINET", 
+			  CompayName: "Vins et alcools Chevalier" },
+			{ OrderID: 10249, CustomerID: "TOMSP", 
+			  CompayName: "Toms Spezialitäten" },
 		];
 
 		var detail_data = [
-			{ OrderID: 10248, ProductName: "Queso Cabrales", UnitPrice: 14, Quantity: 12 },
-			{ OrderID: 10248, ProductName: "Singaporean Hokkien Fried Mee", UnitPrice: 9.8, Quantity: 10 },
-			{ OrderID: 10248, ProductName: "Mozzarella di Giovanni", UnitPrice: 34.8, Quantity: 5 },
-			{ OrderID: 10249, ProductName: "Tofu", UnitPrice: 18.6, Quantity: 9 },
-			{ OrderID: 10249, ProductName: "Manjimup Dried Apples", UnitPrice: 42.4, Quantity: 40 },
+			{ OrderID: 10248, 
+			  ProductName: "Queso Cabrales", UnitPrice: 14, Quantity: 12 },
+			{ OrderID: 10248, 
+			  ProductName: "Singaporean Fried Mee", UnitPrice: 9.8, Quantity: 10 },
+			{ OrderID: 10248, 
+			  ProductName: "Mozzarella di Giovanni", UnitPrice: 34.8, Quantity: 5 },
+			{ OrderID: 10249, 
+			  ProductName: "Tofu", UnitPrice: 18.6, Quantity: 9 },
+			{ OrderID: 10249, 
+			  ProductName: "Manjimup Dried Apples", UnitPrice: 42.4, Quantity: 40 },
 		];
 
 		master_provider.fillJsonData(master_data, { fillMode: "set" });
@@ -115,10 +122,10 @@
 	});
 </script>
 ```
-* 9-12: master_provider에 제공할 데이터를 서버가 아닌 코드로 직접 생성하여 사용하고 있습니다.
-* 14-20: detail_provider에 제공할 데이터를 서버가 아닌 코드로 직접 생성하여 사용하고 있습니다.
-* 22: master_provider에 master_data를 set 방식으로 덮어 씁니다.
-* 23: detail_provider에 detail_data를 set 방식으로 덮어 씁니다.
+* 9-14: master_provider에 제공할 데이터를 서버가 아닌 코드로 직접 생성하여 사용하고 있습니다.
+* 16-27: detail_provider에 제공할 데이터를 서버가 아닌 코드로 직접 생성하여 사용하고 있습니다.
+* 29: master_provider에 master_data를 set 방식으로 덮어 씁니다.
+* 30: detail_provider에 detail_data를 set 방식으로 덮어 씁니다.
 
 
 ## 데이터 제공 및 마스터 디테일 적용
