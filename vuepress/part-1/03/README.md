@@ -46,13 +46,13 @@
 		master_provider.setFields([
 			{ fieldName: "OrderID" },
 			{ fieldName: "CustomerID" },
-			{ fieldName: "CompayName" },
+			{ fieldName: "CompanyName" },
 		]);
 
 		master_grid.setColumns([
 			{ name: "OrderID",    fieldName: "OrderID",    width:  "80" },
 			{ name: "CustomerID", fieldName: "CustomerID", width:  "80" },
-			{ name: "CompayName", fieldName: "CompayName", width: "300" },
+			{ name: "CompanyName", fieldName: "CompanyName", width: "300" },
 		]);
 
 		detail_provider.setFields([
@@ -99,9 +99,9 @@
         ...
 		var master_data = [
 			{ OrderID: 10248, CustomerID: "VINET", 
-			  CompayName: "Vins et alcools Chevalier" },
+			  CompanyName: "Vins et alcools Chevalier" },
 			{ OrderID: 10249, CustomerID: "TOMSP", 
-			  CompayName: "Toms Spezialitäten" },
+			  CompanyName: "Toms Spezialitäten" },
 		];
 
 		var detail_data = [
