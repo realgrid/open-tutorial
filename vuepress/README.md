@@ -14,12 +14,11 @@ tagline: 사람과 데이터를 잇다
 - [Hello, World? I'm RealGrid!](/part-1/01)
 - [데이터 가져와서 그리드에 표시하기](/part-1/02)
 - [마스터 디테일](/part-1/03)
+- [데이터 수정하기](/part-1/04)
 - 순서대로 표시하기
 - 그룹으로 묶어서 보여주기 (http://docs.realgrid.com/guides/row-group/row-grouping)
 - 필터로 걸러서 보여주기
 - 선택방식 설정하기
-- 그리드에서 데이터 수정하기
-  - 수정, 추가, 삽입, 삭제
 - 그리드 스타일 바꾸기
 - 셀 병합
 - 트리뷰 (http://docs.realgrid.com/guides/tree/tree-view)
