@@ -38,9 +38,7 @@
 * 9: "소팅 끄기" 버튼이 클릭되면 enabled 속성이 false가 되어 그리드 헤더를 클릭해도 변화가 생기지 않습니다.
   * 기존에 소팅이 되어 있던 것들은 그대로 유지됩니다.
 
-::: tip
-setSortingOptions() 메소드의 자세한 설명은 [SortingOptions](http://docs.realgrid.com/refs/sorting-options) 문서를 참고해주세요.
-:::
+> setSortingOptions() 메소드의 자세한 설명은 [SortingOptions](http://docs.realgrid.com/refs/sorting-options) 문서를 참고해주세요.
 
 
 ## 코드로 소팅하기 (orderBy)
