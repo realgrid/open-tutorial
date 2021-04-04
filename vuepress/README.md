@@ -5,9 +5,11 @@ heroText: RealGrid2
 tagline: 사람과 데이터를 잇다
 ---
 
+
 ## Part 0. RealGrid2 소개
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/lW8lE-sb6t0" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
 
 ## Part 1. RealGrid2 시작하기
 
@@ -15,14 +17,15 @@ tagline: 사람과 데이터를 잇다
 - [데이터 가져와서 그리드에 표시하기](/part-1/02)
 - [마스터 디테일](/part-1/03)
 - [데이터 수정하기](/part-1/04)
-- 순서대로 표시하기
-- 그룹으로 묶어서 보여주기 (http://docs.realgrid.com/guides/row-group/row-grouping)
-- 필터로 걸러서 보여주기
-- 선택방식 설정하기
+- [소팅](/part-1/05)
+- [필터링](/part-1/06)
+- 행그룹
 - 그리드 스타일 바꾸기
+- 셀 선택방식 변경
 - 셀 병합
 - 트리뷰 (http://docs.realgrid.com/guides/tree/tree-view)
 - 엑셀 파일로 내보내기
+
 
 ## Part 2. 상황별로 배우는 RealGrid2
 
@@ -32,6 +35,7 @@ tagline: 사람과 데이터를 잇다
 ::: tip
 소규모 프로젝트나 특정 상황의 해결 방법이나 샘플 제공
 :::
+
 
 ## Part 3. 고급 사용자를 위한 Tip
 
@@ -62,6 +66,7 @@ tagline: 사람과 데이터를 잇다
 - 컬럼 유효성 검사
 - 사용자 지정 유효성 검사
 - provider 공유하기
+- provider의 데이터 필터링
 - Vue.Js 에서 RealGrid 사용하기 (http://help.realgrid.com/start/quick/vuejs-realgrid/)
 
 ::: tip
