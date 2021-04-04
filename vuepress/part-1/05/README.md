@@ -179,7 +179,7 @@ orderBy()의 파라메터들은 세로로 한 묶음이 되는데요. 이는 아
 다양한 소팅을 테스트해보고 "소팅 초기화"을 클릭하여 정렬 순서가 처음 상태로 초기화되는 지 확인해보세요.
 
 예제의 전체 코드 및 실행결과는 아래 링크에서 확인할 수 있습니다.
-* [코드로 소팅하기 예제](http://10bun.tv/samples/realgrid2/part-1/05/step-03.html)
+* [소팅 초기화하기 예제](http://10bun.tv/samples/realgrid2/part-1/05/step-03.html)
 
 ``` html
 <!DOCTYPE html>
@@ -221,7 +221,7 @@ orderBy()의 파라메터들은 세로로 한 묶음이 되는데요. 이는 아
 id 컬럼을 클릭해도 소팅이 되지 않거나 다시 소팅이 되는지 확인해보세요.
 
 예제의 전체 코드 및 실행결과는 아래 링크에서 확인할 수 있습니다.
-* [코드로 소팅하기 예제](http://10bun.tv/samples/realgrid2/part-1/05/step-04.html)
+* [특정컬럼 소팅 여부 지정 예제](http://10bun.tv/samples/realgrid2/part-1/05/step-04.html)
 
 ``` html
 <!DOCTYPE html>
@@ -270,7 +270,7 @@ id 컬럼을 클릭해도 소팅이 되지 않거나 다시 소팅이 되는지 
 * reverse: 마지막으로 클릭한 컬럼을 우선으로 순서대로 정렬합니다.
 
 예제의 전체 코드 및 실행결과는 아래 링크에서 확인할 수 있습니다.
-* [코드로 소팅하기 예제](http://10bun.tv/samples/realgrid2/part-1/05/step-04.html)
+* [소팅 스타일 지정 예제](http://10bun.tv/samples/realgrid2/part-1/05/step-04.html)
 
 ``` html
 <!DOCTYPE html>
