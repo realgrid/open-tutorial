@@ -77,6 +77,6 @@
 
     function clearFilter() {
         gridView.clearColumnFilters("Gender");
-        gridView.clearColumnFilters("KorCountry");
+        gridView.setColumnProperty("KorCountry", "autoFilter", false);
     }
 </script>
