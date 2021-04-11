@@ -61,7 +61,9 @@ setColumnFilters() 메소드의 보다 자세한 내용은 GridBase 설명 문�
 ### 필터 삭제하기
 
 ![](./code-005.png)
-* "Gender" 컬럼에 정의된 필터를 삭제합니다.
+* 1: "Gender" 컬럼에 정의된 필터를 삭제합니다.
+* 2: "KorCountry" 컬럼은 자동 필터이기 때문에 clearColumnFilters() 메소드로 삭제할 수가 없습니다. 따라서 "KorCountry" 컬럼의 autoFilter 속성을 false로 변경해야 필터가 사라지게 됩니다.
+
 
 
 ## 필터링 다루기 #2
