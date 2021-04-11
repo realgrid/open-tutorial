@@ -9,10 +9,10 @@
 	</head>
 	<body>
         <div>
-            <button onclick="hideColumnFilters()">필터 함수</button>
-            <button onclick="showColumnFilters()">필터 보이기</button>
-            <button onclick="hideAllColumnFilters()">모든 필터 숨기기</button>
-            <button onclick="showAllColumnFilters()">모든 필터 보이기</button>
+            <button onclick="hideFilters()">필터 숨기기</button>
+            <button onclick="showFilters()">필터 보이기</button>
+            <button onclick="hideAllFilters()">모든 필터 숨기기</button>
+            <button onclick="showAllFilters()">모든 필터 보이기</button>
             <button onclick="toggleFilters()">필터 토글</button>
             <button onclick="toggleAllFilters()">모든 필터 토글</button>
         </div>
@@ -74,19 +74,19 @@
     ];
     gridView.setColumnFilters('KorCountry', filters);
 
-    function hideColumnFilters() {
-        gridView.hideColumnFilters("KorCountry", ["우크라이나", "브라질"]);
+    function hideFilters() {
+        gridView.hideColumnFilters("KorCountry", ["우크라이나", "브라질"], true);
     }
 
-    function showColumnFilters() {
+    function showFilters() {
         gridView.hideColumnFilters("KorCountry", ["우크라이나", "브라질"], false);
     }
 
-    function hideAllColumnFilters() {
+    function hideAllFilters() {
         gridView.hideAllColumnFilters("KorCountry", true);
     }
 
-    function showAllColumnFilters() {
+    function showAllFilters() {
         gridView.hideAllColumnFilters("KorCountry", false);
     }
 
