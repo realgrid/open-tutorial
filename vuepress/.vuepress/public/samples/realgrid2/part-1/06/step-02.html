@@ -12,7 +12,7 @@
             <button onclick="setFiltering(true)">필터링 켜기</button>
             <button onclick="setFiltering(false)">필터링 끄기</button>
             <button onclick="autoFiltering()">자동 필터링</button>
-            <button onclick="filterByCompleted()">Gender로 필터링</button>
+            <button onclick="filterByGender()">Gender로 필터링</button>
             <button onclick="clearFilter()">필터 삭제</button>
         </div>
         <br>
@@ -61,7 +61,7 @@
         gridView.setColumnProperty("KorCountry", "autoFilter", true);
     }
 
-    function filterByCompleted() {
+    function filterByGender() {
         const filters = [
             {
                 name: '남',
