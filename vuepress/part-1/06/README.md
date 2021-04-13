@@ -269,39 +269,39 @@ gridView.toggleAllColumnFilters("KorCountry");
 * [함수를 이용한 필터링 예제](http://10bun.tv/samples/realgrid2/part-1/06/step-05.html)
 
 ``` js
-var filterFunc = function(dataProvider, dataRow, fieldName, filter, value) {
-    return (filter.ageFrom >= value) && (filter.ageTo <= value);
+var filterFunc = function(dataProvider, dataRow, level, fieldName, filter, value) {
+	return (filter.ageFrom >= value) && (filter.ageTo <= value);
 };
 
 var filters = [
-    {
-        name: "filter1",
-        text: "20대 이하",
-        ageFrom: 0,
-        ageTo: 20,
-        filterCallback: filterFunc
-    },
-    {
-        name: "filter2",
-        text: "30대",
-        ageFrom: 30,
-        ageTo: 39,
-        filterCallback: filterFunc
-    },
-    {
-        name: "filter3",
-        text: "40대",
-        ageFrom: 40,
-        ageTo: 49,
-        filterCallback: filterFunc
-    },
-    {
-        name: "filter4",
-        text: "50대 이상",
-        ageFrom: 50,
-        ageTo: 300,
-        filterCallback: filterFunc
-    }
+	{
+		name: "filter1",
+		text: "20대 이하",
+		ageFrom: 0,
+		ageTo: 20,
+		callback: filterFunc
+	},
+	{
+		name: "filter2",
+		text: "30대",
+		ageFrom: 30,
+		ageTo: 39,
+		callback: filterFunc
+	},
+	{
+		name: "filter3",
+		text: "40대",
+		ageFrom: 40,
+		ageTo: 49,
+		callback: filterFunc
+	},
+	{
+		name: "filter4",
+		text: "50대 이상",
+		ageFrom: 50,
+		ageTo: 300,
+		callback: filterFunc
+	}
 ];
 gridView.setColumnFilters('Age', filters);
 ```

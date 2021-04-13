@@ -44,7 +44,7 @@
         provider.fillJsonData(data, { fillMode: "set" });
     });
 
-    var filterFunc = function(dataProvider, dataRow, fieldName, filter, value) {
+    var filterFunc = function(dataProvider, dataRow, level, fieldName, filter, value) {
         return (filter.ageFrom >= value) && (filter.ageTo <= value);
     };
 
@@ -54,28 +54,28 @@
             text: "20대 이하",
             ageFrom: 0,
             ageTo: 20,
-            filterCallback: filterFunc
+            callback: filterFunc
         },
         {
             name: "filter2",
             text: "30대",
             ageFrom: 30,
             ageTo: 39,
-            filterCallback: filterFunc
+            callback: filterFunc
         },
         {
             name: "filter3",
             text: "40대",
             ageFrom: 40,
             ageTo: 49,
-            filterCallback: filterFunc
+            callback: filterFunc
         },
         {
             name: "filter4",
             text: "50대 이상",
             ageFrom: 50,
             ageTo: 300,
-            filterCallback: filterFunc
+            callback: filterFunc
         }
     ];
     gridView.setColumnFilters('Age', filters);
