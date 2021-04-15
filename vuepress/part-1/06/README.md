@@ -270,49 +270,44 @@ gridView.toggleAllColumnFilters("KorCountry");
 
 ``` js
 var filterFunc = function(dataProvider, dataRow, level, fieldName, filter, value) {
-	return (filter.ageFrom >= value) && (filter.ageTo <= value);
+    return (value >= filter.tag.ageFrom) && (value <= filter.tag.ageTo);
 };
 
 var filters = [
-	{
-		name: "filter1",
-		text: "20대 이하",
-		ageFrom: 0,
-		ageTo: 20,
-		callback: filterFunc
-	},
-	{
-		name: "filter2",
-		text: "30대",
-		ageFrom: 30,
-		ageTo: 39,
-		callback: filterFunc
-	},
-	{
-		name: "filter3",
-		text: "40대",
-		ageFrom: 40,
-		ageTo: 49,
-		callback: filterFunc
-	},
-	{
-		name: "filter4",
-		text: "50대 이상",
-		ageFrom: 50,
-		ageTo: 300,
-		callback: filterFunc
-	}
+    {
+        name: "filter1",
+        text: "20대 이하",
+        tag: {ageFrom: 0, ageTo: 29},
+           callback: filterFunc
+    },
+    {
+        name: "filter2",
+        text: "30대",
+        tag: {ageFrom: 30, ageTo: 39},
+        callback: filterFunc
+    },
+    {
+        name: "filter3",
+        text: "40대",
+        tag: {ageFrom: 40, ageTo: 49},
+        callback: filterFunc
+    },
+    {
+        name: "filter4",
+        text: "50대 이상",
+        tag: {ageFrom: 50, ageTo: 1000},
+        callback: filterFunc
+    }
 ];
 gridView.setColumnFilters('Age', filters);
 ```
 * 1-3: 필터에 사용할 함수를 정의하는 부분입니다. 아래 두 조건이 맞으면 true를 리턴해서 해당 데이터가 선택되어 그리드에 표시됩니다.
-  * filter.ageFrom >= value
-    * 현재 데이터가 filter의 속성 중 ageFrom보다 크거나 같으면 true가 됩니다.
-  * filter.ageTo <= value
-    * 현재 데이터가 filter의 속성 중 ageTo보다 작거나 같으면 false가 리턴됩니다.
+  * value >= filter.tag.ageFrom
+    * 현재 데이터가 filter의 속성 중 tag.ageFrom보다 크거나 같으면 true가 됩니다.
+  * value <= filter.tag.ageTo
+    * 현재 데이터가 filter의 속성 중 tag.ageTo보다 작거나 같으면 false가 리턴됩니다.
   * 위의 두 조건이 모드 만족하면 해당 나이 사이에 있는 사용자가 되어서 함수는 true를 리턴합니다. 따라서 선택한 연령에 해당하는 데이터만 표시됩니다.
-* 5-24: 필터를 정의하는 부분입니다.
-* 9, 16, 23, 30: 필터에 ageFrom 속성을 추가해서 어느 나이 이상을 표시할 것인지 설정합니다.
-* 10, 17, 24, 31: 필터에 ageTo 속성을 추가해서 어느 나이 이하를 표시할 것인지 설정합니다.
-* 11, 18, 25, 32: 필터가 선택되었을 때 데이터를 추려내는 조건을 계산할 함수를 지정합니다.
+* 5-30: 필터를 정의하는 부분입니다.
+* 9, 15, 21, 27: 필터의 tag 속성에 {ageFrom, ageTo} 객체를 대입하여 연령대별로 데이터를 거를 수 있도록 기준값을 정합니다.
+* 10, 16, 22, 28: 필터가 선택되었을 때 데이터를 추려내는 조건을 계산할 함수를 지정합니다.
 

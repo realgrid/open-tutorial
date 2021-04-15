@@ -45,36 +45,32 @@
     });
 
     var filterFunc = function(dataProvider, dataRow, level, fieldName, filter, value) {
-        return (filter.ageFrom >= value) && (filter.ageTo <= value);
+        return (value >= filter.tag.ageFrom) && (value <= filter.tag.ageTo);
     };
 
     var filters = [
         {
             name: "filter1",
             text: "20대 이하",
-            ageFrom: 0,
-            ageTo: 20,
+            tag: {ageFrom: 0, ageTo: 29},
             callback: filterFunc
         },
         {
             name: "filter2",
             text: "30대",
-            ageFrom: 30,
-            ageTo: 39,
+            tag: {ageFrom: 30, ageTo: 39},
             callback: filterFunc
         },
         {
             name: "filter3",
             text: "40대",
-            ageFrom: 40,
-            ageTo: 49,
+            tag: {ageFrom: 40, ageTo: 49},
             callback: filterFunc
         },
         {
             name: "filter4",
             text: "50대 이상",
-            ageFrom: 50,
-            ageTo: 300,
+            tag: {ageFrom: 50, ageTo: 1000},
             callback: filterFunc
         }
     ];
