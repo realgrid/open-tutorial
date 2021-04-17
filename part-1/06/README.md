@@ -1,5 +1,8 @@
 # 필터링
 
+[![](youtube-01.jpg)](https://youtu.be/hyiVGVDorrU)
+[![](youtube-02.jpg)](https://youtu.be/1ZAd6MZuTHQ)
+
 이번 포스트에서는 필터링하는 방법에 대해서 알아보겠습니다.
 
 
