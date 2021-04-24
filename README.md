@@ -7,18 +7,18 @@
 
 # Part 1. RealGrid2 시작하기
 
-- [Hello, World? I'm RealGrid!](/part-1/01)
-- [데이터 가져와서 그리드에 표시하기](/part-1/02)
-- [마스터 디테일](/part-1/03)
-- [데이터 수정하기](/part-1/04)
-- [소팅](/part-1/05)
-- [필터링](/part-1/06)
-- 행그룹
-- 그리드 스타일 바꾸기
-- 셀 선택방식 변경
-- 셀 병합
-- 트리뷰 (http://docs.realgrid.com/guides/tree/tree-view)
-- 엑셀 파일로 내보내기
+* [Hello, World? I'm RealGrid!](/part-1/01)
+* [데이터 가져와서 그리드에 표시하기](/part-1/02)
+* [마스터 디테일](/part-1/03)
+* [데이터 수정하기](/part-1/04)
+* [소팅](/part-1/05)
+* [필터링](/part-1/06)
+* [행그룹](/part-1/07)
+* 그리드 스타일 바꾸기
+* 셀 선택방식 변경
+* 셀 병합
+* 트리뷰 (http://docs.realgrid.com/guides/tree/tree-view)
+* 엑셀 파일로 내보내기
 
 
 # Part 2. 상황별로 배우는 RealGrid2
@@ -37,6 +37,7 @@
 * 그리드 Lazy Loading 구현
 * HTML 렌더러
 * 동적 스타일과 편집 여부 설정
+* 행 병합 그룹핑 (http://docs.realgrid.com/guides/row-group/merged-row-grouping)
 * displayCallback()을 사용하여 원하는대로 표시값 설정하기
 * 컨텍스트 메뉴
 * 다양한 편집기
