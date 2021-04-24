@@ -12,52 +12,7 @@
 기본 코드의 실행결과는 아래 링크에서 확인할 수 있습니다.
 * [기본 코드의 실행 결과](http://10bun.tv/samples/realgrid2/part-1/07/step-00.html)
 
-``` html
-<!DOCTYPE html>
-<html>
-	<head>
-		<meta charset="utf-8">
-		<link href="/lib/realgrid-style.css" rel="stylesheet" />
-		<link href="/lib/common.css" rel="stylesheet" />
-        ...
-	</head>
-    ...
-</html>
-
-<script>
-    const provider = new RealGrid.LocalDataProvider();
-    const gridView = new RealGrid.GridView("realgrid");
-    gridView.setDataSource(provider);
-
-    provider.setFields([
-        { fieldName: "KorName",       dataType: "text" },
-        { fieldName: "Gender",        dataType: "text" },
-        { fieldName: "Age",           dataType: "number" },
-        { fieldName: "Phone",         dataType: "text" },
-        { fieldName: "ProductId",     dataType: "text" },
-        { fieldName: "KorCountry",    dataType: "text" },
-        { fieldName: "OrderDate",     dataType: "datetime" },
-        { fieldName: "SaveCost",      dataType: "number" },
-    ]);
-
-    gridView.setColumns([
-        { name: "KorName",            fieldName: "KorName",       width: "70" },
-        { name: "Gender",             fieldName: "Gender",        width: "50" },
-        { name: "Age",                fieldName: "Age",           width: "40" },
-        { name: "Phone",              fieldName: "Phone",         width: "100" },
-        { name: "ProductId",          fieldName: "ProductId",     width: "120" },
-        { name: "KorCountry",         fieldName: "KorCountry",    width: "100" },
-        { name: "OrderDate",          fieldName: "OrderDate",     width: "100" },
-        { name: "SaveCost",           fieldName: "SaveCost",      width: "80" },
-    ]);
-
-    const data_url = "https://raw.githubusercontent.com/realgrid/open-tutorial/main/datas/data-002.json";
-    $.getJSON(data_url, function (data) {
-        console.log(data);
-        provider.fillJsonData(data, { fillMode: "set" });
-    });
-</script>
-```
+![](./code-001.png)
 6: 새로운 CSS 파일이 추가되었습니다. 컬럼의 스타일을 변경하는데 사용합니다.
 
 
@@ -72,27 +27,7 @@
 링크의 페이지를 여시고 "GroupPanel 보이기" 버튼을 클릭하신다음 컬럼을 마우스로 끌어서 놓아보세요.
 * [그룹 패널 숨기기 / 보이기 예제 실행결과](http://10bun.tv/samples/realgrid2/part-1/07/step-01.html)
 
-``` html
-<!DOCTYPE html>
-<html>
-    ...
-	<body>
-        <div>
-            <button onclick="showGroupPanel(false)">GroupPanel 숨기기</button>
-            <button onclick="showGroupPanel(true)">GroupPanel 보이기</button>
-        </div>
-        <br>
-        ...
-	</body>
-</html>
-
-<script>
-    ...
-    function showGroupPanel(value) {
-        gridView.groupPanel.visible = value;
-    }
-</script>
-```
+![](./code-002.png)
 * 16-18: 버튼이 클릭되었을 때 그룹 패널의 visible 속성을 변경시키는 함수의 구현 부분입니다.
 * 17: gridView.groupPanel의 visible 속성이 true가 되면 패널이 보이고, false이면 사라지게 됩니다.
 
@@ -105,29 +40,7 @@ GridView의 groupBy() 메소드를 이용하면 마우스 조작을 하지 않�
 예제 코드의 실행결과는 아래 링크에서 확인할 수 있습니다.
 * [코드로 그룹 묶기 예제 실행결과](http://10bun.tv/samples/realgrid2/part-1/07/step-02.html)
 
-``` html
-<!DOCTYPE html>
-<html>
-    ...
-    <body>
-        <div>
-            <button onclick="groupByGenderAndKorCountry()">성별과 투자국가로 GroupBy하기</button>
-        </div>
-        <br>
-        ...
-	</body>
-</html>
-
-<script>
-    ...
-
-    gridView.groupPanel.visible = true;
-
-    function groupByGenderAndKorCountry() {
-        gridView.groupBy(["Gender", "KorCountry"]);
-    }
-</script>
-```
+![](./code-003.png)
 * 16: 그룹 패널을 보이도록 합니다. 그룹 패널이 보이지 않아도 그룹핑은 되지만 눈으로 확인할 수 있도록 true로 세팅하였습니다.
 * 19: "Gender"와 "KorCountry" 컬럼을 기준으로 그룹핑합니다.
 
@@ -147,24 +60,7 @@ GridView의 setRowGroup() 메소드를 이용하면 그룹의 헤더와 푸터�
 예제 코드의 실행결과는 아래 링크에서 확인할 수 있습니다.
 * [그룹 헤더와 푸터 표시 변경하기 예제 실행결과](http://10bun.tv/samples/realgrid2/part-1/07/step-03.html)
 
-``` html
-<!DOCTYPE html>
-<html>
-    ...
-</html>
-
-<script>
-    ...
-
-    gridView.groupPanel.visible = true;
-    gridView.groupBy(["Age"]);
-
-    gridView.setRowGroup({
-        headerStatement: "${groupField} - ${groupValue}",
-        footerStatement: "${rowCount} rows",
-    });
-</script>
-```
+![](./code-004.png)
 * 13: 해더의 표시 방법을 정의하고 있습니다.
 * 14: 푸터의 표시 방법을 정의하고 있습니다.
 
@@ -178,38 +74,7 @@ groupFooter 속성은 모든 그룹마다 적용되며, footer 속성은 그리�
 예제 코드의 실행결과는 아래 링크에서 확인할 수 있습니다.
 * [그룹 푸터와 그리드 푸터 설정 변경하기 예제 실행결과](http://10bun.tv/samples/realgrid2/part-1/07/step-04.html)
 
-``` html
-<!DOCTYPE html>
-<html>
-    ...
-</html>
-
-<script>
-    ...
-    gridView.setColumns([
-        ...
-        {
-            name: "Age", fieldName: "Age", width: "40",
-            groupFooter: {
-                expression: "avg",
-                numberFormat: "#,##0.0",
-                styleName: "right-column",
-            },
-            footer: {
-                expression: "avg",
-                numberFormat: "#,##0.0",
-                styleName: "right-column",
-            },
-        },
-        ...
-    ]);
-
-    ...
-
-    gridView.groupPanel.visible = true;
-    gridView.groupBy(["Age"]);
-</script>
-```
+![](./code-005.png)
 * 12-16: 그룹 푸터 설정을 변경하는 부분입니다.
 * 17-21: 그리드의 푸터 설정을 변경하는 부분입니다.
 * 14, 19. 숫자 표현 방식을 정의합니다.
@@ -223,38 +88,7 @@ groupFooter의 valueCallback 속성을 이용하면 그룹 푸터의 내용을 �
 예제 코드의 실행결과는 아래 링크에서 확인할 수 있습니다.
 * [그룹 푸터의 동적계산 예제 실행결과](http://10bun.tv/samples/realgrid2/part-1/07/step-05.html)
 
-``` html
-<!DOCTYPE html>
-<html>
-    ...
-</html>
-
-<script>
-    ...
-    gridView.setColumns([
-        ...
-        {
-            name: "Age", fieldName: "Age", width: "40",
-            groupFooter: {
-                valueCallback: callbackGroupFooterAge,
-                styleName: "right-column",
-            },
-            styleName: "right-column",
-        },
-        ...
-    ]);
-
-    ...
-
-    gridView.groupPanel.visible = true;
-    gridView.groupBy(["Age"]);
-
-    function callbackGroupFooterAge(grid, column, groupFooterIndex, group, value) {
-        var groupModel = grid.getGroupModel(group.index);
-        return grid.getGroupSummary(groupModel, "Age").count + ' 건';
-    }
-</script>
-```
+![](./code-006.png)
 * 13: valueCallback 속성에 callbackGroupFooterAge() 함수를 대입하고 있습니다. 그룹 푸터를 표시할 때 해당 함수의 리턴값을 이용하게 됩니다.
 * 26-19: callbackGroupFooterAge() 함수의 구현 영역입니다.
 * 28: getGroupSummary() 메소드를 이용해서 Age 컬럼의 그룹 요약 정보 객체를 가져와서 count 속성 값을 리턴하고 있습니다. 결과적으로 몇 건의 데이터가 현재 그룹에 묶여져 있는지 리턴합니다.
@@ -271,54 +105,7 @@ setFooters() 메소드를 이용하면 그룹 푸터를 여러 줄로 표시할 
 예제 코드의 실행결과는 아래 링크에서 확인할 수 있습니다.
 * [그룹 푸터의 동적계산 예제 실행결과](http://10bun.tv/samples/realgrid2/part-1/07/step-06.html)
 
-``` html
-<!DOCTYPE html>
-<html>
-    ...
-</html>
-
-<script>
-    ...
-    gridView.setColumns([
-        ...
-        {
-            name: "Gender", fieldName: "Gender", width: "50",
-            groupFooters: [
-                { text: "합계: ", styleName: "orange-column" }, 
-                { text: "평균: ", styleName: "orange-column" },
-            ],
-        },
-        {
-            name: "Age", fieldName: "Age", width: "40",
-            groupFooter: [
-                {
-                    valueCallback: callbackGroupFooterAge,
-                    styleName: "orange-column",
-                },
-                {
-                    valueCallback: callbackGroupFooterAge,
-                    styleName: "orange-column",
-                },
-            ],
-        },
-        ...
-    ]);
-
-    ...
-
-    gridView.rowGroup.setFooters( [{}, {}] );
-    gridView.groupPanel.visible = true;
-    gridView.groupBy(["Age"]);
-
-    function callbackGroupFooterAge(grid, column, groupFooterIndex, group, value) {
-        var groupModel = grid.getGroupModel(group.index);
-        switch (groupFooterIndex) {
-            case 0: return grid.getGroupSummary(groupModel, "Age").sum;
-            case 1: return grid.getGroupSummary(groupModel, "Age").avg;
-        }
-    }
-</script>
-```
+![](./code-007.png)
 * 35: setFooters() 메소드에 파라메터로 전달되는 배열의 요소 개수만큼 그룹 푸터 표시 줄이 늘어나게 됩니다. 이번 예제에서는 두 줄로 그룹 푸터가 표시됩니다.
 * 39-45: 그룹 푸터에 표시될 내용을 리턴하는 함수를 구현합니다.
 * 42: 첫 번째 줄에 그룹의 합계를 표시합니다.
@@ -337,30 +124,6 @@ onGrouped 이벤트는 그룹핑이 완료되면 발생합니다.
 예제 코드의 실행결과는 아래 링크에서 확인할 수 있습니다.
 * [행그룹 이벤트 예제 실행결과](http://10bun.tv/samples/realgrid2/part-1/07/step-07.html)
 
-``` html
-<!DOCTYPE html>
-<html>
-    ...
-</html>
-
-<script>
-    ...
-    
-    gridView.onGrouping = function(grid) {
-        // false를 반환하면 그룹핑되지 않습니다.
-        return true;
-    };
-
-    gridView.onGrouped = function(grid) {
-        alert(
-            "onGrouped : isGrouped = " + grid.isGrouped() + ", " + 
-            "isMergedGrouped  = "      + grid.isMergedGrouped()
-        );
-    };
-
-    gridView.groupPanel.visible = true;
-    gridView.groupBy(["Age"]);
-</script>
-```
+![](./code-008.png)
 * 11: false로 변경해서 실행하면 그룹핑이 안되는 것을 확인할 수 있습니다.
 * 14-19: 그룹핑이 완료되면 그룹핑이 되었는지와 머지 모드로 그룹핑되었는지 여부가 다이얼로그 창에 표시됩니다.
