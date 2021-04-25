@@ -215,6 +215,10 @@ groupFooter 속성은 모든 그룹마다 적용되며, footer 속성은 그리�
 * 14, 19. 숫자 표현 방식을 정의합니다.
 * 15, 20: 푸터의 스타일을 적용합니다. "right-column"은 common.css에 정의되어 있습니다.
 
+::: tip
+expression에 들어갈 수 있는 연산식은 [Expression](http://help.realgrid.com/api/features/Expression/) 문서를 참고해주시기 바랍니다.
+:::
+
 
 ## 그룹 푸터의 동적계산
 
