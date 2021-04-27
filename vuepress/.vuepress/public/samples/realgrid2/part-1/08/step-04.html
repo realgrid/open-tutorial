@@ -62,14 +62,15 @@
     const data_url = "https://raw.githubusercontent.com/realgrid/open-tutorial/main/datas/data-004.json";
     $.getJSON(data_url, function (data) {
         console.log(data);
-        provider.fillJsonData(data, { fillMode: "set" });		
+        provider.fillJsonData(data, { fillMode: "set" });
+		
+		gridView.groupPanel.visible = true;
+		gridView.groupBy(["KorCountry", "Monetary", "Gender"]);
+		gridView.setRowGroup({
+			mergeMode: true,
+			createFooterCallback: function (grid, group) {
+				return group.level < 3;
+			},
+		});
     });
-	
-	gridView.groupPanel.visible = true;
-	gridView.setRowGroup({
-		mergeMode: true,
-		createFooterCallback: function (grid, group) {
-			return group.level < 3;
-		},
-	});	
 </script>
