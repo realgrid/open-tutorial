@@ -14,12 +14,7 @@
 * [소팅](/part-1/05)
 * [필터링](/part-1/06)
 * [행그룹](/part-1/07)
-* [셀 병합 및 컬럼 헤더 그룹핑](/part-1/08)
-* 그리드 스타일 바꾸기
-* 셀 선택방식 변경
-* 셀 병합
-* 트리뷰 (http://docs.realgrid.com/guides/tree/tree-view)
-* 엑셀 파일로 내보내기
+* [셀 병합](/part-1/08)
 
 
 # Part 2. 상황별로 배우는 RealGrid2
