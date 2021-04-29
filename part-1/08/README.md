@@ -11,46 +11,7 @@
 기본 코드의 실행결과는 아래 링크에서 확인할 수 있습니다.
 * [기본 코드의 실행 결과](http://10bun.tv/samples/realgrid2/part-1/08/step-00.html)
 
-``` html
-<!DOCTYPE html>
-<html>
-	<head>
-		<meta charset="utf-8">
-		<link href="/lib/realgrid-style.css" rel="stylesheet" />
-		<link href="/lib/common.css" rel="stylesheet" />
-		<script type="text/javascript" src="/lib/realgrid-lic.js"></script>
-		<script type="text/javascript" src="/lib/realgrid.2.2.2.min.js"></script>
-		<script type="text/javascript" src="/js/jquery-3.4.0.min.js"></script>
-	</head>
-	<body>
-		<div id="realgrid" style="width: 100%; height: 440px;">
-		</div>
-	</body>
-</html>
-
-<script>
-    const provider = new RealGrid.LocalDataProvider();
-    const gridView = new RealGrid.GridView("realgrid");
-    gridView.setDataSource(provider);
-
-	// 필드 설정
-    provider.setFields([
-		...
-    ]);
-
-	// 컬럼 설정
-    gridView.setColumns([
-		...
-    ]);
-
-	// 서버로부터 데이터 가져오기
-    const data_url = "https://raw.githubusercontent.com/realgrid/open-tutorial/main/datas/data-003.json";
-    $.getJSON(data_url, function (data) {
-        console.log(data);
-        provider.fillJsonData(data, { fillMode: "set" });
-    });
-</script>
-```
+![](./code-001.png)
 
 
 ## 셀 병합하기
@@ -64,36 +25,7 @@ setColumns() 메소드로 컬럼을 초기화할 때 mergeRule을 설정했기 �
 예제 코드의 실행결과는 아래 링크에서 확인할 수 있습니다.
 * [셀 병합하기 예제 실행결과](http://10bun.tv/samples/realgrid2/part-1/08/step-01.html)
 
-``` html
-<!DOCTYPE html>
-<html>
-	...
-	<body>
-		<div>
-			<button onclick="mergeRule('row div 3')">3줄씩 묶기</button>
-			<button onclick="mergeRule('row div 5')">5줄씩 묶기</button>
-			<button onclick="mergeRule('value')">같은 값으로 묶기</button>
-			<button onclick="mergeRule('')">묶지 않기</button>
-		</div>
-		...
-</html>
-
-<script>
-	...
-    gridView.setColumns([
-		...
-		{ 
-			name: "Gender", fieldName: "Gender", width: "40",
-			mergeRule: { criteria: "value" }
-		},
-		...
-    ]);
-	...
-	function mergeRule(value) {
-		gridView.setColumnProperty("Gender", "mergeRule", { criteria: value });
-	}
-</script>
-```
+![](./code-002.png)
 * 20: 컬럽을 설정할 때 병합할 기준을 정합니다. 'value'로 지정하면 값이 같은 것끼리 이웃해 있는 경우 병합하게 됩니다.
 * 6: 성별(Gender) 컬럼을 3줄씩 묶어서 보여줍니다.
 * 7: 성별(Gender) 컬럼을 5줄씩 묶어서 보여줍니다.
@@ -122,21 +54,7 @@ CustomerID 컬럼의 셀이 병합되어 있는 것을 알 수 있습니다.
 예제 코드의 실행결과는 아래 링크에서 확인할 수 있습니다.
 * [선택 컬럼을 참조하여 병합하기 예제 실행결과](http://10bun.tv/samples/realgrid2/part-1/08/step-02.html)
 
-``` html
-<!DOCTYPE html>
-<html>
-	...
-</html>
-
-<script>
-	...
-	// {criteria: "prevvalues + value"};
-	// {criteria: "values['OrderID'] + values['Country'] + value"};
-	gridView.columnByName("CustomerID").mergeRule = {
-		criteria: "values['OrderID'] + values['Country'] + values['CustomerID']"
-	};
-</script>
-```
+![](./code-003.png)
 * 10-12: OrderID, Country, CustomerID 세 컬럼의 데이터가 모두 같은 경우 CustomerID 셀을 병합합니다.
 
 아래 세 표현 모두 같은 의미입니다. (주석 처리된 부분과 11번의 코드)
