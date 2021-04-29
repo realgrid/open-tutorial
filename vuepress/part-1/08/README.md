@@ -123,48 +123,6 @@ gridView.setColumnProperty(
 ```
 
 
-## 컬럼 헤더 그룹핑
-
-아래의 그림에서처럼 유사한 컬럼 여러개를 하나의 묶음으로 표시하고자 할 때 활용할 수 있는 예제입니다.
-KorName, Gender, Age 세 개의 컬럼 헤더를 하나로 묶어서 그룹화한 예입니다.
-
-![](./pic-1.png)
-
-예제 코드의 실행결과는 아래 링크에서 확인할 수 있습니다.
-* [컬럼 푸터 병합 예제 실행결과](http://10bun.tv/samples/realgrid2/part-1/08/step-02.html)
-
-``` html
-<!DOCTYPE html>
-<html>
-	...
-</html>
-
-<script>
-	...
-  	gridView.setColumnLayout([
-		{
-			name: "개인정보", 
-			direction: "horizontal", 
-			// direction: "vertical",
-			items: [
-				"KorName",
-				"Gender", 
-				"Age",
-			]
-		},
-		'Phone',
-		'ProductId',
-		'KorCountry',
-	]);	
-</script>
-```
-* 10: 헤더 그룹에 표시될 텍스트입니다.
-* 11: 컬럼들을 수평 방향으로 그룹핑합니다.
-* 12: 11번 라인을 주석처리하고 12번 라인의 주석을 제거하면 수직방향으로 컬럼들을 그룹핑합니다.
-* 13-17: 그룹으로 묶을 컬럼들입니다.
-* 19-21: 표시할 컬럼들의 목록입니다.
-
-
 ## 행 병합 그룹핑
 
 아래 예제는 그룹핑된 셀들을 병합해서 표시합니다.
