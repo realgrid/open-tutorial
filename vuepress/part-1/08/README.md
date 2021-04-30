@@ -15,12 +15,7 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<meta charset="utf-8">
-		<link href="/lib/realgrid-style.css" rel="stylesheet" />
-		<link href="/lib/common.css" rel="stylesheet" />
-		<script type="text/javascript" src="/lib/realgrid-lic.js"></script>
-		<script type="text/javascript" src="/lib/realgrid.2.2.2.min.js"></script>
-		<script type="text/javascript" src="/js/jquery-3.4.0.min.js"></script>
+		...
 	</head>
 	<body>
 		<div id="realgrid" style="width: 100%; height: 440px;">
