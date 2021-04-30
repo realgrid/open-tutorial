@@ -63,9 +63,10 @@
 		
 		// 10 개 미만인 경우 20% 할인하는 가정으로 계산, 괄호안에 할인된 금액 표시
 		if (paymentCount < 10) {
-			return 
+			let result = 
 				(paymentCount * paymentAmount * 0.8) + " (-" + 
 				(paymentCount * paymentAmount * 0.2) + ")";
+			return result;
 		} 
 			
 		return paymentCount * paymentAmount;

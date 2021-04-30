@@ -121,9 +121,10 @@ valueCallback을 사용해서 함수의 리턴값으로 계산 필드의 데이�
 		if (isNaN(paymentCount) || isNaN(paymentAmount)) return undefined;
 		
 		if (paymentCount < 10) {
-			return 
+			let result = 
 				(paymentCount * paymentAmount * 0.8) + " (-" + 
 				(paymentCount * paymentAmount * 0.2) + ")";
+			return result;
 		} 
 			
 		return paymentCount * paymentAmount;
@@ -131,10 +132,10 @@ valueCallback을 사용해서 함수의 리턴값으로 계산 필드의 데이�
 </script>
 ```
 * 12: 필드 설정에서 valueCallback 속성을 추가합니다. calcTotal 함수가 지정되어 있어서 각 row가 표시될 때마다 calcTotal 함수의 결과값이 Total 필드의 값이 됩니다.
-* 16-29: calcTotal 함수의 구현 코드입니다.
+* 16-30: calcTotal 함수의 구현 코드입니다.
 * 20: ToMonth 필드와 SaveCost 필드 둘 중 하나만이라도 숫자 속성이 아니면 undefined를 리턴합니다.
-* 22-26: paymentCount가 10개 미만이면 20% 할인한다는 가정으로 계산합니다. 괄호안에는 할인된 금액이 표시됩니다.
-* 28: 위의 조건들이 맞지 않는 경우에는 "개수 * 금액"의 결과값을 리턴합니다.
+* 22-27: paymentCount가 10개 미만이면 20% 할인한다는 가정으로 계산합니다. 괄호안에는 할인된 금액이 표시됩니다.
+* 29: 위의 조건들이 맞지 않는 경우에는 "개수 * 금액"의 결과값을 리턴합니다.
 
 ::: warning
 valueCallback 계산 시간만큼 그리드의 속도가 느려질 수 있습니다.
