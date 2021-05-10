@@ -56,7 +56,7 @@
         provider.fillJsonData(data, { fillMode: "set" });
     });
 	
-	function calcTotal(prod, dataRow, fieldName, fieldNames, values) {
+	function calcTotal(provider, dataRow, fieldName, fieldNames, values) {
 		let paymentCount  = values[fieldNames.indexOf("ToMonth")];
 		let paymentAmount = values[fieldNames.indexOf("SaveCost")];
 
