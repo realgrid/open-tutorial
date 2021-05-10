@@ -71,14 +71,14 @@
     provider.setFields([
 		...
 		{ 
-			fieldName: "Total", DataType: "number",
+			fieldName: "Subtotal", DataType: "number",
     		valueExpression: "values['ToMonth'] * values['SaveCost']"
   		}
     ]);
 
     gridView.setColumns([
 		...
-		{ name: "Total", fieldName: "Total", width: "80" },
+		{ name: "Subtotal", fieldName: "Subtotal", width: "80" },
     ]);
 	...
 </script>
@@ -86,7 +86,7 @@
 * 12: 필드 설정에서 valueExpression 속성을 추가합니다.
   * 따옴표 안 식의 계산 결과값이 필드의 데이터 값이 됩니다.
   * values["필드명"]은 같은 row 데이터에서 해당 필드명의 값이 됩니다.
-  * 결과적으로 12라인은 ToMonth 컬럼과 SaveCost 컬럼의 값을 곱한 결과값이 가상으로 생성된 Total 필드의 값이 됩니다.
+  * 결과적으로 12라인은 ToMonth 컬럼과 SaveCost 컬럼의 값을 곱한 결과값이 가상으로 생성된 Subtotal 필드의 값이 됩니다.
 * 18: 가상으로 만들어진 가상 필드도 일반 필드와 동일하게 취급되기 때문에 컬럼 설정에서 fieldName에 지정하여 사용합니다.
 
 
@@ -109,7 +109,7 @@ valueCallback을 사용해서 함수의 리턴값으로 계산 필드의 데이�
     provider.setFields([
 		...
 		{ 
-			fieldName: "Total", DataType: "text",
+			fieldName: "Subtotal", DataType: "text",
     		valueCallback: calcTotal
   		}
     ]);
@@ -131,7 +131,7 @@ valueCallback을 사용해서 함수의 리턴값으로 계산 필드의 데이�
     }
 </script>
 ```
-* 12: 필드 설정에서 valueCallback 속성을 추가합니다. calcTotal 함수가 지정되어 있어서 각 row가 표시될 때마다 calcTotal 함수의 결과값이 Total 필드의 값이 됩니다.
+* 12: 필드 설정에서 valueCallback 속성을 추가합니다. calcTotal 함수가 지정되어 있어서 각 row가 표시될 때마다 calcTotal 함수의 결과값이 Subtotal 필드의 값이 됩니다.
 * 16-30: calcTotal 함수의 구현 코드입니다.
 * 20: ToMonth 필드와 SaveCost 필드 둘 중 하나만이라도 숫자 속성이 아니면 undefined를 리턴합니다.
 * 22-27: paymentCount가 10개 미만이면 20% 할인한다는 가정으로 계산합니다. 괄호안에는 할인된 금액이 표시됩니다.
