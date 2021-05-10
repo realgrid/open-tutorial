@@ -1,5 +1,7 @@
 # 셀 병합
 
+[![](youtube-01.jpg)](https://youtu.be/5gUDzuiY6Cs)
+
 이번 포스트에서는 셀 병합에 대해서 알아보겠습니다.
 
 
