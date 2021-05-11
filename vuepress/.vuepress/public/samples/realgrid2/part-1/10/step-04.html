@@ -25,7 +25,7 @@
 	
     provider.setFields([
 		{ fieldName: "UserId" },
-		{ fieldName: "UserName" },
+		{ fieldName: "StatusCode" },
 		{ fieldName: "Age" },
 		{ fieldName: "Gender" },
 		{ fieldName: "MobilePhone" },
@@ -37,26 +37,28 @@
 		{ name: "UserId",      fieldName: "UserId",      width: "80" },
 		
 		{ 
-			name: "UserName",  fieldName: "UserName",    width: "80",
+			name: "StatusCode", fieldName: "StatusCode", width: "80",
 			lookupDisplay: true,
-			values: ["VINET", "HANAR", "SUPRD", "VICTE", "THREE", "SEVEN"],
-			labels: ["<VINET>", "<HANAR>", "<SUPRD>", "<VICTE>", "<THREE>", "<SEVEN>"],
+			values: ["0", "1", "2", "3", "4", "5"],
+			labels: ["비회원", "준회원", "정회원", "우수회원", "운영자", "관리자"],
 		},
 
 		{ 
-			name: "Age",       fieldName: "Age",         width: "40",
+			name: "Age", fieldName: "Age", width: "40",
 			lookupDisplay: true,
 			labelField: "AgeLabel",
 		},
 		
 		{ 
-			name: "Gender",      fieldName: "Gender",      width: "80",
+			name: "Gender", fieldName: "Gender", width: "80",
 			lookupDisplay: true,
+			values: ["M", "F"],
+			labels: ["남", "여"],
 			editor: {
 				type: "dropdown",
 				dropDownCount: 2,
-				domainOnly: true,  // true이면 values에 없는 값은 입력할 수 없다. 
-				values: ["Male","Female"],
+				domainOnly: true,
+				values: ["M","F"],
 				labels: ["남","여"]
 			},
 		},

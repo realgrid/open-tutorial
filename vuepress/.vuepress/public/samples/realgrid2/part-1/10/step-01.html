@@ -21,7 +21,7 @@
 
     provider.setFields([
 		{ fieldName: "UserId" },
-		{ fieldName: "UserName" },
+		{ fieldName: "StatusCode" },
 		{ fieldName: "Age" },
 		{ fieldName: "Gender" },
 		{ fieldName: "MobilePhone" },
@@ -31,21 +31,16 @@
 
     gridView.setColumns([
 		{ name: "UserId",      fieldName: "UserId",      width: "80" },
-		{ name: "UserName",    fieldName: "UserName",    width: "80" },
-		{ name: "Age",         fieldName: "Age",         width: "40" },
-
+		
 		{ 
-			name: "Gender",      fieldName: "Gender",      width: "80",
+			name: "StatusCode", fieldName: "StatusCode", width: "80",
 			lookupDisplay: true,
-			editor: {
-				type: "dropdown",
-				dropDownCount: 2,
-				domainOnly: true,  // true이면 values에 없는 값은 입력할 수 없다. 
-				values: ["Male","Female"],
-				labels: ["남","여"]
-			},
+			values: ["0", "1", "2", "3", "4", "5"],
+			labels: ["비회원", "준회원", "정회원", "우수회원", "운영자", "관리자"],
 		},
-
+		
+		{ name: "Age",         fieldName: "Age",         width: "40" },
+		{ name: "Gender",      fieldName: "Gender",      width: "80" },
 		{ name: "MobilePhone", fieldName: "MobilePhone", width: "100" },
 		{ name: "Email", 	   fieldName: "Email",       width: "120" },
     ]);

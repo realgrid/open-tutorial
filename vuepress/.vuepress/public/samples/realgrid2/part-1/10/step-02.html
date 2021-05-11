@@ -21,7 +21,7 @@
 
     provider.setFields([
 		{ fieldName: "UserId" },
-		{ fieldName: "UserName" },
+		{ fieldName: "StatusCode" },
 		{ fieldName: "Age" },
 		{ fieldName: "Gender" },
 		{ fieldName: "MobilePhone" },
@@ -31,15 +31,14 @@
 
     gridView.setColumns([
 		{ name: "UserId",      fieldName: "UserId",      width: "80" },
+		{ name: "StatusCode",  fieldName: "StatusCode",  width: "80" },
 		
 		{ 
-			name: "UserName",  fieldName: "UserName",    width: "80",
+			name: "Age",       fieldName: "Age",         width: "40",
 			lookupDisplay: true,
-			values: ["VINET", "HANAR", "SUPRD", "VICTE", "THREE", "SEVEN"],
-			labels: ["<VINET>", "<HANAR>", "<SUPRD>", "<VICTE>", "<THREE>", "<SEVEN>"],
+			labelField: "AgeLabel",
 		},
 		
-		{ name: "Age",         fieldName: "Age",         width: "40" },
 		{ name: "Gender",      fieldName: "Gender",      width: "80" },
 		{ name: "MobilePhone", fieldName: "MobilePhone", width: "100" },
 		{ name: "Email", 	   fieldName: "Email",       width: "120" },
