@@ -19,9 +19,9 @@
     const gridView = new RealGrid.GridView("realgrid");
     gridView.setDataSource(provider);
 	
-	var companies = {id:"area1code", levels:1, tags: [], keys: [], values: []};
-	var categories = {id:"area2code", levels:2, tags: [], keys: [], values: []};
-	var products = {id:"area3code", levels:3, tags: [], keys: [], values: []};
+	var companies  = {id: "companies",  levels: 1, tags: [], keys: [], values: []};
+	var categories = {id: "categories", levels: 2, tags: [], keys: [], values: []};
+	var products   = {id: "products",   levels: 3, tags: [], keys: [], values: []};
 	
     provider.setFields([
 		{ fieldName: "uid" },
@@ -50,18 +50,23 @@
         provider.fillJsonData(data, { fillMode: "set" });
     });
 	
-	function loadCodeData(url, codes) {
+	function loadCodeData(url, codes, fkeys, fvalue) {
 		$.getJSON(url, function (data) {
 			for (var i=0; i<data.length; i++) {
 				var row = data[i];
-				codes.keys.push(row.code);
-				codes.values.push(row.name);
+				
+				var keys = [];
+				for (var j=0; j<fkeys.length; j++) keys.push(row[fkeys[j]]);
+				
+				codes.keys.push(keys);
+				codes.values.push(row[fvalue]);
 			}
+			
 			console.log(codes);
 		});		
 	}
 
-	loadCodeData(data_url + "data-007-01.json", area1codes);
-	loadCodeData(data_url + "data-007-02.json", area2codes);
-	loadCodeData(data_url + "data-007-03.json", area3codes);
+	loadCodeData(data_url + "data-007-01.json", companies, ["uid"], "company");
+	loadCodeData(data_url + "data-007-04.json", categories, ["company_id", "category_id"], "category");
+	loadCodeData(data_url + "data-007-03.json", products, ["company_id", "category_id", "uid"], "product");
 </script>
