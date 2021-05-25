@@ -3,25 +3,30 @@
         "uid": 1,
         "company_id": 1,
         "category_id": 1,
+        "category": "과자"
     },
     {
         "uid": 2,
         "company_id": 1,
         "category_id": 2,
+        "category": "음료"
     },
     {
         "uid": 3,
         "company_id": 1,
         "category_id": 3,
+        "category": "냉동식품"
     },
     {
         "uid": 4,
         "company_id": 2,
         "category_id": 1,
+        "category": "과자"
     },
     {
         "uid": 5,
         "company_id": 2,
         "category_id": 2,
+        "category": "음료"
     }
 ]
