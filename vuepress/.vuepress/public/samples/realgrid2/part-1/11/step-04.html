@@ -36,6 +36,9 @@
 	loadCodeData(data_url + "data-007-04.json", categories, ["company_id", "category_id"], "category");
 	loadCodeData(data_url + "data-007-03.json", products,   ["company_id", "category_id", "uid"], "product");
 	
+    gridView.addLookupSource(categories);
+    gridView.addLookupSource(products);
+	
     provider.setFields([
 		{ fieldName: "uid" },
 		{ fieldName: "order_date" },
@@ -48,9 +51,31 @@
     gridView.setColumns([
 		{ name: "uid",         fieldName: "uid",         width: "40" },
 		{ name: "order_date",  fieldName: "order_date",  width: "80" },	
-		{ name: "company_id",  fieldName: "company_id",  width: "100" },
-		{ name: "category_id", fieldName: "category_id", width: "80" },	
-		{ name: "product_id",  fieldName: "product_id",  width: "100" },
+		
+		{ 
+			name: "company_id",  fieldName: "company_id",  width: "100",
+			lookupDisplay: true, 
+			values: companies.keys, 
+			labels: companies.values,
+			editor: { type: "dropdown" }
+		},
+		
+		{ 
+			name: "category_id", fieldName: "category_id", width: "80",
+			lookupDisplay: true, 
+			lookupSourceId: "categories", 
+			lookupKeyFields: ["company_id", "category_id"],
+			editor: { type: "dropdown" }
+		},
+
+		{ 
+			name: "product_id",  fieldName: "product_id",  width: "100",
+			lookupDisplay: true, 
+			lookupSourceId: "products", 
+			lookupKeyFields: ["company_id", "category_id", "product_id"],
+			editor: { type: "dropdown" }			
+		},
+
 		{ name: "quantity",    fieldName: "quantity",    width: "40" },
     ]);
 

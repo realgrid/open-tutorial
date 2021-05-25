@@ -18,14 +18,23 @@
     const provider = new RealGrid.LocalDataProvider();
     const gridView = new RealGrid.GridView("realgrid");
     gridView.setDataSource(provider);
-
+	
     var data_url = 
 		"https://raw.githubusercontent.com/realgrid/" +
     	"open-tutorial/main/datas/";
+	
     $.getJSON(data_url + "data-007.json", function (data) {
         console.log(data);
         provider.fillJsonData(data, { fillMode: "set" });
     });
+	
+	var companies  = {id: "companies",  levels: 1, keys: [], values: []};
+	var categories = {id: "categories", levels: 2, keys: [], values: []};
+	var products   = {id: "products",   levels: 3, keys: [], values: []};
+	
+	loadCodeData(data_url + "data-007-01.json", companies,  ["uid"], "company");
+	loadCodeData(data_url + "data-007-04.json", categories, ["company_id", "category_id"], "category");
+	loadCodeData(data_url + "data-007-03.json", products,   ["company_id", "category_id", "uid"], "product");
 	
     provider.setFields([
 		{ fieldName: "uid" },
@@ -39,9 +48,44 @@
     gridView.setColumns([
 		{ name: "uid",         fieldName: "uid",         width: "40" },
 		{ name: "order_date",  fieldName: "order_date",  width: "80" },	
-		{ name: "company_id",  fieldName: "company_id",  width: "100" },
+		
+		{ 
+			name: "company_id",  fieldName: "company_id",  width: "100",
+			lookupDisplay: true, 
+			values: companies.keys, 
+			labels: companies.values,
+			editor: { type: "dropdown" }
+		},
+		
 		{ name: "category_id", fieldName: "category_id", width: "80" },	
 		{ name: "product_id",  fieldName: "product_id",  width: "100" },
 		{ name: "quantity",    fieldName: "quantity",    width: "40" },
     ]);
+
+	function loadCodeData(url, codes, fkeys, fvalue) {		
+		$.ajax ({
+			url: url,
+			dataType: "json",
+			async: false,
+			success: function(data) {
+				for (var i=0; i<data.length; i++) {
+					var row = data[i];
+
+					var keys = [];
+					if (fkeys.length == 1) {
+						keys = String(row[fkeys[0]]);
+					} else {
+						for (var j=0; j<fkeys.length; j++) {
+							keys.push( String(row[fkeys[j]]) );
+						}
+					}
+
+ 					codes.keys.push(keys);
+					codes.values.push(row[fvalue]);
+				}
+				
+				console.log(codes);
+			}
+		})
+	}
 </script>
