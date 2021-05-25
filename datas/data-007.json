@@ -4,7 +4,7 @@
         "order_date": "2021-05-01",
         "company_id": 1,
         "category_id": 2,
-        "brand_name_id": 3,
+        "product_id": 3,
         "quantity": 1
     },
     {
@@ -12,7 +12,7 @@
         "order_date": "2021-05-01",
         "company_id": 1,
         "category_id": 3,
-        "brand_name_id": 5,
+        "product_id": 5,
         "quantity": 3
     },
     {
@@ -20,7 +20,7 @@
         "order_date": "2021-05-01",
         "company_id": 2,
         "category_id": 1,
-        "brand_name_id": 8,
+        "product_id": 8,
         "quantity": 2
     },
     {
@@ -28,7 +28,7 @@
         "order_date": "2021-05-02",
         "company_id": 1,
         "category_id": 2,
-        "brand_name_id": 4,
+        "product_id": 4,
         "quantity": 2
     },
     {
@@ -36,7 +36,7 @@
         "order_date": "2021-05-02",
         "company_id": 2,
         "category_id": 2,
-        "brand_name_id": 9,
+        "product_id": 9,
         "quantity": 3
     },
     {
@@ -44,7 +44,7 @@
         "order_date": "2021-05-02",
         "company_id": 2,
         "category_id": 1,
-        "brand_name_id": 8,
+        "product_id": 8,
         "quantity": 5
     },
     {
@@ -52,7 +52,7 @@
         "order_date": "2021-05-02",
         "company_id": 1,
         "category_id": 2,
-        "brand_name_id": 4,
+        "product_id": 4,
         "quantity": 3
     },
     {
@@ -60,7 +60,7 @@
         "order_date": "2021-05-03",
         "company_id": 1,
         "category_id": 1,
-        "brand_name_id": 1,
+        "product_id": 1,
         "quantity": 6
     },
     {
@@ -68,7 +68,7 @@
         "order_date": "2021-05-03",
         "company_id": 1,
         "category_id": 1,
-        "brand_name_id": 2,
+        "product_id": 2,
         "quantity": 3
     },
     {
@@ -76,7 +76,7 @@
         "order_date": "2021-05-03",
         "company_id": 1,
         "category_id": 1,
-        "brand_name_id": 2,
+        "product_id": 2,
         "quantity": 2
     }
 ]

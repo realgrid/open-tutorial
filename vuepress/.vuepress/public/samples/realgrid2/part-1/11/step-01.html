@@ -19,20 +19,26 @@
     const gridView = new RealGrid.GridView("realgrid");
     gridView.setDataSource(provider);
 	
-	var area1codes = {id:"area1code", levels:1, keys: [], values: []};
-	var area2codes = {id:"area2code", levels:2, tags: [], keys: [], values: []};
-	var area3codes = {id:"area3code", levels:3, tags: [], keys: [], values: []};
+	var companies = {id:"area1code", levels:1, tags: [], keys: [], values: []};
+	var categories = {id:"area2code", levels:2, tags: [], keys: [], values: []};
+	var products = {id:"area3code", levels:3, tags: [], keys: [], values: []};
 	
     provider.setFields([
-		{ fieldName: "area1code" },
-		{ fieldName: "area2code" },
-		{ fieldName: "area3code" },
+		{ fieldName: "uid" },
+		{ fieldName: "order_date" },
+		{ fieldName: "company_id" },
+		{ fieldName: "category_id" },
+		{ fieldName: "product_id" },
+		{ fieldName: "quantity" },
     ]);
 
     gridView.setColumns([
-		{ name: "area1code", fieldName: "area1code", width: "100" },
-		{ name: "area2code", fieldName: "area2code", width: "100" },
-		{ name: "area3code", fieldName: "area3code", width: "100" },
+		{ name: "uid",         fieldName: "uid",         width: "40" },
+		{ name: "order_date",  fieldName: "order_date",  width: "80" },
+		{ name: "company_id",  fieldName: "company_id",  width: "100" },
+		{ name: "category_id", fieldName: "category_id", width: "80" },
+		{ name: "product_id",  fieldName: "product_id",  width: "100" },
+		{ name: "quantity",    fieldName: "quantity",    width: "4cd 0" },
     ]);
 
     var data_url = 
