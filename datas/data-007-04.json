@@ -1,27 +1,27 @@
 [
     {
         "uid": 1,
-        "company_id": 1
+        "company_id": 1,
         "category_id": 1,
     },
     {
         "uid": 2,
-        "company_id": 1
+        "company_id": 1,
         "category_id": 2,
     },
     {
         "uid": 3,
-        "company_id": 1
+        "company_id": 1,
         "category_id": 3,
     },
     {
         "uid": 4,
-        "company_id": 2
+        "company_id": 2,
         "category_id": 1,
     },
     {
         "uid": 5,
-        "company_id": 2
+        "company_id": 2,
         "category_id": 2,
     }
 ]
