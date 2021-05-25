@@ -1,0 +1,14 @@
+[
+    {
+        "uid": 1,
+        "category": "과자"
+    },
+    {
+        "uid": 2,
+        "category": "음료"
+    },
+    {
+        "uid": 3,
+        "category": "냉동식품"
+    }
+]

@@ -1,0 +1,62 @@
+[
+    {
+        "uid": 1,
+        "brand_name": "해태과자 A",
+        "company_id": 1,
+        "category_id": 1
+    },
+    {
+        "uid": 2,
+        "brand_name": "해태과자 B",
+        "company_id": 1,
+        "category_id": 1
+    },
+    {
+        "uid": 3,
+        "brand_name": "해태음료 A",
+        "company_id": 1,
+        "category_id": 2
+    },
+    {
+        "uid": 4,
+        "brand_name": "해태음료 B",
+        "company_id": 1,
+        "category_id": 2
+    },
+    {
+        "uid": 5,
+        "brand_name": "해태만두 A",
+        "company_id": 1,
+        "category_id": 3
+    },
+    {
+        "uid": 6,
+        "brand_name": "해태만두 B",
+        "company_id": 1,
+        "category_id": 3
+    },
+    {
+        "uid": 7,
+        "brand_name": "롯데과자 A",
+        "company_id": 2,
+        "category_id": 1
+    },
+    {
+        "uid": 8,
+        "brand_name": "롯데과자 B",
+        "company_id": 2,
+        "category_id": 1
+    },
+    {
+        "uid": 9,
+        "brand_name": "롯데음료 A",
+        "company_id": 2,
+        "category_id": 2
+    },
+    {
+        "uid": 10,
+        "brand_name": "롯데음료 B",
+        "company_id": 2,
+        "category_id": 2
+    }
+]
