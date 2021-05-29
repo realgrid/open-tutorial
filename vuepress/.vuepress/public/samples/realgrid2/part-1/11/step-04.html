@@ -87,20 +87,15 @@
 			success: function(data) {
 				for (var i=0; i<data.length; i++) {
 					var row = data[i];
-
 					var keys = [];
 					if (fkeys.length == 1) {
 						keys = String(row[fkeys[0]]);
 					} else {
-						for (var j=0; j<fkeys.length; j++) {
-							keys.push( String(row[fkeys[j]]) );
-						}
+						for (var j=0; j<fkeys.length; j++) keys.push( String(row[fkeys[j]]) );
 					}
-
  					codes.keys.push(keys);
 					codes.values.push(row[fvalue]);
-				}
-				
+				}				
 				console.log(codes);
 			}
 		})

@@ -23,6 +23,7 @@ tagline: 사람과 데이터를 잇다
 - [셀 병합](/part-1/08)
 - [계산 필드](/part-1/09)
 - [Lookup 컬럼](/part-1/10)
+- [Lookup Tree](/part-1/11)
 - 셀 선택방식 변경
 - 셀 병합
 - 트리뷰 (http://docs.realgrid.com/guides/tree/tree-view)
