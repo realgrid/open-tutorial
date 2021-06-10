@@ -24,10 +24,10 @@ tagline: 사람과 데이터를 잇다
 - [계산 필드](/part-1/09)
 - [Lookup 컬럼](/part-1/10)
 - [Lookup Tree](/part-1/11)
+- [엑셀 파일로 내보내기](/part-1/12)
 - 셀 선택방식 변경
 - 셀 병합
 - 트리뷰 (http://docs.realgrid.com/guides/tree/tree-view)
-- 엑셀 파일로 내보내기
 
 
 ## Part 2. 상황별로 배우는 RealGrid2
