@@ -1,5 +1,7 @@
 [
     {
+        "Bool1": true,
+        "Bool2": "Y",
         "KorName": "박영호",
         "Gender": "남",
         "Age": "71",
@@ -9,7 +11,6 @@
         "OrderDate": "2021-01-16",
         "CardNumber": "5587-2139-9692-3644",
         "Monetary": "EUR",
-        "imageUrl": "/images/monetaryFlag/EUR.png",
         "StartDate": "2018-02-25",
         "EndDate": "2021-08-12",
         "ToMonth": "23",
@@ -24,6 +25,8 @@
         "Address": "서울특별시 강서구 공항동 45-89"
     },
     {
+        "Bool1": false,
+        "Bool2": "N",
         "KorName": "조일형",
         "Gender": "남",
         "Age": "62",
@@ -33,7 +36,6 @@
         "OrderDate": "2019-07-29",
         "CardNumber": "5348-5093-3750-0623",
         "Monetary": "USD",
-        "imageUrl": "/images/monetaryFlag/USD.png",
         "StartDate": "2019-10-21",
         "EndDate": "2022-12-11",
         "ToMonth": "3",
@@ -48,6 +50,8 @@
         "Address": "서울특별시 중구 봉래동2가 122"
     },
     {
+        "Bool1": false,
+        "Bool2": "N",
         "KorName": "김덕중",
         "Gender": "여",
         "Age": "53",
@@ -57,7 +61,6 @@
         "OrderDate": "2020-03-08",
         "CardNumber": "5121-9931-3555-9853",
         "Monetary": "HKD",
-        "imageUrl": "/images/monetaryFlag/HKD.png",
         "StartDate": "2018-12-30",
         "EndDate": "2022-01-16",
         "ToMonth": "13",
@@ -72,6 +75,8 @@
         "Address": "서울특별시 양천구 신월동 115-15"
     },
     {
+        "Bool1": true,
+        "Bool2": "Y",
         "KorName": "국영석",
         "Gender": "남",
         "Age": "63",
@@ -81,7 +86,6 @@
         "OrderDate": "2020-05-01",
         "CardNumber": "5571-3720-2975-7540",
         "Monetary": "AUD",
-        "imageUrl": "/images/monetaryFlag/AUD.png",
         "StartDate": "2019-08-15",
         "EndDate": "2021-12-23",
         "ToMonth": "5",
@@ -96,6 +100,8 @@
         "Address": "서울특별시 강남구 역삼동 707-9"
     },
     {
+        "Bool1": false,
+        "Bool2": "N",
         "KorName": "이강수",
         "Gender": "남",
         "Age": "59",
@@ -105,7 +111,6 @@
         "OrderDate": "2020-08-05",
         "CardNumber": "5244-3051-2681-3706",
         "Monetary": "VND",
-        "imageUrl": "/images/monetaryFlag/VND.png",
         "StartDate": "2019-04-12",
         "EndDate": "2020-12-04",
         "ToMonth": "10",
@@ -120,6 +125,8 @@
         "Address": "서울특별시 중구 황학동 706-2"
     },
     {
+        "Bool1": true,
+        "Bool2": "Y",
         "KorName": "성노식",
         "Gender": "남",
         "Age": "66",
@@ -129,7 +136,6 @@
         "OrderDate": "2020-02-10",
         "CardNumber": "5429-9674-4898-1599",
         "Monetary": "KRW",
-        "imageUrl": "/images/monetaryFlag/KRW.png",
         "StartDate": "2019-01-24",
         "EndDate": "2021-03-10",
         "ToMonth": "12",
@@ -144,6 +150,8 @@
         "Address": "서울특별시 중구 충무로1가 52-5"
     },
     {
+        "Bool1": true,
+        "Bool2": "Y",
         "KorName": "김진영",
         "Gender": "남",
         "Age": "29",
@@ -153,7 +161,6 @@
         "OrderDate": "2019-06-20",
         "CardNumber": "5153-6153-6849-7151",
         "Monetary": "VND",
-        "imageUrl": "/images/monetaryFlag/VND.png",
         "StartDate": "2018-06-23",
         "EndDate": "2021-10-25",
         "ToMonth": "19",
@@ -168,6 +175,8 @@
         "Address": "서울특별시 양천구 신정동 117-36"
     },
     {
+        "Bool1": false,
+        "Bool2": "N",
         "KorName": "전우수",
         "Gender": "여",
         "Age": "73",
@@ -177,7 +186,6 @@
         "OrderDate": "2019-12-27",
         "CardNumber": "5255-8067-8768-5495",
         "Monetary": "THB",
-        "imageUrl": "/images/monetaryFlag/THB.png",
         "StartDate": "2018-04-11",
         "EndDate": "2022-08-22",
         "ToMonth": "22",
@@ -192,6 +200,8 @@
         "Address": "서울특별시 송파구 가락동 600"
     },
     {
+        "Bool1": true,
+        "Bool2": "Y",
         "KorName": "이준원",
         "Gender": "남",
         "Age": "25",
@@ -201,7 +211,6 @@
         "OrderDate": "2019-06-14",
         "CardNumber": "5182-7600-2022-5395",
         "Monetary": "AUD",
-        "imageUrl": "/images/monetaryFlag/AUD.png",
         "StartDate": "2018-06-02",
         "EndDate": "2022-02-13",
         "ToMonth": "20",
@@ -216,6 +225,8 @@
         "Address": "서울특별시 강남구 대치동 937"
     },
     {
+        "Bool1": false,
+        "Bool2": "N",
         "KorName": "안병은",
         "Gender": "남",
         "Age": "46",
@@ -225,7 +236,6 @@
         "OrderDate": "2020-11-01",
         "CardNumber": "5172-0915-3934-2048",
         "Monetary": "VND",
-        "imageUrl": "/images/monetaryFlag/VND.png",
         "StartDate": "2019-05-30",
         "EndDate": "2021-06-09",
         "ToMonth": "8",
@@ -240,6 +250,8 @@
         "Address": "서울특별시 은평구 갈현동 240-1"
     },
     {
+        "Bool1": true,
+        "Bool2": "Y",
         "KorName": "성필호",
         "Gender": "남",
         "Age": "21",
@@ -249,7 +261,6 @@
         "OrderDate": "2020-01-30",
         "CardNumber": "5361-7197-9731-0965",
         "Monetary": "VND",
-        "imageUrl": "/images/monetaryFlag/VND.png",
         "StartDate": "2019-11-24",
         "EndDate": "2022-05-07",
         "ToMonth": "2",
@@ -264,6 +275,8 @@
         "Address": "서울특별시 강남구 대치동 988-17"
     },
     {
+        "Bool1": true,
+        "Bool2": "Y",
         "KorName": "권충용",
         "Gender": "남",
         "Age": "35",
@@ -273,7 +286,6 @@
         "OrderDate": "2019-02-28",
         "CardNumber": "5327-5075-5247-0261",
         "Monetary": "HKD",
-        "imageUrl": "/images/monetaryFlag/HKD.png",
         "StartDate": "2018-10-30",
         "EndDate": "2020-05-10",
         "ToMonth": "15",
@@ -288,6 +300,8 @@
         "Address": "서울특별시 강남구 신사동 659-9"
     },
     {
+        "Bool1": false,
+        "Bool2": "N",
         "KorName": "안병호",
         "Gender": "남",
         "Age": "69",
@@ -297,7 +311,6 @@
         "OrderDate": "2019-11-13",
         "CardNumber": "5366-8261-7433-1889",
         "Monetary": "THB",
-        "imageUrl": "/images/monetaryFlag/THB.png",
         "StartDate": "2018-05-19",
         "EndDate": "2021-08-04",
         "ToMonth": "20",
@@ -312,6 +325,8 @@
         "Address": "서울특별시 구로구 구로동 188-26"
     },
     {
+        "Bool1": true,
+        "Bool2": "Y",
         "KorName": "정임순",
         "Gender": "남",
         "Age": "40",
@@ -321,7 +336,6 @@
         "OrderDate": "2019-07-07",
         "CardNumber": "5144-4700-6051-7704",
         "Monetary": "HKD",
-        "imageUrl": "/images/monetaryFlag/HKD.png",
         "StartDate": "2018-01-03",
         "EndDate": "2021-06-27",
         "ToMonth": "25",
@@ -336,6 +350,8 @@
         "Address": "서울특별시 서초구 잠원동 70-2"
     },
     {
+        "Bool1": true,
+        "Bool2": "Y",
         "KorName": "신재항",
         "Gender": "남",
         "Age": "71",
@@ -345,7 +361,6 @@
         "OrderDate": "2020-09-28",
         "CardNumber": "5157-2330-4836-0033",
         "Monetary": "EUR",
-        "imageUrl": "/images/monetaryFlag/EUR.png",
         "StartDate": "2018-07-16",
         "EndDate": "2021-07-23",
         "ToMonth": "18",
@@ -360,6 +375,8 @@
         "Address": "서울특별시 중구 소공동 1"
     },
     {
+        "Bool1": false,
+        "Bool2": "N",
         "KorName": "고희섭",
         "Gender": "남",
         "Age": "34",
@@ -369,7 +386,6 @@
         "OrderDate": "2019-06-18",
         "CardNumber": "5517-0878-6494-1564",
         "Monetary": "CNY",
-        "imageUrl": "/images/monetaryFlag/CNY.png",
         "StartDate": "2019-10-02",
         "EndDate": "2020-01-30",
         "ToMonth": "4",
@@ -384,6 +400,8 @@
         "Address": "서울특별시 관악구 신림동 607-73"
     },
     {
+        "Bool1": true,
+        "Bool2": "Y",
         "KorName": "정금덕",
         "Gender": "남",
         "Age": "61",
@@ -393,7 +411,6 @@
         "OrderDate": "2019-09-21",
         "CardNumber": "5196-3696-3015-7933",
         "Monetary": "EUR",
-        "imageUrl": "/images/monetaryFlag/EUR.png",
         "StartDate": "2019-09-08",
         "EndDate": "2022-05-24",
         "ToMonth": "5",
@@ -408,6 +425,8 @@
         "Address": "서울특별시 서초구 양재동 232"
     },
     {
+        "Bool1": true,
+        "Bool2": "Y",
         "KorName": "김윤식",
         "Gender": "남",
         "Age": "30",
@@ -417,7 +436,6 @@
         "OrderDate": "2019-04-29",
         "CardNumber": "5115-8339-8255-7055",
         "Monetary": "EUR",
-        "imageUrl": "/images/monetaryFlag/EUR.png",
         "StartDate": "2018-01-20",
         "EndDate": "2021-08-18",
         "ToMonth": "24",
@@ -432,6 +450,8 @@
         "Address": "서울특별시 강동구 성내동 169-6"
     },
     {
+        "Bool1": true,
+        "Bool2": "Y",
         "KorName": "박우진",
         "Gender": "남",
         "Age": "61",
@@ -441,7 +461,6 @@
         "OrderDate": "2019-12-07",
         "CardNumber": "5319-3210-1031-9163",
         "Monetary": "THB",
-        "imageUrl": "/images/monetaryFlag/THB.png",
         "StartDate": "2019-09-09",
         "EndDate": "2022-11-06",
         "ToMonth": "5",
@@ -456,6 +475,8 @@
         "Address": "서울특별시 용산구 한강로3가 40-999"
     },
     {
+        "Bool1": true,
+        "Bool2": "Y",
         "KorName": "정홍용",
         "Gender": "여",
         "Age": "60",
@@ -465,7 +486,6 @@
         "OrderDate": "2019-05-03",
         "CardNumber": "5509-6836-2520-1502",
         "Monetary": "CNY",
-        "imageUrl": "/images/monetaryFlag/CNY.png",
         "StartDate": "2019-06-21",
         "EndDate": "2020-02-17",
         "ToMonth": "7",
@@ -480,6 +500,8 @@
         "Address": "서울특별시 서대문구 창천동 30-33"
     },
     {
+        "Bool1": true,
+        "Bool2": "Y",
         "KorName": "문철상",
         "Gender": "남",
         "Age": "43",
@@ -489,7 +511,6 @@
         "OrderDate": "2020-04-12",
         "CardNumber": "5506-2921-9405-0432",
         "Monetary": "HKD",
-        "imageUrl": "/images/monetaryFlag/HKD.png",
         "StartDate": "2018-12-14",
         "EndDate": "2020-01-22",
         "ToMonth": "13",
@@ -504,6 +525,8 @@
         "Address": "서울특별시 영등포구 영등포동4가 434-5"
     },
     {
+        "Bool1": true,
+        "Bool2": "Y",
         "KorName": "최현규",
         "Gender": "남",
         "Age": "22",
@@ -513,7 +536,6 @@
         "OrderDate": "2019-02-06",
         "CardNumber": "5462-0903-4076-7608",
         "Monetary": "KRW",
-        "imageUrl": "/images/monetaryFlag/KRW.png",
         "StartDate": "2018-05-28",
         "EndDate": "2021-11-28",
         "ToMonth": "20",
@@ -528,6 +550,8 @@
         "Address": "서울특별시 관악구 신림동 1425-29"
     },
     {
+        "Bool1": false,
+        "Bool2": "N",
         "KorName": "정민채",
         "Gender": "여",
         "Age": "68",
@@ -537,7 +561,6 @@
         "OrderDate": "2021-01-03",
         "CardNumber": "5452-9420-7651-4301",
         "Monetary": "KRW",
-        "imageUrl": "/images/monetaryFlag/KRW.png",
         "StartDate": "2018-12-26",
         "EndDate": "2020-12-26",
         "ToMonth": "13",
@@ -552,6 +575,8 @@
         "Address": "서울특별시 은평구 대조동 187-7"
     },
     {
+        "Bool1": true,
+        "Bool2": "Y",
         "KorName": "박영환",
         "Gender": "여",
         "Age": "79",
@@ -561,7 +586,6 @@
         "OrderDate": "2019-08-31",
         "CardNumber": "5314-4691-2337-7092",
         "Monetary": "EUR",
-        "imageUrl": "/images/monetaryFlag/EUR.png",
         "StartDate": "2019-07-09",
         "EndDate": "2022-01-12",
         "ToMonth": "7",
@@ -576,6 +600,8 @@
         "Address": "서울특별시 강남구 논현동 105-4"
     },
     {
+        "Bool1": true,
+        "Bool2": "Y",
         "KorName": "안인식",
         "Gender": "여",
         "Age": "55",
@@ -585,7 +611,6 @@
         "OrderDate": "2020-06-14",
         "CardNumber": "5199-6112-0589-0555",
         "Monetary": "VND",
-        "imageUrl": "/images/monetaryFlag/VND.png",
         "StartDate": "2019-02-26",
         "EndDate": "2020-11-15",
         "ToMonth": "11",
@@ -600,6 +625,8 @@
         "Address": "서울특별시 송파구 신천동 7"
     },
     {
+        "Bool1": true,
+        "Bool2": "Y",
         "KorName": "가재묵",
         "Gender": "남",
         "Age": "36",
@@ -609,7 +636,6 @@
         "OrderDate": "2019-03-28",
         "CardNumber": "5416-6155-8524-3175",
         "Monetary": "GBP",
-        "imageUrl": "/images/monetaryFlag/GBP.png",
         "StartDate": "2018-07-06",
         "EndDate": "2022-07-23",
         "ToMonth": "19",
@@ -624,6 +650,8 @@
         "Address": "서울특별시 강동구 성내동 130-18"
     },
     {
+        "Bool1": true,
+        "Bool2": "Y",
         "KorName": "정길웅",
         "Gender": "남",
         "Age": "60",
@@ -633,7 +661,6 @@
         "OrderDate": "2019-04-22",
         "CardNumber": "5589-5966-3570-7974",
         "Monetary": "JPY",
-        "imageUrl": "/images/monetaryFlag/JPY.png",
         "StartDate": "2019-12-08",
         "EndDate": "2020-09-17",
         "ToMonth": "2",
@@ -648,6 +675,8 @@
         "Address": "서울특별시 중구 충무로1가 52-5"
     },
     {
+        "Bool1": true,
+        "Bool2": "Y",
         "KorName": "고경주",
         "Gender": "남",
         "Age": "56",
@@ -657,7 +686,6 @@
         "OrderDate": "2019-11-03",
         "CardNumber": "5174-7245-0779-8803",
         "Monetary": "GBP",
-        "imageUrl": "/images/monetaryFlag/GBP.png",
         "StartDate": "2019-12-10",
         "EndDate": "2020-12-30",
         "ToMonth": "2",
@@ -672,6 +700,8 @@
         "Address": "서울특별시 강서구 등촌동 639-11"
     },
     {
+        "Bool1": true,
+        "Bool2": "Y",
         "KorName": "이경용",
         "Gender": "여",
         "Age": "68",
@@ -681,7 +711,6 @@
         "OrderDate": "2020-01-13",
         "CardNumber": "5367-9181-1899-5678",
         "Monetary": "HKD",
-        "imageUrl": "/images/monetaryFlag/HKD.png",
         "StartDate": "2019-09-23",
         "EndDate": "2020-02-16",
         "ToMonth": "4",
@@ -696,6 +725,8 @@
         "Address": "서울특별시 성동구 성수동1가 656-997"
     },
     {
+        "Bool1": false,
+        "Bool2": "N",
         "KorName": "홍심선",
         "Gender": "여",
         "Age": "53",
@@ -705,7 +736,6 @@
         "OrderDate": "2019-04-12",
         "CardNumber": "5178-6349-2318-0351",
         "Monetary": "THB",
-        "imageUrl": "/images/monetaryFlag/THB.png",
         "StartDate": "2018-10-05",
         "EndDate": "2021-07-19",
         "ToMonth": "16",
@@ -720,6 +750,8 @@
         "Address": "서울특별시 구로구 오류동 36-1"
     },
     {
+        "Bool1": true,
+        "Bool2": "Y",
         "KorName": "이수훈",
         "Gender": "남",
         "Age": "37",
@@ -729,7 +761,6 @@
         "OrderDate": "2020-11-08",
         "CardNumber": "5530-5542-0349-9664",
         "Monetary": "JPY",
-        "imageUrl": "/images/monetaryFlag/JPY.png",
         "StartDate": "2018-02-14",
         "EndDate": "2021-04-26",
         "ToMonth": "23",
@@ -744,6 +775,8 @@
         "Address": "서울특별시 동대문구 제기동 892-29"
     },
     {
+        "Bool1": true,
+        "Bool2": "Y",
         "KorName": "김태경",
         "Gender": "남",
         "Age": "53",
@@ -753,7 +786,6 @@
         "OrderDate": "2020-05-13",
         "CardNumber": "5131-1059-1251-8329",
         "Monetary": "AUD",
-        "imageUrl": "/images/monetaryFlag/AUD.png",
         "StartDate": "2018-05-06",
         "EndDate": "2022-07-26",
         "ToMonth": "21",
@@ -768,6 +800,8 @@
         "Address": "서울특별시 양천구 목동 916"
     },
     {
+        "Bool1": true,
+        "Bool2": "Y",
         "KorName": "김기수",
         "Gender": "남",
         "Age": "25",
@@ -777,7 +811,6 @@
         "OrderDate": "2019-04-03",
         "CardNumber": "5151-3953-4072-2255",
         "Monetary": "KRW",
-        "imageUrl": "/images/monetaryFlag/KRW.png",
         "StartDate": "2019-07-22",
         "EndDate": "2020-09-05",
         "ToMonth": "6",
@@ -792,6 +825,8 @@
         "Address": "서울특별시 강남구 삼성동 159-7"
     },
     {
+        "Bool1": true,
+        "Bool2": "Y",
         "KorName": "김해식",
         "Gender": "남",
         "Age": "82",
@@ -801,7 +836,6 @@
         "OrderDate": "2019-10-25",
         "CardNumber": "5308-2578-6799-4547",
         "Monetary": "EUR",
-        "imageUrl": "/images/monetaryFlag/EUR.png",
         "StartDate": "2019-07-09",
         "EndDate": "2022-09-16",
         "ToMonth": "7",
@@ -816,6 +850,8 @@
         "Address": "서울특별시 구로구 고척동 161-13"
     },
     {
+        "Bool1": true,
+        "Bool2": "Y",
         "KorName": "김기원",
         "Gender": "여",
         "Age": "24",
@@ -825,7 +861,6 @@
         "OrderDate": "2020-05-23",
         "CardNumber": "5356-6741-0815-5665",
         "Monetary": "CNY",
-        "imageUrl": "/images/monetaryFlag/CNY.png",
         "StartDate": "2019-09-14",
         "EndDate": "2021-05-30",
         "ToMonth": "4",
@@ -840,6 +875,8 @@
         "Address": "서울특별시 노원구 공릉동 494-5"
     },
     {
+        "Bool1": true,
+        "Bool2": "Y",
         "KorName": "임헌주",
         "Gender": "여",
         "Age": "63",
@@ -849,7 +886,6 @@
         "OrderDate": "2020-02-12",
         "CardNumber": "5109-5990-3588-4188",
         "Monetary": "CNY",
-        "imageUrl": "/images/monetaryFlag/CNY.png",
         "StartDate": "2018-03-14",
         "EndDate": "2020-07-19",
         "ToMonth": "22",
@@ -864,6 +900,8 @@
         "Address": "서울특별시 강서구 등촌동 674-9"
     },
     {
+        "Bool1": true,
+        "Bool2": "Y",
         "KorName": "이승현",
         "Gender": "남",
         "Age": "38",
@@ -873,7 +911,6 @@
         "OrderDate": "2019-09-23",
         "CardNumber": "5377-8094-4109-9346",
         "Monetary": "KRW",
-        "imageUrl": "/images/monetaryFlag/KRW.png",
         "StartDate": "2019-09-01",
         "EndDate": "2020-02-25",
         "ToMonth": "5",
@@ -888,6 +925,8 @@
         "Address": "서울특별시 서대문구 냉천동 261-2"
     },
     {
+        "Bool1": true,
+        "Bool2": "Y",
         "KorName": "김종인",
         "Gender": "여",
         "Age": "45",
@@ -897,7 +936,6 @@
         "OrderDate": "2020-11-25",
         "CardNumber": "5372-2188-9092-9927",
         "Monetary": "KRW",
-        "imageUrl": "/images/monetaryFlag/KRW.png",
         "StartDate": "2018-11-05",
         "EndDate": "2022-08-24",
         "ToMonth": "15",
@@ -912,6 +950,8 @@
         "Address": "서울특별시 서초구 서초동 391"
     },
     {
+        "Bool1": true,
+        "Bool2": "Y",
         "KorName": "양기자",
         "Gender": "남",
         "Age": "78",
@@ -921,7 +961,6 @@
         "OrderDate": "2019-03-24",
         "CardNumber": "5535-4217-8719-3169",
         "Monetary": "HKD",
-        "imageUrl": "/images/monetaryFlag/HKD.png",
         "StartDate": "2018-02-09",
         "EndDate": "2021-05-04",
         "ToMonth": "24",
@@ -936,6 +975,8 @@
         "Address": "서울특별시 서초구 잠원동 70-2"
     },
     {
+        "Bool1": true,
+        "Bool2": "Y",
         "KorName": "송재붕",
         "Gender": "여",
         "Age": "49",
@@ -945,7 +986,6 @@
         "OrderDate": "2020-06-26",
         "CardNumber": "5256-8130-1453-0931",
         "Monetary": "VND",
-        "imageUrl": "/images/monetaryFlag/VND.png",
         "StartDate": "2018-03-10",
         "EndDate": "2021-07-21",
         "ToMonth": "23",
@@ -960,6 +1000,8 @@
         "Address": "서울특별시 서대문구 북가좌동 306-17"
     },
     {
+        "Bool1": true,
+        "Bool2": "Y",
         "KorName": "이진호",
         "Gender": "여",
         "Age": "72",
@@ -969,7 +1011,6 @@
         "OrderDate": "2019-06-16",
         "CardNumber": "5508-2215-0304-5021",
         "Monetary": "JPY",
-        "imageUrl": "/images/monetaryFlag/JPY.png",
         "StartDate": "2018-05-21",
         "EndDate": "2021-11-04",
         "ToMonth": "20",
@@ -984,6 +1025,8 @@
         "Address": "서울특별시 동작구 동작동 산41-2"
     },
     {
+        "Bool1": true,
+        "Bool2": "Y",
         "KorName": "김준곤",
         "Gender": "여",
         "Age": "49",
@@ -993,7 +1036,6 @@
         "OrderDate": "2020-08-15",
         "CardNumber": "5214-0578-6015-0342",
         "Monetary": "AUD",
-        "imageUrl": "/images/monetaryFlag/AUD.png",
         "StartDate": "2019-12-29",
         "EndDate": "2021-12-22",
         "ToMonth": "1",
@@ -1008,6 +1050,8 @@
         "Address": "서울특별시 관악구 봉천동 735-11"
     },
     {
+        "Bool1": false,
+        "Bool2": "N",
         "KorName": "최덕상",
         "Gender": "남",
         "Age": "62",
@@ -1017,7 +1061,6 @@
         "OrderDate": "2020-10-31",
         "CardNumber": "5272-6578-4189-7272",
         "Monetary": "HKD",
-        "imageUrl": "/images/monetaryFlag/HKD.png",
         "StartDate": "2019-12-27",
         "EndDate": "2020-03-06",
         "ToMonth": "1",
@@ -1032,6 +1075,8 @@
         "Address": "서울특별시 서초구 서초동 1659-1"
     },
     {
+        "Bool1": true,
+        "Bool2": "Y",
         "KorName": "이성훈",
         "Gender": "여",
         "Age": "75",
@@ -1041,7 +1086,6 @@
         "OrderDate": "2020-10-21",
         "CardNumber": "5106-4050-7639-7614",
         "Monetary": "JPY",
-        "imageUrl": "/images/monetaryFlag/JPY.png",
         "StartDate": "2018-02-25",
         "EndDate": "2022-02-15",
         "ToMonth": "23",
@@ -1056,6 +1100,8 @@
         "Address": "서울특별시 강남구 삼성동 159-7"
     },
     {
+        "Bool1": true,
+        "Bool2": "Y",
         "KorName": "조지현",
         "Gender": "여",
         "Age": "67",
@@ -1065,7 +1111,6 @@
         "OrderDate": "2020-08-05",
         "CardNumber": "5367-0076-7343-4685",
         "Monetary": "THB",
-        "imageUrl": "/images/monetaryFlag/THB.png",
         "StartDate": "2018-12-20",
         "EndDate": "2020-11-26",
         "ToMonth": "13",
@@ -1080,6 +1125,8 @@
         "Address": "서울특별시 광진구 자양동 227-7"
     },
     {
+        "Bool1": true,
+        "Bool2": "Y",
         "KorName": "조용희",
         "Gender": "여",
         "Age": "83",
@@ -1089,7 +1136,6 @@
         "OrderDate": "2020-04-10",
         "CardNumber": "5430-4806-4468-9567",
         "Monetary": "JPY",
-        "imageUrl": "/images/monetaryFlag/JPY.png",
         "StartDate": "2018-09-19",
         "EndDate": "2021-02-11",
         "ToMonth": "16",
@@ -1104,6 +1150,8 @@
         "Address": "서울특별시 강남구 삼성동 159-7"
     },
     {
+        "Bool1": true,
+        "Bool2": "Y",
         "KorName": "유길숙",
         "Gender": "남",
         "Age": "81",
@@ -1113,7 +1161,6 @@
         "OrderDate": "2020-02-12",
         "CardNumber": "5123-5736-3342-7023",
         "Monetary": "VND",
-        "imageUrl": "/images/monetaryFlag/VND.png",
         "StartDate": "2019-04-28",
         "EndDate": "2021-01-14",
         "ToMonth": "9",
@@ -1128,6 +1175,8 @@
         "Address": "서울특별시 양천구 목동 912"
     },
     {
+        "Bool1": true,
+        "Bool2": "Y",
         "KorName": "송윤순",
         "Gender": "여",
         "Age": "33",
@@ -1137,7 +1186,6 @@
         "OrderDate": "2020-01-05",
         "CardNumber": "5215-7940-6357-6811",
         "Monetary": "AUD",
-        "imageUrl": "/images/monetaryFlag/AUD.png",
         "StartDate": "2018-11-10",
         "EndDate": "2022-02-17",
         "ToMonth": "15",
@@ -1152,6 +1200,8 @@
         "Address": "서울특별시 서대문구 홍은동 48-201"
     },
     {
+        "Bool1": true,
+        "Bool2": "Y",
         "KorName": "서종욱",
         "Gender": "여",
         "Age": "53",
@@ -1161,7 +1211,6 @@
         "OrderDate": "2020-05-27",
         "CardNumber": "5124-4487-7454-2816",
         "Monetary": "HKD",
-        "imageUrl": "/images/monetaryFlag/HKD.png",
         "StartDate": "2019-04-11",
         "EndDate": "2021-02-04",
         "ToMonth": "10",
@@ -1176,6 +1225,8 @@
         "Address": "서울특별시 마포구 도화동 536"
     },
     {
+        "Bool1": true,
+        "Bool2": "Y",
         "KorName": "오우영",
         "Gender": "여",
         "Age": "74",
@@ -1185,7 +1236,6 @@
         "OrderDate": "2020-12-08",
         "CardNumber": "5313-4620-2878-5080",
         "Monetary": "VND",
-        "imageUrl": "/images/monetaryFlag/VND.png",
         "StartDate": "2019-02-28",
         "EndDate": "2022-08-26",
         "ToMonth": "11",
@@ -1200,6 +1250,8 @@
         "Address": "서울특별시 성북구 하월곡동 79-19"
     },
     {
+        "Bool1": true,
+        "Bool2": "Y",
         "KorName": "김완귀",
         "Gender": "남",
         "Age": "59",
@@ -1209,7 +1261,6 @@
         "OrderDate": "2019-03-06",
         "CardNumber": "5300-4091-6477-1338",
         "Monetary": "CNY",
-        "imageUrl": "/images/monetaryFlag/CNY.png",
         "StartDate": "2019-10-09",
         "EndDate": "2022-03-01",
         "ToMonth": "4",
@@ -1224,6 +1275,8 @@
         "Address": "서울특별시 동작구 상도동 463-11"
     },
     {
+        "Bool1": true,
+        "Bool2": "Y",
         "KorName": "정하영",
         "Gender": "남",
         "Age": "46",
@@ -1233,7 +1286,6 @@
         "OrderDate": "2020-06-10",
         "CardNumber": "5130-0033-8826-9512",
         "Monetary": "THB",
-        "imageUrl": "/images/monetaryFlag/THB.png",
         "StartDate": "2018-11-25",
         "EndDate": "2020-10-23",
         "ToMonth": "14",
@@ -1248,6 +1300,8 @@
         "Address": "서울특별시 성동구 성수동1가 706"
     },
     {
+        "Bool1": true,
+        "Bool2": "Y",
         "KorName": "김완규",
         "Gender": "남",
         "Age": "42",
@@ -1257,7 +1311,6 @@
         "OrderDate": "2020-09-05",
         "CardNumber": "5432-8180-8919-2043",
         "Monetary": "JPY",
-        "imageUrl": "/images/monetaryFlag/JPY.png",
         "StartDate": "2018-04-30",
         "EndDate": "2022-10-09",
         "ToMonth": "21",
@@ -1272,6 +1325,8 @@
         "Address": "서울특별시 서대문구 신촌동 134"
     },
     {
+        "Bool1": true,
+        "Bool2": "Y",
         "KorName": "오광수",
         "Gender": "남",
         "Age": "66",
@@ -1281,7 +1336,6 @@
         "OrderDate": "2020-07-04",
         "CardNumber": "5242-2145-3608-2310",
         "Monetary": "GBP",
-        "imageUrl": "/images/monetaryFlag/GBP.png",
         "StartDate": "2018-06-25",
         "EndDate": "2022-05-04",
         "ToMonth": "19",
@@ -1296,6 +1350,8 @@
         "Address": "서울특별시 관악구 봉천동 649-54"
     },
     {
+        "Bool1": true,
+        "Bool2": "Y",
         "KorName": "이병직",
         "Gender": "여",
         "Age": "29",
@@ -1305,7 +1361,6 @@
         "OrderDate": "2020-02-15",
         "CardNumber": "5370-3416-6616-5625",
         "Monetary": "KRW",
-        "imageUrl": "/images/monetaryFlag/KRW.png",
         "StartDate": "2018-10-17",
         "EndDate": "2020-12-27",
         "ToMonth": "15",
@@ -1320,6 +1375,8 @@
         "Address": "서울특별시 도봉구 쌍문동 248-2"
     },
     {
+        "Bool1": true,
+        "Bool2": "Y",
         "KorName": "문봉길",
         "Gender": "남",
         "Age": "41",
@@ -1329,7 +1386,6 @@
         "OrderDate": "2020-01-30",
         "CardNumber": "5585-1771-4390-3266",
         "Monetary": "KRW",
-        "imageUrl": "/images/monetaryFlag/KRW.png",
         "StartDate": "2019-08-28",
         "EndDate": "2020-11-03",
         "ToMonth": "5",
@@ -1344,6 +1400,8 @@
         "Address": "서울특별시 서초구 서초동 1443-17"
     },
     {
+        "Bool1": true,
+        "Bool2": "Y",
         "KorName": "김근호",
         "Gender": "남",
         "Age": "56",
@@ -1353,7 +1411,6 @@
         "OrderDate": "2019-05-04",
         "CardNumber": "5525-3712-8805-7839",
         "Monetary": "EUR",
-        "imageUrl": "/images/monetaryFlag/EUR.png",
         "StartDate": "2018-08-15",
         "EndDate": "2020-05-19",
         "ToMonth": "17",
@@ -1368,6 +1425,8 @@
         "Address": "서울특별시 서대문구 북가좌동 481"
     },
     {
+        "Bool1": false,
+        "Bool2": "N",
         "KorName": "김동성",
         "Gender": "남",
         "Age": "32",
@@ -1377,7 +1436,6 @@
         "OrderDate": "2019-11-19",
         "CardNumber": "5262-8869-9978-3032",
         "Monetary": "AUD",
-        "imageUrl": "/images/monetaryFlag/AUD.png",
         "StartDate": "2019-09-01",
         "EndDate": "2022-09-21",
         "ToMonth": "5",
@@ -1392,6 +1450,8 @@
         "Address": "서울특별시 송파구 장지동 841-4"
     },
     {
+        "Bool1": true,
+        "Bool2": "Y",
         "KorName": "권홍사",
         "Gender": "여",
         "Age": "30",
@@ -1401,7 +1461,6 @@
         "OrderDate": "2019-09-30",
         "CardNumber": "5154-5915-5783-3382",
         "Monetary": "HKD",
-        "imageUrl": "/images/monetaryFlag/HKD.png",
         "StartDate": "2018-11-04",
         "EndDate": "2022-07-26",
         "ToMonth": "15",
@@ -1416,6 +1475,8 @@
         "Address": "서울특별시 송파구 신천동 29"
     },
     {
+        "Bool1": true,
+        "Bool2": "Y",
         "KorName": "김정태",
         "Gender": "남",
         "Age": "63",
@@ -1425,7 +1486,6 @@
         "OrderDate": "2020-05-22",
         "CardNumber": "5590-9935-8826-6503",
         "Monetary": "EUR",
-        "imageUrl": "/images/monetaryFlag/EUR.png",
         "StartDate": "2019-11-02",
         "EndDate": "2022-02-06",
         "ToMonth": "3",
@@ -1440,6 +1500,8 @@
         "Address": "서울특별시 마포구 노고산동 49-31"
     },
     {
+        "Bool1": true,
+        "Bool2": "Y",
         "KorName": "권회현",
         "Gender": "여",
         "Age": "35",
@@ -1449,7 +1511,6 @@
         "OrderDate": "2019-03-01",
         "CardNumber": "5223-2854-7825-9861",
         "Monetary": "AUD",
-        "imageUrl": "/images/monetaryFlag/AUD.png",
         "StartDate": "2019-03-18",
         "EndDate": "2021-11-21",
         "ToMonth": "10",
@@ -1464,6 +1525,8 @@
         "Address": "서울특별시 강북구 번동 454-90"
     },
     {
+        "Bool1": true,
+        "Bool2": "Y",
         "KorName": "김철호",
         "Gender": "여",
         "Age": "38",
@@ -1473,7 +1536,6 @@
         "OrderDate": "2019-02-10",
         "CardNumber": "5488-8828-2984-0025",
         "Monetary": "KRW",
-        "imageUrl": "/images/monetaryFlag/KRW.png",
         "StartDate": "2018-02-23",
         "EndDate": "2022-07-16",
         "ToMonth": "23",
@@ -1488,6 +1550,8 @@
         "Address": "서울특별시 광진구 구의동 252-14"
     },
     {
+        "Bool1": true,
+        "Bool2": "Y",
         "KorName": "이명호",
         "Gender": "여",
         "Age": "43",
@@ -1497,7 +1561,6 @@
         "OrderDate": "2019-06-08",
         "CardNumber": "5300-7771-8951-5868",
         "Monetary": "USD",
-        "imageUrl": "/images/monetaryFlag/USD.png",
         "StartDate": "2018-02-14",
         "EndDate": "2021-05-05",
         "ToMonth": "23",
@@ -1512,6 +1575,8 @@
         "Address": "서울특별시 강동구 암사동 493-7"
     },
     {
+        "Bool1": true,
+        "Bool2": "Y",
         "KorName": "김종복",
         "Gender": "남",
         "Age": "71",
@@ -1521,7 +1586,6 @@
         "OrderDate": "2019-10-16",
         "CardNumber": "5159-0672-7099-5936",
         "Monetary": "AUD",
-        "imageUrl": "/images/monetaryFlag/AUD.png",
         "StartDate": "2018-08-18",
         "EndDate": "2022-12-14",
         "ToMonth": "17",
@@ -1536,6 +1600,8 @@
         "Address": "서울특별시 영등포구 양평동4가 80"
     },
     {
+        "Bool1": true,
+        "Bool2": "Y",
         "KorName": "김범수",
         "Gender": "여",
         "Age": "37",
@@ -1545,7 +1611,6 @@
         "OrderDate": "2020-10-17",
         "CardNumber": "5573-2217-2691-2270",
         "Monetary": "AUD",
-        "imageUrl": "/images/monetaryFlag/AUD.png",
         "StartDate": "2018-02-08",
         "EndDate": "2020-10-14",
         "ToMonth": "24",
@@ -1560,6 +1625,8 @@
         "Address": "서울특별시 강남구 논현동 232-17"
     },
     {
+        "Bool1": true,
+        "Bool2": "Y",
         "KorName": "이상경",
         "Gender": "여",
         "Age": "64",
@@ -1569,7 +1636,6 @@
         "OrderDate": "2020-12-18",
         "CardNumber": "5464-9929-6434-4499",
         "Monetary": "JPY",
-        "imageUrl": "/images/monetaryFlag/JPY.png",
         "StartDate": "2018-03-26",
         "EndDate": "2020-01-07",
         "ToMonth": "22",
@@ -1584,6 +1650,8 @@
         "Address": "서울특별시 광진구 광장동 22-1"
     },
     {
+        "Bool1": true,
+        "Bool2": "Y",
         "KorName": "이주식",
         "Gender": "남",
         "Age": "46",
@@ -1593,7 +1661,6 @@
         "OrderDate": "2020-01-09",
         "CardNumber": "5561-9767-4965-3110",
         "Monetary": "CNY",
-        "imageUrl": "/images/monetaryFlag/CNY.png",
         "StartDate": "2018-08-09",
         "EndDate": "2022-03-17",
         "ToMonth": "18",
@@ -1608,6 +1675,8 @@
         "Address": "서울특별시 강서구 가양동 449-19"
     },
     {
+        "Bool1": true,
+        "Bool2": "Y",
         "KorName": "송필선",
         "Gender": "여",
         "Age": "33",
@@ -1617,7 +1686,6 @@
         "OrderDate": "2020-01-28",
         "CardNumber": "5275-7140-8988-4103",
         "Monetary": "HKD",
-        "imageUrl": "/images/monetaryFlag/HKD.png",
         "StartDate": "2018-12-29",
         "EndDate": "2022-05-25",
         "ToMonth": "13",
@@ -1632,6 +1700,8 @@
         "Address": "서울특별시 강서구 등촌동 639-11"
     },
     {
+        "Bool1": true,
+        "Bool2": "Y",
         "KorName": "이혁주",
         "Gender": "여",
         "Age": "32",
@@ -1641,7 +1711,6 @@
         "OrderDate": "2020-07-05",
         "CardNumber": "5301-8904-7167-0355",
         "Monetary": "GBP",
-        "imageUrl": "/images/monetaryFlag/GBP.png",
         "StartDate": "2019-09-20",
         "EndDate": "2021-11-03",
         "ToMonth": "4",
@@ -1656,6 +1725,8 @@
         "Address": "서울특별시 양천구 목동 907-7"
     },
     {
+        "Bool1": true,
+        "Bool2": "Y",
         "KorName": "최병순",
         "Gender": "여",
         "Age": "28",
@@ -1665,7 +1736,6 @@
         "OrderDate": "2019-04-10",
         "CardNumber": "5597-4106-1455-9986",
         "Monetary": "JPY",
-        "imageUrl": "/images/monetaryFlag/JPY.png",
         "StartDate": "2018-04-01",
         "EndDate": "2022-04-23",
         "ToMonth": "22",
@@ -1680,6 +1750,8 @@
         "Address": "서울특별시 강남구 도곡동 467-17"
     },
     {
+        "Bool1": true,
+        "Bool2": "Y",
         "KorName": "홍낙표",
         "Gender": "남",
         "Age": "65",
@@ -1689,7 +1761,6 @@
         "OrderDate": "2019-08-05",
         "CardNumber": "5523-8352-2797-2110",
         "Monetary": "HKD",
-        "imageUrl": "/images/monetaryFlag/HKD.png",
         "StartDate": "2019-01-17",
         "EndDate": "2022-06-20",
         "ToMonth": "12",
@@ -1704,6 +1775,8 @@
         "Address": "서울특별시 강남구 삼성동 159-7"
     },
     {
+        "Bool1": true,
+        "Bool2": "Y",
         "KorName": "홍문주",
         "Gender": "남",
         "Age": "45",
@@ -1713,7 +1786,6 @@
         "OrderDate": "2020-07-20",
         "CardNumber": "5593-0156-4797-3288",
         "Monetary": "AUD",
-        "imageUrl": "/images/monetaryFlag/AUD.png",
         "StartDate": "2018-03-16",
         "EndDate": "2020-09-18",
         "ToMonth": "22",
@@ -1728,6 +1800,8 @@
         "Address": "서울특별시 마포구 상암동 1590"
     },
     {
+        "Bool1": true,
+        "Bool2": "Y",
         "KorName": "강태순",
         "Gender": "남",
         "Age": "71",
@@ -1737,7 +1811,6 @@
         "OrderDate": "2019-07-31",
         "CardNumber": "5286-2381-6557-7230",
         "Monetary": "USD",
-        "imageUrl": "/images/monetaryFlag/USD.png",
         "StartDate": "2018-07-23",
         "EndDate": "2022-10-07",
         "ToMonth": "18",
@@ -1752,6 +1825,8 @@
         "Address": "서울특별시 노원구 중계동 361"
     },
     {
+        "Bool1": true,
+        "Bool2": "Y",
         "KorName": "김창식",
         "Gender": "여",
         "Age": "42",
@@ -1761,7 +1836,6 @@
         "OrderDate": "2019-07-22",
         "CardNumber": "5156-3554-1501-8430",
         "Monetary": "HKD",
-        "imageUrl": "/images/monetaryFlag/HKD.png",
         "StartDate": "2019-04-20",
         "EndDate": "2020-05-10",
         "ToMonth": "9",
@@ -1776,6 +1850,8 @@
         "Address": "서울특별시 마포구 서교동 331-9"
     },
     {
+        "Bool1": true,
+        "Bool2": "Y",
         "KorName": "박상면",
         "Gender": "여",
         "Age": "68",
@@ -1785,7 +1861,6 @@
         "OrderDate": "2020-03-21",
         "CardNumber": "5413-2624-6399-9876",
         "Monetary": "CNY",
-        "imageUrl": "/images/monetaryFlag/CNY.png",
         "StartDate": "2019-06-06",
         "EndDate": "2020-01-18",
         "ToMonth": "8",
@@ -1800,6 +1875,8 @@
         "Address": "서울특별시 종로구 신문로2가 89-29"
     },
     {
+        "Bool1": true,
+        "Bool2": "Y",
         "KorName": "이상규",
         "Gender": "남",
         "Age": "25",
@@ -1809,7 +1886,6 @@
         "OrderDate": "2019-05-20",
         "CardNumber": "5164-0940-7247-8146",
         "Monetary": "VND",
-        "imageUrl": "/images/monetaryFlag/VND.png",
         "StartDate": "2019-05-11",
         "EndDate": "2022-12-26",
         "ToMonth": "9",
@@ -1824,6 +1900,8 @@
         "Address": "서울특별시 강서구 마곡동 743"
     },
     {
+        "Bool1": false,
+        "Bool2": "N",
         "KorName": "이경주",
         "Gender": "남",
         "Age": "63",
@@ -1833,7 +1911,6 @@
         "OrderDate": "2020-05-05",
         "CardNumber": "5259-6746-6077-6229",
         "Monetary": "GBP",
-        "imageUrl": "/images/monetaryFlag/GBP.png",
         "StartDate": "2019-06-12",
         "EndDate": "2020-09-01",
         "ToMonth": "8",
@@ -1848,6 +1925,8 @@
         "Address": "서울특별시 영등포구 양평동5가 20-3"
     },
     {
+        "Bool1": true,
+        "Bool2": "Y",
         "KorName": "방순철",
         "Gender": "남",
         "Age": "25",
@@ -1857,7 +1936,6 @@
         "OrderDate": "2019-06-06",
         "CardNumber": "5393-4297-7048-5014",
         "Monetary": "THB",
-        "imageUrl": "/images/monetaryFlag/THB.png",
         "StartDate": "2019-12-18",
         "EndDate": "2020-11-03",
         "ToMonth": "1",
@@ -1872,6 +1950,8 @@
         "Address": "서울특별시 동대문구 제기동 889-26"
     },
     {
+        "Bool1": true,
+        "Bool2": "Y",
         "KorName": "임숙희",
         "Gender": "여",
         "Age": "39",
@@ -1881,7 +1961,6 @@
         "OrderDate": "2020-11-19",
         "CardNumber": "5325-7418-2593-7879",
         "Monetary": "GBP",
-        "imageUrl": "/images/monetaryFlag/GBP.png",
         "StartDate": "2018-11-23",
         "EndDate": "2022-01-31",
         "ToMonth": "14",
@@ -1896,6 +1975,8 @@
         "Address": "서울특별시 강남구 도곡동 919-7"
     },
     {
+        "Bool1": true,
+        "Bool2": "Y",
         "KorName": "고일석",
         "Gender": "남",
         "Age": "58",
@@ -1905,7 +1986,6 @@
         "OrderDate": "2019-10-08",
         "CardNumber": "5283-5058-3009-6298",
         "Monetary": "KRW",
-        "imageUrl": "/images/monetaryFlag/KRW.png",
         "StartDate": "2018-02-05",
         "EndDate": "2020-10-06",
         "ToMonth": "24",
@@ -1920,6 +2000,8 @@
         "Address": "서울특별시 동작구 흑석동 182-5"
     },
     {
+        "Bool1": true,
+        "Bool2": "Y",
         "KorName": "이상림",
         "Gender": "남",
         "Age": "59",
@@ -1929,7 +2011,6 @@
         "OrderDate": "2019-05-28",
         "CardNumber": "5597-0115-2939-8096",
         "Monetary": "JPY",
-        "imageUrl": "/images/monetaryFlag/JPY.png",
         "StartDate": "2019-03-14",
         "EndDate": "2022-07-16",
         "ToMonth": "10",
@@ -1944,6 +2025,8 @@
         "Address": "서울특별시 강동구 암사동 512-22"
     },
     {
+        "Bool1": true,
+        "Bool2": "Y",
         "KorName": "형남순",
         "Gender": "여",
         "Age": "52",
@@ -1953,7 +2036,6 @@
         "OrderDate": "2019-02-17",
         "CardNumber": "5528-8099-1346-2590",
         "Monetary": "THB",
-        "imageUrl": "/images/monetaryFlag/THB.png",
         "StartDate": "2018-10-17",
         "EndDate": "2022-03-01",
         "ToMonth": "15",
@@ -1968,6 +2050,8 @@
         "Address": "서울특별시 서초구 양재동 223"
     },
     {
+        "Bool1": true,
+        "Bool2": "Y",
         "KorName": "안장운",
         "Gender": "남",
         "Age": "59",
@@ -1977,7 +2061,6 @@
         "OrderDate": "2019-08-06",
         "CardNumber": "5424-3622-0320-1646",
         "Monetary": "VND",
-        "imageUrl": "/images/monetaryFlag/VND.png",
         "StartDate": "2018-03-01",
         "EndDate": "2020-08-06",
         "ToMonth": "23",
@@ -1992,6 +2075,8 @@
         "Address": "서울특별시 광진구 화양동 94-60"
     },
     {
+        "Bool1": true,
+        "Bool2": "Y",
         "KorName": "유정옥",
         "Gender": "남",
         "Age": "43",
@@ -2001,7 +2086,6 @@
         "OrderDate": "2019-09-03",
         "CardNumber": "5579-0575-7222-5068",
         "Monetary": "AUD",
-        "imageUrl": "/images/monetaryFlag/AUD.png",
         "StartDate": "2019-02-02",
         "EndDate": "2020-04-02",
         "ToMonth": "12",
@@ -2016,6 +2100,8 @@
         "Address": "서울특별시 금천구 가산동 371-28"
     },
     {
+        "Bool1": true,
+        "Bool2": "Y",
         "KorName": "구평길",
         "Gender": "여",
         "Age": "44",
@@ -2025,7 +2111,6 @@
         "OrderDate": "2020-02-09",
         "CardNumber": "5217-5729-0146-2297",
         "Monetary": "EUR",
-        "imageUrl": "/images/monetaryFlag/EUR.png",
         "StartDate": "2018-01-08",
         "EndDate": "2020-12-24",
         "ToMonth": "25",
@@ -2040,6 +2125,8 @@
         "Address": "서울특별시 중랑구 묵동 294-54"
     },
     {
+        "Bool1": true,
+        "Bool2": "Y",
         "KorName": "박종만",
         "Gender": "여",
         "Age": "67",
@@ -2049,7 +2136,6 @@
         "OrderDate": "2019-08-20",
         "CardNumber": "5170-5259-9334-0982",
         "Monetary": "JPY",
-        "imageUrl": "/images/monetaryFlag/JPY.png",
         "StartDate": "2018-01-24",
         "EndDate": "2022-09-03",
         "ToMonth": "24",
@@ -2064,6 +2150,8 @@
         "Address": "서울특별시 도봉구 쌍문동 419"
     },
     {
+        "Bool1": true,
+        "Bool2": "Y",
         "KorName": "이시우",
         "Gender": "남",
         "Age": "47",
@@ -2073,7 +2161,6 @@
         "OrderDate": "2020-01-26",
         "CardNumber": "5135-1666-4498-1231",
         "Monetary": "JPY",
-        "imageUrl": "/images/monetaryFlag/JPY.png",
         "StartDate": "2018-11-09",
         "EndDate": "2020-06-14",
         "ToMonth": "15",
@@ -2088,6 +2175,8 @@
         "Address": "서울특별시 종로구 평창동 158-1"
     },
     {
+        "Bool1": true,
+        "Bool2": "Y",
         "KorName": "김재범",
         "Gender": "남",
         "Age": "43",
@@ -2097,7 +2186,6 @@
         "OrderDate": "2020-03-09",
         "CardNumber": "5532-8227-3861-6286",
         "Monetary": "HKD",
-        "imageUrl": "/images/monetaryFlag/HKD.png",
         "StartDate": "2018-07-05",
         "EndDate": "2022-05-10",
         "ToMonth": "19",
@@ -2112,6 +2200,8 @@
         "Address": "서울특별시 마포구 성산동 515"
     },
     {
+        "Bool1": true,
+        "Bool2": "Y",
         "KorName": "윤만병",
         "Gender": "남",
         "Age": "24",
@@ -2121,7 +2211,6 @@
         "OrderDate": "2020-02-12",
         "CardNumber": "5231-6506-7515-9281",
         "Monetary": "AUD",
-        "imageUrl": "/images/monetaryFlag/AUD.png",
         "StartDate": "2018-10-12",
         "EndDate": "2021-09-09",
         "ToMonth": "16",
@@ -2136,6 +2225,8 @@
         "Address": "서울특별시 강남구 역삼동 747-19"
     },
     {
+        "Bool1": true,
+        "Bool2": "Y",
         "KorName": "정호시",
         "Gender": "남",
         "Age": "41",
@@ -2145,7 +2236,6 @@
         "OrderDate": "2020-11-04",
         "CardNumber": "5195-3974-2953-1480",
         "Monetary": "USD",
-        "imageUrl": "/images/monetaryFlag/USD.png",
         "StartDate": "2019-11-15",
         "EndDate": "2020-07-30",
         "ToMonth": "2",
@@ -2160,6 +2250,8 @@
         "Address": "서울특별시 동대문구 답십리동 260-1"
     },
     {
+        "Bool1": true,
+        "Bool2": "Y",
         "KorName": "정인자",
         "Gender": "여",
         "Age": "59",
@@ -2169,7 +2261,6 @@
         "OrderDate": "2019-04-25",
         "CardNumber": "5316-3718-9577-6642",
         "Monetary": "THB",
-        "imageUrl": "/images/monetaryFlag/THB.png",
         "StartDate": "2018-07-08",
         "EndDate": "2020-02-10",
         "ToMonth": "19",
@@ -2184,6 +2275,8 @@
         "Address": "서울특별시 금천구 독산동 378-237"
     },
     {
+        "Bool1": true,
+        "Bool2": "Y",
         "KorName": "고종혁",
         "Gender": "여",
         "Age": "33",
@@ -2193,7 +2286,6 @@
         "OrderDate": "2019-03-12",
         "CardNumber": "5250-9079-1862-6245",
         "Monetary": "USD",
-        "imageUrl": "/images/monetaryFlag/USD.png",
         "StartDate": "2019-03-07",
         "EndDate": "2022-06-08",
         "ToMonth": "11",
@@ -2208,6 +2300,8 @@
         "Address": "서울특별시 서초구 반포동 19-3"
     },
     {
+        "Bool1": true,
+        "Bool2": "Y",
         "KorName": "김원택",
         "Gender": "여",
         "Age": "65",
@@ -2217,7 +2311,6 @@
         "OrderDate": "2020-12-05",
         "CardNumber": "5390-8706-6769-4536",
         "Monetary": "CNY",
-        "imageUrl": "/images/monetaryFlag/CNY.png",
         "StartDate": "2019-04-21",
         "EndDate": "2021-01-09",
         "ToMonth": "9",
@@ -2232,6 +2325,8 @@
         "Address": "서울특별시 도봉구 방학동 717-6"
     },
     {
+        "Bool1": true,
+        "Bool2": "Y",
         "KorName": "김종선",
         "Gender": "남",
         "Age": "55",
@@ -2241,7 +2336,6 @@
         "OrderDate": "2019-11-22",
         "CardNumber": "5144-2689-3228-6734",
         "Monetary": "HKD",
-        "imageUrl": "/images/monetaryFlag/HKD.png",
         "StartDate": "2019-03-26",
         "EndDate": "2022-04-23",
         "ToMonth": "10",
@@ -2256,6 +2350,8 @@
         "Address": "서울특별시 노원구 월계동 333-1"
     },
     {
+        "Bool1": true,
+        "Bool2": "Y",
         "KorName": "최매화",
         "Gender": "남",
         "Age": "61",
@@ -2265,7 +2361,6 @@
         "OrderDate": "2020-07-08",
         "CardNumber": "5186-4011-4484-5257",
         "Monetary": "GBP",
-        "imageUrl": "/images/monetaryFlag/GBP.png",
         "StartDate": "2019-01-02",
         "EndDate": "2022-10-07",
         "ToMonth": "13",
@@ -2280,6 +2375,8 @@
         "Address": "서울특별시 송파구 가락동 600"
     },
     {
+        "Bool1": false,
+        "Bool2": "N",
         "KorName": "박웅철",
         "Gender": "남",
         "Age": "22",
@@ -2289,7 +2386,6 @@
         "OrderDate": "2019-02-23",
         "CardNumber": "5470-6490-2882-2801",
         "Monetary": "KRW",
-        "imageUrl": "/images/monetaryFlag/KRW.png",
         "StartDate": "2019-12-15",
         "EndDate": "2021-05-09",
         "ToMonth": "1",
@@ -2304,6 +2400,8 @@
         "Address": "서울특별시 성북구 길음동 20-1"
     },
     {
+        "Bool1": true,
+        "Bool2": "Y",
         "KorName": "권경만",
         "Gender": "여",
         "Age": "58",
@@ -2313,7 +2411,6 @@
         "OrderDate": "2020-12-15",
         "CardNumber": "5594-9562-3069-6530",
         "Monetary": "GBP",
-        "imageUrl": "/images/monetaryFlag/GBP.png",
         "StartDate": "2018-08-05",
         "EndDate": "2022-09-06",
         "ToMonth": "18",
@@ -2328,6 +2425,8 @@
         "Address": "서울특별시 노원구 중계동 515-2"
     },
     {
+        "Bool1": true,
+        "Bool2": "Y",
         "KorName": "송치영",
         "Gender": "여",
         "Age": "59",
@@ -2337,7 +2436,6 @@
         "OrderDate": "2020-03-17",
         "CardNumber": "5589-8596-5324-1536",
         "Monetary": "GBP",
-        "imageUrl": "/images/monetaryFlag/GBP.png",
         "StartDate": "2019-03-25",
         "EndDate": "2022-05-02",
         "ToMonth": "10",
@@ -2352,6 +2450,8 @@
         "Address": "서울특별시 관악구 신림동 1421-9"
     },
     {
+        "Bool1": true,
+        "Bool2": "Y",
         "KorName": "이현구",
         "Gender": "여",
         "Age": "27",
@@ -2361,7 +2461,6 @@
         "OrderDate": "2019-09-17",
         "CardNumber": "5546-6903-8394-7569",
         "Monetary": "AUD",
-        "imageUrl": "/images/monetaryFlag/AUD.png",
         "StartDate": "2019-02-08",
         "EndDate": "2021-03-09",
         "ToMonth": "12",
@@ -2376,6 +2475,8 @@
         "Address": "서울특별시 강서구 내발산동 720-11"
     },
     {
+        "Bool1": true,
+        "Bool2": "Y",
         "KorName": "박충호",
         "Gender": "남",
         "Age": "71",
@@ -2385,7 +2486,6 @@
         "OrderDate": "2021-01-16",
         "CardNumber": "5327-2139-9692-3644",
         "Monetary": "EUR",
-        "imageUrl": "/images/monetaryFlag/EUR.png",
         "StartDate": "2018-02-25",
         "EndDate": "2021-08-12",
         "ToMonth": "23",
