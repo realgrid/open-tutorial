@@ -1,6 +1,5 @@
 # Lookup 컬럼
 
-
 [![](./youtube-01.png)](https://youtu.be/f87HxLkeQ7Y)
 
 데이터의 실제 값이 아닌 다른 의미를 부여받은 값으로 바꿔서 그리드에 표시하는 방법을 다룹니다.

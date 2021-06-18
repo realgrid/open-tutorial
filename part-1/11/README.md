@@ -1,5 +1,7 @@
 # Lookup Tree
 
+[![](./youtube-01.png)](https://youtu.be/hTct4PizWVc)
+
 
 ## 기본 코드
 
@@ -9,29 +11,7 @@
 기본 코드의 실행결과는 아래 링크에서 확인할 수 있습니다.
 * [기본 코드의 실행 결과](http://10bun.tv/samples/realgrid2/part-1/11/step-00.html)
 
-``` html
-<!DOCTYPE html>
-<html>
-	...
-</html>
-
-<script>
-    const provider = new RealGrid.LocalDataProvider();
-    const gridView = new RealGrid.GridView("realgrid");
-    gridView.setDataSource(provider);
-
-    var data_url = 
-		"https://raw.githubusercontent.com/realgrid/" +
-    	"open-tutorial/main/datas/";
-    $.getJSON(data_url + "data-007.json", function (data) {
-        console.log(data);
-        provider.fillJsonData(data, { fillMode: "set" });
-    });
-	
-    provider.setFields([ 필드설정]);
-    gridView.setColumns([ 컬럼설정 ]);
-</script>
-```
+![](./code-001.png)
 
 
 ## 동기식으로 코드 데이터 가져오기
@@ -46,48 +26,7 @@ loadCodeData() 함수는 동기식으로 데이터가 다운받을 때까지 코
 예제 코드의 실행결과는 아래 링크에서 확인할 수 있습니다.
 * [동기식으로 코드 데이터 가져오기 예제 실행결과](http://10bun.tv/samples/realgrid2/part-1/11/step-01.html)
 
-``` html
-<!DOCTYPE html>
-<html>
-	...
-</html>
-
-<script>
-	...
-	var companies  = {id: "companies",  levels: 1, keys: [], values: []};
-	var categories = {id: "categories", levels: 2, keys: [], values: []};
-	var products   = {id: "products",   levels: 3, keys: [], values: []};	
-	loadCodeData( data_url + "data-007-01.json", companies,
-				  ["uid"], "company");
-	loadCodeData( data_url + "data-007-04.json", categories, 
-				  ["company_id", "category_id"], "category");
-	loadCodeData( data_url + "data-007-03.json", products,
-				  ["company_id", "category_id", "uid"], "product");
-	...
-	function loadCodeData(url, codes, fkeys, fvalue) {
-		$.ajax ({
-			url: url,
-			dataType: "json",
-			async: false,
-			success: function(data) {
-				for (var i=0; i<data.length; i++) {
-					var row = data[i];
-					var keys = [];
-					if (fkeys.length == 1) {
-						keys = String(row[fkeys[0]]);
-					} else {
-						for (var j=0; j<fkeys.length; j++) 
-							keys.push( String(row[fkeys[j]]) );
-					}
- 					codes.keys.push(keys);
-					codes.values.push(row[fvalue]);
-				}				
-				console.log(codes);
-			}
-		})
-	}
-</script>
-```
+![](./code-002.png)
 
 * 8-10: Lookup Tree를 사용하기 위해서 필요한 LookupSource 데이터 구조입니다. 이것은 정해진 약속이기 때문에 반드시 같은 형태로 작업해주셔야 합니다.
 * 11-13: 서버로부터 데이터를 가져와서 LookupSource에 저장해줍니다.
@@ -97,22 +36,7 @@ loadCodeData() 함수는 동기식으로 데이터가 다운받을 때까지 코
 
 예제 코드가 실행되면 LookSource 객체에는 각각 아래와 같은 데이터가 적재됩니다.
 
-```
-Objectid: "companies"
-levels: 1
-keys: ["1, "2"]
-values: ["해태제과", "롯데제과"]
-
-Objectid: "categories"
-levels: 2
-keys: [["1", "1"], ["1", "2"], ["1", "3"], ["2", "1"], ["2", "2"]]
-values: ["과자", "음료", "냉동식품", "과자", "음료"]
-
-Objectid: "products"
-levels: 3
-keys: [["1", "1", "1"], ["1", "1", "2"], ["1", "2", "3"], ["1", "2", "4"], ...]
-values: ["해태과자 A", "해태과자 B", "해태음료 A", "해태음료 B", ...]
-```
+![](./code-003.png)
 
 * "companies"의 경우에는 value 값을 찾기 위한 키가 하나만 필요하기 때문에 keys 배열은 단일 값 요소만 가지고 있습니다.
 * "categories"의 경우에는 회사와 분류코드 값 두 개를 알아야 value를 찾고 걸러낼 수 있기 때문에 keys 배열은 두 개의 요소를 가지고 있는 배열을 요소로 가지고 있습니다.
@@ -133,28 +57,7 @@ Company 컬럼의 경우에는 Lookup 컬럼의 구조입니다.
 예제 코드의 실행결과는 아래 링크에서 확인할 수 있습니다.
 * [Company 컬럼을 Lookup 컬럼으로 구성하기 예제 실행결과](http://10bun.tv/samples/realgrid2/part-1/11/step-02.html)
 
-``` html
-<!DOCTYPE html>
-<html>
-	...
-</html>
-
-<script>
-	...
-    gridView.setColumns([
-		...
-		{ 
-			name: "company_id",  fieldName: "company_id",  width: "100",
-			lookupDisplay: true, 
-			values: companies.keys, 
-			labels: companies.values,
-			editor: { type: "dropdown" }
-		},
-		...
-    ]);
-	...
-</script>
-```
+![](./code-004.png)
 
 
 ## Category 컬럼에 LookupSource 적용하기
@@ -165,30 +68,7 @@ LookupSource에서 Company 컬럼의 값에 해당하는 데이터만 걸러내�
 예제 코드의 실행결과는 아래 링크에서 확인할 수 있습니다.
 * [Category 컬럼에 LookupSource 적용하기 예제 실행결과](http://10bun.tv/samples/realgrid2/part-1/11/step-03.html)
 
-``` html
-<!DOCTYPE html>
-<html>
-	...
-</html>
-
-<script>
-	...
-    gridView.addLookupSource(categories);
-	...	
-    gridView.setColumns([
-		...
-		{ 
-			name: "category_id", fieldName: "category_id", width: "80",
-			lookupDisplay: true, 
-			lookupSourceId: "categories", 
-			lookupKeyFields: ["company_id", "category_id"],
-			editor: { type: "dropdown" }
-		},
-		...
-    ]);
-	...
-</script>
-```
+![](./code-005.png)
 
 * 14: Lookup 컬럼과 마찬가지로 lookupDisplay 속성이 true가 되어야 합니다.
 * 15: Category 컬럼에 해당하는 lookupSourceId를 지정합니다.
@@ -203,30 +83,7 @@ LookupSource에서 Company 컬럼의 값에 해당하는 데이터만 걸러내�
 예제 코드의 실행결과는 아래 링크에서 확인할 수 있습니다.
 * [Product 컬럼에 LookupSource 적용하기 예제 실행결과](http://10bun.tv/samples/realgrid2/part-1/11/step-04.html)
 
-``` html
-<!DOCTYPE html>
-<html>
-	...
-</html>
-
-<script>
-	...
-    gridView.addLookupSource(products);
-	...
-    gridView.setColumns([
-		...
-		{ 
-			name: "product_id",  fieldName: "product_id",  width: "100",
-			lookupDisplay: true, 
-			lookupSourceId: "products", 
-			lookupKeyFields: ["company_id", "category_id", "product_id"],
-			editor: { type: "dropdown" }			
-		},
-		...
-    ]);
-	...
-</script>
-```
+![](./code-006.png)
 
 * 15: Product 컬럼에 해당하는 lookupSourceId를 지정합니다.
 * 16: 코드 데이터를 걸러내고 표시할 값을 가져오기 위한 키가 되는 필드의 이름을 지정합니다.
@@ -242,29 +99,7 @@ LookupSource에서 Company 컬럼의 값에 해당하는 데이터만 걸러내�
 예제 코드의 실행결과는 아래 링크에서 확인할 수 있습니다.
 * [변경이 발생하면 뒤에 오는 컬럼 초기화하기 예제 실행결과](http://10bun.tv/samples/realgrid2/part-1/11/step-05.html)
 
-``` html
-<!DOCTYPE html>
-<html>
-	...
-</html>
-
-<script>
-	...
-    gridView.onEditCommit = function (grid, index, oldValue, newValue) {
-        if (index.fieldName === "company_id") {
- 			if (oldValue !== newValue) {
-				grid.setValue(index.itemIndex, "category_id", "");
-				grid.setValue(index.itemIndex, "product_id", "");
-			}			
-		} else if (index.fieldName === "category_id") {
- 			if (oldValue !== newValue) {
-				grid.setValue(index.itemIndex, "product_id", "");
-			}
-        }
-    };	
-	...
-</script>
-```
+![](./code-007.png)
 
 * 10-13: 변경된 컬럼의 "company_id"인 경우에는 뒤에 Lookup Tree로 묶인 "category_id", "product_id" 컬럼을 초기화 합니다.
 * 15-17: 변경된 컬럼의 "category_id"인 경우에는 뒤에 Lookup Tree로 묶인 "product_id" 컬럼만 초기화 합니다.
