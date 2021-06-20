@@ -23,7 +23,7 @@
 
 # Part 2. 고급 사용자를 위한 Tip
 
-* [렌더러](/part2-01)
+* [렌더러](/part-2/01)
 - 셀 선택방식 변경
 - 트리뷰 (http://docs.realgrid.com/guides/tree/tree-view)
 - 짝수, 홀수 행의 스타일을 다르게 표현하기 (http://help.realgrid.com/start/quick/c3/)
