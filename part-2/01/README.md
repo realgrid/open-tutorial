@@ -1,5 +1,7 @@
 # 랜더러
 
+[![](youtube-01.jpg)](https://youtu.be/kq5-5yDhCtI)
+
 
 ## 기본 코드
 
