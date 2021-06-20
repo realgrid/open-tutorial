@@ -29,7 +29,7 @@ tagline: 사람과 데이터를 잇다
 
 ## Part 2. 고급 사용자를 위한 Tip
 
-- HTML 렌더러
+* [렌더러](/part-2/01)
 - 셀 선택방식 변경
 - 트리뷰 (http://docs.realgrid.com/guides/tree/tree-view)
 - 짝수, 홀수 행의 스타일을 다르게 표현하기 (http://help.realgrid.com/start/quick/c3/)
@@ -43,17 +43,15 @@ tagline: 사람과 데이터를 잇다
 - 피벗 데이터 디테일?? (http://demo.realgrid.com/Pivot/PivotGridFiltering/)
 - 컨텍스트 메뉴
 - 다양한 편집기
-- 아이콘 셀
-- 쉐이프 셀
-- 시그널 셀
 - 시리즈 컬럼
-- 컴럼 헤더 높이 조정
-- 풋터 병합
+- 컬럼 헤더
+  - 컴럼 헤더 높이 조정
+  - 그룹컬럼 헤더 html 렌더러
+- 컬럼 푸터
+  - 푸터 병합
 - 툴팁
 - 계산 필드 (http://help.realgrid.com/start/quick/c23/)
 - 정규식 표현
-- 랜더러 동적 스타일
-- 체크 렌더러
 - 컬럼 그룹
 - 컬럼 유효성 검사
 - 사용자 지정 유효성 검사

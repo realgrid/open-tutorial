@@ -43,6 +43,18 @@
 			},
 		},
 
+		{
+			name: "imageUrl3", fieldName: "Monetary", width: "120",
+			renderer: {
+				type: "image",
+				imageHeight: 80,
+				imageMap: {
+					"EUR": "/images/monetaryFlag/EUR.png",
+					"USD": "/images/monetaryFlag/USD.png"
+				},
+			},
+		},
+		
         {
 			name: "imageUrl2",   fieldName: "imageUrl",   width: "120",
 			renderer: {
@@ -51,18 +63,6 @@
 				imageCallback: function (grid, cell) {
 					var monetary = grid.getValue(cell.item.index, "Monetary");
 					return `/images/monetaryFlag/${monetary}.png`;
-				},
-			},
-		},
-
-        {
-			name: "imageUrl3",   fieldName: "Monetary",   width: "120",
-			renderer: {
-				type: "image",
-				imageHeight: 80,
-				imageMap: {
-					"EUR": "/images/monetaryFlag/EUR.png",
-					"USD": "/images/monetaryFlag/USD.png"
 				},
 			},
 		},
