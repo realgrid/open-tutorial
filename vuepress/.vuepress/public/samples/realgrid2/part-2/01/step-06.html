@@ -32,7 +32,30 @@
     gridView.setColumns([
         { name: "KorName",    fieldName: "KorName",    width:  "80" },
         { name: "Gender",     fieldName: "Gender",     width:  "60" },
-        { name: "Age",        fieldName: "Age",        width:  "60" },
+
+        {
+			name: "Age",        fieldName: "Age",        width:  "60",
+			renderer: {
+				type: "bar",
+				origin: "left",
+				maximum: 100,
+				minimum: 0,
+				barWidth: "80%"
+			},
+		},
+
+        {
+            name: "Age2", fieldName: "Age", width: "60",
+            renderer: {
+                type: "signalbar",
+                barCount: 10,
+                minimum: 0,
+                maximum: 100,
+                startRate: 0,
+                endRate: 100
+            },
+        },
+
         { name: "Phone",      fieldName: "Phone",      width: "120" },
         { name: "ProductId",  fieldName: "ProductId",  width: "120" },
         { name: "KorCountry", fieldName: "KorCountry", width: "100" },

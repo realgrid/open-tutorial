@@ -26,27 +26,46 @@
         { fieldName: "ProductId",  dataType: "text"     },
         { fieldName: "KorCountry", dataType: "text"     },
         { fieldName: "OrderDate",  dataType: "datetime" },
+		{ fieldName: "SaveCost",   dataType: "number"   },
     ]);
 
     gridView.setColumns([
-        { name: "KorName",    fieldName: "KorName",    width:  "80" },
-        { name: "Gender",     fieldName: "Gender",     width:  "60" },
-		
+        { 
+			name: "KorName",    fieldName: "KorName",    width:  "80",
+			renderer: {
+				type: "shape",
+				shape: "star"
+			},
+		},
+
+        {
+			name: "Gender",     fieldName: "Gender",     width:  "60",
+			renderer: {
+				type: "shape",
+				shapeMap: {
+					"남": "plus",
+					"여": "minus"
+				},
+				shapeHeight: 15,
+				shapeWidth: 15
+			},
+		},
+
         {
 			name: "Age",        fieldName: "Age",        width:  "60",
 			renderer: {
-				type: "bar",
-				origin: "left",
-				maximum: 100,
-				minimum: 0,
-				barWidth: "80%"
+				type: "shape",
+				shapeCallback: renderAge,
+				shapeHeight: 15,
+				shapeWidth: 15
 			},
 		},
-		
+
         { name: "Phone",      fieldName: "Phone",      width: "120" },
         { name: "ProductId",  fieldName: "ProductId",  width: "120" },
         { name: "KorCountry", fieldName: "KorCountry", width: "100" },
         { name: "OrderDate",  fieldName: "OrderDate",  width:  "80" },
+		{ name: "SaveCost",   fieldName: "SaveCost",   width: "80"  },
     ]);
 
     var data_url = 
@@ -56,4 +75,18 @@
         console.log(data);
         provider.fillJsonData(data, { fillMode: "set" });
     });
+
+	function renderAge(grid, cell) {
+		if (cell.value <  10) return 'star';
+		if (cell.value <  20) return 'rectangle';
+		if (cell.value <  30) return 'triangle';
+		if (cell.value <  40) return 'itriangle';
+		if (cell.value <  50) return 'diamond';
+		if (cell.value <  60) return 'uparrow';
+		if (cell.value <  70) return 'downarrow';
+		if (cell.value <  80) return 'leftarrow';
+		if (cell.value <  90) return 'rightarrow';
+		if (cell.value < 100) return 'minus';
+		return 'plus';
+	}
 </script>
