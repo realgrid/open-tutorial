@@ -3,6 +3,7 @@
 	<head>
 		<meta charset="utf-8">
 		<link href="/lib/realgrid-style.css" rel="stylesheet" />
+		<link href="./button.css" rel="stylesheet" />
 		<script type="text/javascript" src="/lib/realgrid-lic.js"></script>
 		<script type="text/javascript" src="/lib/realgrid.2.2.2.min.js"></script>
 		<script type="text/javascript" src="/js/jquery-3.4.0.min.js"></script>
@@ -17,6 +18,7 @@
     const provider = new RealGrid.LocalDataProvider();
     const gridView = new RealGrid.GridView("realgrid");
     gridView.setDataSource(provider);
+    gridView.displayOptions.rowHeight = 50;
 
     provider.setFields([
         { fieldName: "KorName",    dataType: "text"     },
@@ -32,31 +34,12 @@
     gridView.setColumns([
         { name: "KorName",    fieldName: "KorName",    width:  "80" },
         { name: "Gender",     fieldName: "Gender",     width:  "60" },
-
-        {
-			name: "Age", fieldName: "Age", width: "60",
-			renderer: {
-				type: "bar",
-				origin: "left",
-                minimum: 0,
-				maximum: 100,
-				barWidth: "80%"
-			},
+        { name: "Age",        fieldName: "Age",        width:  "60" },
+        { 
+			name: "Phone", fieldName: "Phone", width: "200",
+		    renderer: "rendererImgbtn",
+	        styleName: "left-column custom_renderer",
 		},
-
-        {
-            name: "Age2", fieldName: "Age", width: "60",
-            renderer: {
-                type: "signalbar",
-                barCount: 10,
-                minimum: 0,
-                maximum: 100,
-                startRate: 0,
-                endRate: 100
-            },
-        },
-
-        { name: "Phone",      fieldName: "Phone",      width: "120" },
         { name: "ProductId",  fieldName: "ProductId",  width: "120" },
         { name: "KorCountry", fieldName: "KorCountry", width: "100" },
         { name: "OrderDate",  fieldName: "OrderDate",  width:  "80" },
@@ -70,4 +53,37 @@
         console.log(data);
         provider.fillJsonData(data, { fillMode: "set" });
     });
+	
+	gridView.registerCustomRenderer('rendererImgbtn', {
+		initContent: function (parent) {
+			var span = (this.span = document.createElement('span'));
+			span.className = 'custom_render_span';
+			parent.appendChild(span);
+			parent.appendChild((this.button = document.createElement('span')));
+		},
+
+		canClick: function () {
+			return true;
+		},
+
+		clearContent: function (parent) {
+			console.log('DISPOSED......');
+			parent.innerHTML = '';
+		},
+
+		render: function (grid, model, width, height, info) {
+			info = info || {};
+			this.span.textContent = model.value;
+			this.value = model.value;
+			this.button.className =
+				'custom_search custom-hover' + (info.focused ? ' custom-focused' : '');
+		},
+
+		click: function (event) {
+			var grid = this.grid.handler;
+			var index = this.index.toProxy();
+			event.preventDefault;
+			alert(this.value);
+		},
+	});
 </script>
