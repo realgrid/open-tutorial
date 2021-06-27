@@ -90,32 +90,11 @@
 		initContent: function (parent) {
 			this.chart = new Highcharts.chart(parent, {
 				chart: {
-					plotBackgroundColor: null,
-					plotBorderWidth: null,
-					plotShadow: false,
 					type: 'pie',
 					height: 200,
 					width: 400,
 				},
-				title: {
-					text: '',
-					style: {
-						fontSize: 12,
-					},
-					margin: 0,
-				},
-				tooltip: {
-					pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>',
-				},
-				plotOptions: {
-					pie: {
-						allowPointSelect: true,
-						cursor: 'pointer',
-						dataLabels: {
-							enabled: true,
-						},
-					},
-				},
+				title: { text: '' },
 				series: [
 					{
 						colorByPoint: true,

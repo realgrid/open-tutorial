@@ -35,11 +35,13 @@
         { name: "KorName",    fieldName: "KorName",    width:  "80" },
         { name: "Gender",     fieldName: "Gender",     width:  "60" },
         { name: "Age",        fieldName: "Age",        width:  "60" },
+		
         { 
 			name: "Phone", fieldName: "Phone", width: "200",
 		    renderer: "rendererImgbtn",
 	        styleName: "left-column custom_renderer",
 		},
+		
         { name: "ProductId",  fieldName: "ProductId",  width: "120" },
         { name: "KorCountry", fieldName: "KorCountry", width: "100" },
         { name: "OrderDate",  fieldName: "OrderDate",  width:  "80" },
@@ -56,10 +58,12 @@
 	
 	gridView.registerCustomRenderer('rendererImgbtn', {
 		initContent: function (parent) {
-			var span = (this.span = document.createElement('span'));
-			span.className = 'custom_render_span';
-			parent.appendChild(span);
-			parent.appendChild((this.button = document.createElement('span')));
+			this.span = document.createElement('span');
+			this.span.className = 'custom_render_span';
+			this.button = document.createElement('span');
+			this.button.className = 'custom_search custom-hover';
+			parent.appendChild(this.span);
+			parent.appendChild(this.button);
 		},
 
 		canClick: function () {
@@ -67,20 +71,15 @@
 		},
 
 		clearContent: function (parent) {
-			console.log('DISPOSED......');
 			parent.innerHTML = '';
 		},
 
 		render: function (grid, model, width, height, info) {
 			this.span.textContent = model.value;
 			this.value = model.value;
-			this.button.className =
-				'custom_search custom-hover' + (info.focused ? ' custom-focused' : '');
 		},
 
 		click: function (event) {
-			var grid = this.grid.handler;
-			var index = this.index.toProxy();
 			event.preventDefault;
 			alert(this.value);
 		},
