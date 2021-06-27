@@ -250,9 +250,6 @@
 		},
         ...
     ]);
-    var data_url = 
-		"https://raw.githubusercontent.com/realgrid/" +
-    	"open-tutorial/main/datas/data-008.json";
     ...
 </script>
 ```
@@ -299,11 +296,325 @@
 
 ## 체크 랜더러
 
+예제 코드의 실행결과는 아래 링크에서 확인할 수 있습니다.
+* [체크 랜더러 예제 실행결과](http://10bun.tv/samples/realgrid2/part-2/01/step-07.html)
+
+``` html
+...
+<script>
+	...
+    provider.setFields([ 필드 설정 ]);
+    gridView.setColumns([
+        { 
+			name: "Bool1", fieldName: "Bool1", width: "40",
+			editable: false,
+			renderer: {
+			  type: "check"
+			},
+		},
+		...
+    ]);
+	...
+</script>
+```
+
+
 ## 링크 렌더러
+
+예제 코드의 실행결과는 아래 링크에서 확인할 수 있습니다.
+* [체크 랜더러 예제 실행결과](http://10bun.tv/samples/realgrid2/part-2/01/step-08.html)
+
+``` html
+...
+<script>
+	...
+    provider.setFields([ 필드 설정 ]);
+    gridView.setColumns([
+		...
+        {
+			name: "KorCountry", fieldName: "KorCountry", width: "100",
+			renderer: { 
+				type: "link",
+				urlCallback: function (grid, cell) {
+					return "https://www.google.com/search?q="+cell.value;
+				},
+			},
+		},
+		...
+    ]);
+	...
+</script>
+```
+
 
 ## 바코드 랜더러
 
+예제 코드의 실행결과는 아래 링크에서 확인할 수 있습니다.
+* [바코드 랜더러 예제 실행결과](http://10bun.tv/samples/realgrid2/part-2/01/step-09.html)
+
+``` html
+...
+<script>
+	...
+    provider.setFields([ 필드 설정 ]);
+    gridView.setColumns([
+		...
+        { 
+			name: "Phone", fieldName: "Phone", width: "220",
+			renderer: {
+				type: "code128"
+			},
+		},
+		...
+    ]);
+	...
+</script>
+```
+
+
 ## 커스텀 랜더러 - 이미지 버튼
 
-## 차트 연동
+예제 코드의 실행결과는 아래 링크에서 확인할 수 있습니다.
+* [커스텀 랜더러 예제 실행결과](http://10bun.tv/samples/realgrid2/part-2/01/step-10.html)
 
+``` html
+<!DOCTYPE html>
+<html>
+	<head>
+		...
+		<link href="./button.css" rel="stylesheet" />
+		...
+	</head>
+	...
+</html>
+```
+
+``` html
+<script>
+	...
+    provider.setFields([ 필드 설정 ]);
+    gridView.setColumns([
+		...
+        { 
+			name: "Phone", fieldName: "Phone", width: "200",
+		    renderer: "rendererImgbtn",
+	        styleName: "left-column custom_renderer",
+		},
+		...
+    ]);
+	...
+	gridView.registerCustomRenderer('rendererImgbtn', {
+		initContent: function (parent) {
+			this.span = document.createElement('span');
+			this.span.className = 'custom_render_span';
+			this.button = document.createElement('span');
+			this.button.className = 'custom_search custom-hover';
+			parent.appendChild(this.span);
+			parent.appendChild(this.button);
+		},
+		canClick: function () { return true; },
+		clearContent: function (parent) { parent.innerHTML = ''; },
+		render: function (grid, model, width, height, info) {
+			this.span.textContent = model.value;
+			this.value = model.value;
+		},
+		click: function (event) {
+			event.preventDefault;
+			alert(this.value);
+		},
+	});
+</script>
+```
+
+
+## 구글 차트 연동
+
+예제 코드의 실행결과는 아래 링크에서 확인할 수 있습니다.
+* [구글 차트 랜더러 예제 실행결과](http://10bun.tv/samples/realgrid2/part-2/01/step-11.html)
+
+``` html
+<!DOCTYPE html>
+<html>
+	<head>
+		...
+	    <script type="text/javascript" 
+			src="https://www.gstatic.com/charts/loader.js"></script>
+	</head>
+	...
+</html>
+```
+
+``` js
+...
+gridView.displayOptions.rowHeight = 150;
+provider.setFields([ 필드 설정 ]);
+...
+google.charts.load('current', {'packages':['corechart']});
+google.charts.setOnLoadCallback(function() {
+	gridView.setColumns([
+		{
+			name: 'chart', width: 428,
+			editable: false,
+			renderer: {
+				type: 'rendererChart',
+			},
+		},
+		...
+	]);
+	gridView.setColumnLayout([
+		'Year',
+		'chart',
+		{
+			name: 'g0',
+			items: [
+				{
+					name: 'g1',
+					direction: 'vertical',
+					header: '이름',
+					hideChildHeaders: true,
+					items: ['GDPName', 'GNIName', 'PGNIName', 'DIncomeName'],
+				},
+				{
+					name: 'g2',
+					direction: 'vertical',
+					header: '비율(값)',
+					hideChildHeaders: true,
+					items: ['GDP', 'GNI', 'PGNI', 'DIncome'],
+				},
+			],
+			header: { visible: false },
+		},
+	]);
+});
+```
+
+``` js
+...
+gridView.registerCustomRenderer('rendererChart', {
+	initContent: function (parent) {
+		this.chart = new google.visualization.PieChart(parent);
+	},
+	clearContent: function (parent) {
+		this.chart.clearChart();
+		this.chart = null;
+	},
+	render: function (grid, model, width, height, info) {
+		var data = grid.getValues(model.index.itemIndex);
+		var d = [];
+		d[0] = ['이름', '비율'];
+		d[1] = [data.GDPName, data.GDP];
+		d[2] = [data.GNIName, data.GNI];
+		d[3] = [data.PGNIName, data.PGNI];
+		d[4] = [data.DIncomeName, data.DIncome];
+		var chartData = google.visualization.arrayToDataTable(d);
+		var options = {
+			sliceVisibilityThreshold: 0.1,
+			height: height,
+			chartArea: { height: height - 10 },
+			fontSize: 10,
+			tooltip: { trigger: 'selection' },
+		};
+		this.chart.draw(chartData, options);
+	},
+	refreshFocusChanged: true,
+	showTooltip: true,
+});
+```
+
+
+## 하이 차트 연동
+
+예제 코드의 실행결과는 아래 링크에서 확인할 수 있습니다.
+* [하이 차트 랜더러 예제 실행결과](http://10bun.tv/samples/realgrid2/part-2/01/step-12.html)
+
+``` html
+<!DOCTYPE html>
+<html>
+	<head>
+		...
+	    <script type="text/javascript" src="/js/highcharts.min.js"></script>
+	</head>
+	...
+</html>
+```
+
+``` js
+...	
+gridView.displayOptions.rowHeight = 200;
+provider.setFields([ 필드 설정 ]);
+gridView.setColumns([
+	{
+		name: 'chart', width: 428,
+		editable: false,
+		renderer: {
+			type: 'rendererChart',
+		},
+	},
+	...
+]);
+gridView.setColumnLayout([
+	'Year',
+	'chart',
+	{
+		name: 'g0',
+		items: [
+			{
+				name: 'g1',
+				direction: 'vertical',
+				header: '이름',
+				hideChildHeaders: true,
+				items: ['GDPName', 'GNIName', 'PGNIName', 'DIncomeName'],
+			},
+			{
+				name: 'g2',
+				direction: 'vertical',
+				header: '비율(값)',
+				hideChildHeaders: true,
+				items: ['GDP', 'GNI', 'PGNI', 'DIncome'],
+			},
+		],
+		header: { visible: false },
+	},
+]);
+```
+
+``` js
+...
+gridView.registerCustomRenderer('rendererChart', {
+	initContent: function (parent) {
+		this.chart = new Highcharts.chart(parent, {
+			chart: {
+				type: 'pie',
+				height: 200,
+				width: 400,
+			},
+			title: { text: '' },
+			series: [
+				{
+					colorByPoint: true,
+					data: [
+						{ name: 'A', y: 10 },
+						{ name: 'B', y: 20 },
+						{ name: 'B', y: 20 },
+						{ name: 'B', y: 20 },
+					],
+				},
+			],
+		});
+	},
+	clearContent: function (parent) {
+		this.chart.destroy();
+		this.chart = null;
+	},
+	render: function (grid, model, width, height, info) {
+		var data = grid.getValues(model.index.itemIndex);
+		var d = [];
+		d[0] = [data.GDPName, data.GDP];
+		d[1] = [data.GNIName, data.GNI];
+		d[2] = [data.PGNIName, data.PGNI];
+		d[3] = [data.DIncomeName, data.DIncome];
+		this.chart.series[0].updateData(d);
+		this.chart.redraw();
+	},
+});
+```
