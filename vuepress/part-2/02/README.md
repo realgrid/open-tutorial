@@ -242,7 +242,7 @@
             name: "SaveCost",   fieldName: "SaveCost",   width:  "80",
             footer: {
                 numberFormat: "#,##0",
-                valueCallback: function (grid, column, footerIndex, columnFooter, value) {
+                valueCallback: function (grid, column, index, footer, value) {
                     return grid.getSummary("SaveCost", "count");
                 }
             },
@@ -294,7 +294,7 @@
             name: "SaveCost",   fieldName: "SaveCost",   width:  "80",
             headerSummary: {
                 numberFormat: "#,##0",
-                valueCallback: function (grid, column, footerIndex, columnFooter, value) {
+                valueCallback: function (grid, column, index, footer, value) {
                     return grid.getSummary("SaveCost", "count");
                 }
             },

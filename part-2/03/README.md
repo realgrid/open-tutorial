@@ -11,34 +11,7 @@
 기본 코드의 실행결과는 아래 링크에서 확인할 수 있습니다.
 * [기본 코드의 실행 결과](http://10bun.tv/samples/realgrid2/part-2/03/step-00.html)
 
-``` html
-<!DOCTYPE html>
-<html>
-	<head>
-        ...
-	</head>
-	<body>
-		<div id="realgrid" style="width: 100%; height: 440px;">
-		</div>
-	</body>
-</html>
-<script>
-    const provider = new RealGrid.LocalDataProvider();
-    const gridView = new RealGrid.GridView("realgrid");
-    gridView.setDataSource(provider);
-    provider.setFields([ 필드 설정 ]);
-    gridView.setColumns([ 컬럼 설정 ]);
-	
-    var data_url = 
-		"https://raw.githubusercontent.com/realgrid/" +
-    	"open-tutorial/main/datas/areatree.json";
-    $.getJSON(data_url, function (data) {
-        console.log(data);
-        provider.fillJsonData(data, { fillMode: "set" });
-    });
-</script>
-```
-
+![](./code-001.png)
 
 ## 트리뷰로 전환하기
 
@@ -48,29 +21,7 @@ GridView가 아닌 TreeView를 사용하고 있는 점을 유의하셔야 합니
 예제 코드의 실행결과는 아래 링크에서 확인할 수 있습니다.
 * [트리뷰로 전환하기 예제 실행결과](http://10bun.tv/samples/realgrid2/part-2/03/step-01.html)
 
-``` html
-...
-<script>
-    const provider = new RealGrid.LocalTreeDataProvider();
-    const treeView = new RealGrid.TreeView("realgrid");
-    treeView.setDataSource(provider);
-    treeView.treeOptions.iconImagesRoot = "/images/flags/";
-    treeView.treeOptions.iconImages = [
-        "kr.png", "de.png", "es.png", "fr.png", "leaf.png"
-    ]
-    treeView.treeOptions.defaultIcon = 4;
-	...
-    treeView.setColumns([
-		...
-    ]);
-	...
-    $.getJSON(data_url, function (data) {
-        console.log(data);
-        provider.setRows(data, "treeId", false, "", "iconField");
-        treeView.refresh();
-    });
-</script>
-```
+![](./code-002.png)
 * 3: LocalDataProvider가 아닌 LocalTreeDataProvider를 사용합니다.
 * 4: GridView가 아닌 TreeView를 사용합니다.
 * 6-10: 트리 노드에 표시할 아이콘의 경로와 이미지 파일명을 설정합니다.
@@ -82,7 +33,7 @@ GridView가 아닌 TreeView를 사용하고 있는 점을 유의하셔야 합니
 
 ## LocalTreeDataProvider.setRows()
 
-``` js
+```
 setRows(rows, treeField, needSorting, childrenField, iconField)
 ```
 * rows: 설정할 데이터
