@@ -30,17 +30,17 @@ tagline: 사람과 데이터를 잇다
 ## Part 2. 고급 사용자를 위한 Tip
 
 * [렌더러](/part-2/01)
+* [헤더와 푸터](/part-2/02)
+* [트리뷰](/part-2/03)
 - 셀 선택방식 변경
-- 트리뷰 (http://docs.realgrid.com/guides/tree/tree-view)
 - 짝수, 홀수 행의 스타일을 다르게 표현하기 (http://help.realgrid.com/start/quick/c3/)
 - 상단 합계 표시
 - 행/컬럽 고정하기
   - 오른쪽 컬럼 고정하기
-- 바코드 셀
 - 그리드 Lazy Loading 구현
 - 동적 스타일과 편집 여부 설정 (http://help.realgrid.com/start/quick/a29/)
 - displayCallback()을 사용하여 원하는대로 표시값 설정하기 (http://help.realgrid.com/start/quick/a30/)
-- 피벗 데이터 디테일?? (http://demo.realgrid.com/Pivot/PivotGridFiltering/)
+- 피벗 데이터 디테일 (http://demo.realgrid.com/Pivot/PivotGridFiltering/)
 - 컨텍스트 메뉴
 - 다양한 편집기
 - 시리즈 컬럼
@@ -50,7 +50,6 @@ tagline: 사람과 데이터를 잇다
 - 컬럼 푸터
   - 푸터 병합
 - 툴팁
-- 계산 필드 (http://help.realgrid.com/start/quick/c23/)
 - 정규식 표현
 - 컬럼 그룹
 - 컬럼 유효성 검사
