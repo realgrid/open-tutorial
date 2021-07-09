@@ -18,8 +18,6 @@
     const gridView = new RealGrid.GridView("realgrid");
     gridView.setDataSource(provider);
 
-    gridView.headerSummaries.visible = true;
-
     provider.setFields([
         { fieldName: "KorName",    dataType: "text"     },
         { fieldName: "Gender",     dataType: "text"     },
@@ -30,6 +28,8 @@
         { fieldName: "OrderDate",  dataType: "datetime" },
         { fieldName: "SaveCost",   dataType: "number"   },
     ]);
+
+    gridView.headerSummaries.visible = true;
 
     gridView.setColumns([
         { name: "KorName",    fieldName: "KorName",    width:  "80" },
