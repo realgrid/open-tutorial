@@ -28,7 +28,7 @@ Rest API 서버로부터 JSON 데이터를 가져와서 그리드에 표시하�
 		<meta charset="utf-8">
 		<link href="/lib/realgrid-style.css" rel="stylesheet" />
 		<script type="text/javascript" src="/lib/realgrid-lic.js"></script>
-		<script type="text/javascript" src="/lib/realgrid.2.2.2.min.js"></script>
+		<script type="text/javascript" src="/lib/realgrid.2.3.3.min.js"></script>
 		<script type="text/javascript" src="/js/jquery-3.4.0.min.js"></script>
 	</head>
 	<body>
@@ -184,7 +184,7 @@ gridView.setColumns([
 		<meta charset="utf-8">
 		<link href="/lib/realgrid-style.css" rel="stylesheet" />
 		<script type="text/javascript" src="/lib/realgrid-lic.js"></script>
-		<script type="text/javascript" src="/lib/realgrid.2.2.2.min.js"></script>
+		<script type="text/javascript" src="/lib/realgrid.2.3.3.min.js"></script>
 		<script type="text/javascript" src="/js/jquery-3.4.0.min.js"></script>
 	</head>
 	<body>
