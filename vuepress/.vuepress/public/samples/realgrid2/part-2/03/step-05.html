@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<link href="/lib/realgrid-style.css" rel="stylesheet" />
+		<script type="text/javascript" src="/lib/realgrid-lic.js"></script>
+		<script type="text/javascript" src="/lib/realgrid.2.3.3.min.js"></script>
+		<script type="text/javascript" src="/js/jquery-3.4.0.min.js"></script>
+	</head>
+	<body>
+		<div id="realgrid" style="width: 100%; height: 440px;">
+		</div>
+	</body>
+</html>
+
+<script>
+    const provider = new RealGrid.LocalTreeDataProvider();
+    const treeView = new RealGrid.TreeView("realgrid");
+    treeView.setDataSource(provider);
+
+    treeView.treeOptions.iconImagesRoot = "/images/flags/";
+    treeView.treeOptions.iconImages = [
+        "kr.png", "de.png", "es.png", "fr.png", "leaf.png",
+        "hu.png", "is.png", "ox.png", "mx.png", "pt.png",
+        "us.png", "ve.png"]
+
+    provider.setFields([
+        { fieldName: "col0", dataType: "text"   },
+        { fieldName: "icon", dataType: "text"   },
+        { fieldName: "col1", dataType: "number" },
+        { fieldName: "col2", dataType: "number" },
+        { fieldName: "col3", dataType: "number" },
+        { fieldName: "col4", dataType: "number" },
+        { fieldName: "col5", dataType: "number" },
+        { fieldName: "col7", dataType: "number" },
+    ]);
+
+    treeView.setColumns([
+        { fieldName: "col0", name: "col0", width: 150 },
+        { fieldName: "icon", name: "icon" },
+        { fieldName: "col1", name: "col1" },
+        { fieldName: "col2", name: "col2" },
+        { fieldName: "col3", name: "col3" },
+        { fieldName: "col4", name: "col4" },
+        { fieldName: "col5", name: "col5" },
+        { fieldName: "col7", name: "col7" },
+    ]);
+
+    var data_url = 
+		"https://raw.githubusercontent.com/realgrid/" +
+    	"open-tutorial/main/datas/treedata.json";
+    $.getJSON(data_url, function (data) {
+        console.log(data);
+        provider.setObjectRows(data, "rows", "", "icon");
+        treeView.expandAll();
+    });
+</script>
