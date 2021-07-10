@@ -115,14 +115,7 @@
 ``` html
 <!DOCTYPE html>
 <html>
-	<head>
-        ...
-        <style>
-            .multi-line-css {
-                white-space: pre;
-            }
-        </style>
-	</head>
+    ...
 	<body>
         <div>
             <button onclick="showCheckBoxState()">헤더 체크박스 확인</button>
@@ -137,7 +130,6 @@
         {
             name: "KorName",    fieldName: "KorName",    width:  "80",
             header: {
-                "styleName": "multi-line-css",
                 checkLocation: "left"
             },
             checked: true
@@ -159,18 +151,7 @@
 * [여러 줄로 표시하기 예제 실행결과](http://10bun.tv/samples/realgrid2/part-2/02/step-04.html)
 
 ``` html
-<!DOCTYPE html>
-<html>
-	<head>
-        ...
-        <style>
-            .multi-line-css {
-                white-space: pre;
-            }
-        </style>
-	</head>
-    ...
-</html>
+...
 <script>
     ...
     gridView.header.height = 60;
@@ -181,11 +162,9 @@
             name: "KorName",    fieldName: "KorName",    width:  "80",
             header: {
                 text: "한글이름\nKorName",
-                "styleName": "multi-line-css",
             },
             footer: {
                 text: "한글이름\nKorName",
-                "styleName": "multi-line-css",
             },
         },
         ...
@@ -195,10 +174,10 @@
 ```
 
 
-## 컬럼 푸터
+## 컬럼 푸터의 expression 속성
 
 예제 코드의 실행결과는 아래 링크에서 확인할 수 있습니다.
-* [컬럼 푸터 예제 실행결과](http://10bun.tv/samples/realgrid2/part-2/02/step-05.html)
+* [컬럼 푸터의 expression 속성 예제 실행결과](http://10bun.tv/samples/realgrid2/part-2/02/step-05.html)
 
 ``` html
 ...
@@ -221,6 +200,39 @@
     ...
 </script>
 ```
+
+expression에서 사용할 수 있는 계산 방법은 아래와 같습니다. 
+"count", "sum" 등과 같은 경우에는 "aggregate" 모드에서만 계산이되는데요.
+"aggregate"은 기본값이기 때문에 굳이 옵션을 설정하지 않으면 바로 사용이 가능합니다.
+
+"var"와 같은 계산은 "statistical"로 설정해주어야하는데요.
+"statistical" 설정하면 산술적 계산식들은 모두 사용이 가능합니다.
+
+"statistical"은 "aggregate"을 포함한다고 생각하시면 됩니다.
+
+``` js
+gridView.setOptions({ summaryMode: "aggregate" });
+```
+* 산술적 계산 모드
+  * count: 데이터행의 갯수.
+  * sum: 컬럼에 포함된 모든 데이터셀의 값들을 더한 값.
+  * max: 컬럼에 포함된 모든 데이터셀의 값들 중 가장 큰 값.
+  * min: 컬럼에 포함된 모든 데이터셀의 값들 중 가장 작은 값.
+  * avg: 컬럼에 포함된 모든 데이터셀의 값들의 평균.
+
+``` js
+gridView.setOptions({ summaryMode: "statistical" });
+```
+* 통계적 계산 모드
+  * var: 컬럼에 포함된 모든 데이터셀의 값들의 분산.
+  * varp: 컬럼에 포함된 모든 데이터셀의 값들의 모집단 분산.
+  * stdev: 컬럼에 포함된 모든 데이터셀의 값들의 표준편차.
+  * stdevp: 컬럼에 포함된 모든 데이터셀의 값들의 모집단 표준편차.
+
+``` js
+gridView.setOptions({ summaryMode: "none" });
+```
+* 아무것도 계산하지 않음
 
 
 ## 컬럼 푸터 동적 계산
@@ -316,17 +328,8 @@
     ...
     gridView.setFooters([{ height: 40 }, { height: 40 }]);
     gridView.setColumnLayout([
-        {
-            name: "userInfoGroup",
-            header: { visible: false },
-            direction: "horizontal",
-            items: [
-                // { column: "KorName", footerUserSpans: [{}, { colspan: 2 }] },
-                { column: "KorName", footerUserSpans: [{ rowspan: 2, colspan: 2 }] },
-                "Gender",
-                "Age",
-            ],
-        },
+        // { column: "KorName", footerUserSpans: [{}, { colspan: 2 }] },
+        { column: "KorName", footerUserSpans: [{ rowspan: 2, colspan: 2 }] },
         ...
     ]);
     ...

@@ -42,17 +42,10 @@
 
     gridView.setFooters([{ height: 40 }, { height: 40 }]);
     gridView.setColumnLayout([
-        {
-            name: "userInfoGroup",
-            header: { visible: false },
-            direction: "horizontal",
-            items: [
-                // { column: "KorName", footerUserSpans: [{}, { colspan: 2 }] },
-                { column: "KorName", footerUserSpans: [{ rowspan: 2, colspan: 2 }] },
-                "Gender",
-                "Age",
-            ],
-        },
+        { column: "KorName", footerUserSpans: [{}, { colspan: 2 }] },
+        // { column: "KorName", footerUserSpans: [{ rowspan: 2, colspan: 2 }] },
+        "Gender",
+        "Age",
         "Phone",
         "ProductId",
         "KorCountry",
