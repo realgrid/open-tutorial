@@ -58,7 +58,7 @@ GridView가 아닌 TreeView를 사용하고 있는 점을 유의하셔야 합니
     treeView.treeOptions.iconImagesRoot = "/images/flags/";
     treeView.treeOptions.iconImages = [
         "kr.png", "de.png", "es.png", "fr.png", "leaf.png"
-    ]
+    ];
     treeView.treeOptions.defaultIcon = 4;
 	...
     $.getJSON(data_url, function (data) {
@@ -153,14 +153,13 @@ setRows(rows, treeField, needSorting, childrenField, iconField)
         var value = tree.getValue(itemIndex, "treeName")
         return value != '종로구';
     };
-    treeView.onTreeItemExpanded = function (tree, itemIndex, rowId) {
-        console.log("expanded");
-    }
-
     treeView.onTreeItemCollapsing = function (tree, itemIndex, rowId) {
         var value = tree.getValue(itemIndex, "treeName")
         return value != '중구';
     };
+    treeView.onTreeItemExpanded = function (tree, itemIndex, rowId) {
+        console.log("expanded");
+    }
     treeView.onTreeItemCollapsed = function (tree, itemIndex, rowId) {
         console.log("collpased");
     }

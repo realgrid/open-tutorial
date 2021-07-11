@@ -29,15 +29,15 @@
         return value != '종로구';
     };
 
-    treeView.onTreeItemExpanded = function (tree, itemIndex, rowId) {
-        console.log("expanded");
-    }
-
     treeView.onTreeItemCollapsing = function (tree, itemIndex, rowId) {
         var value = tree.getValue(itemIndex, "treeName")
         return value != '중구';
     };
-    
+
+    treeView.onTreeItemExpanded = function (tree, itemIndex, rowId) {
+        console.log("expanded");
+    }
+
     treeView.onTreeItemCollapsed = function (tree, itemIndex, rowId) {
         console.log("collpased");
     }
