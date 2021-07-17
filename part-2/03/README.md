@@ -103,31 +103,7 @@ setRows(rows, treeField, needSorting, childrenField, iconField)
 * [Object Data 예제 실행결과](http://10bun.tv/samples/realgrid2/part-2/03/step-05.html)
 
 ![](./code-006.png)
-``` html
-...
-<script>
-    provider.setFields([
-        { fieldName: "col0", dataType: "text"   },
-        { fieldName: "icon", dataType: "text"   },
-        { fieldName: "col1", dataType: "number" },
-        ...
-    ]);
-    treeView.setColumns([
-        { fieldName: "col0", name: "col0", width: 150 },
-        { fieldName: "icon", name: "icon" },
-        { fieldName: "col1", name: "col1" },
-        ...
-    ]);
-    var data_url = 
-		"https://raw.githubusercontent.com/realgrid/" +
-    	"open-tutorial/main/datas/treedata.json";
-    $.getJSON(data_url, function (data) {
-        console.log(data);
-        provider.setObjectRows(data, "rows", "", "icon");
-        treeView.expandAll();
-    });
-</script>
-```
+
 
 ### 예제에 사용된 데이터 포멧
 
