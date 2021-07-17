@@ -118,6 +118,8 @@ setRows(rows, treeField, needSorting, childrenField, iconField)
 	</body>
 </html>
 ```
+* 6: expandAll() 메소드는 트리뷰의 모든 노드를 펼쳐줍니다.
+* 7: collapseAll() 메소드는 트리뷰의 모든 노드를 접어줍니다.
 
 
 ## 펼침, 닫힘 아이콘 지정
@@ -138,6 +140,11 @@ setRows(rows, treeField, needSorting, childrenField, iconField)
     ...
 </script>
 ```
+* 4: 아이콘 이미지 파일이 있는 폴더(주소)를 지정합니다.
+* 5-6: 노드의 상태에 따라 표시할 세 개의 이미지 파일의 배열을 iconImages에 적용합니다.
+* 7: 펼쳐져 있을 때 표시할 아이콘의 순서를 expandedIcon에 지정합니다.
+* 8: 닫혀져 있을 때 표시할 아이콘의 순서를 collapsedIcon에 지정합니다.
+* 9: 자식 노드가 없는 경우 표시할 아이콘의 순서를 defaultIcon에 지정합니다.
 
 
 ## 트리 이벤트
@@ -166,9 +173,18 @@ setRows(rows, treeField, needSorting, childrenField, iconField)
     ...
 </script>
 ```
+트리뷰에는 4개의 이벤트가 사용되고 있습니다.
+* 4-7: onTreeItemExpanding 이벤트는 노드가 펼쳐지려고 할 때 발생합니다.
+  * 6: 리턴값이 false면 노드를 클릭해도 펼쳐지지 않습니다. 예제에서는 종로구가 아닌 경우에만 true가 되기 때문에 종로구에 해당하는 노드는 펼쳐지지 않게 됩니다.
+* 8-11: onTreeItemCollapsing 이벤트는 노드가 닫혀지려고 할 때 발생합니다.
+  * 10: 리턴값이 false면 노드를 클릭해도 접혀지지 않습니다. 예제에서는 중구가 아닌 경우에만 true가 되기 때문에 중구에 해당하는 노드는 답혀지지 않게 됩니다.
+* 12-14: onTreeItemExpanded 이벤트는 노드가 펼쳐지고 난 뒤에 발생합니다.
+* 15-17: onTreeItemCollapsed 이벤트는 노드가 닫혀지고 난 뒤에 발생합니다.
 
 
 ## Object Data
+
+이번 예제에서는 tree 구조를 가진 json 데이터를 트리뷰에 표시하는 방법에 대해서 알아봅니다.
 
 예제 코드의 실행결과는 아래 링크에서 확인할 수 있습니다.
 * [Object Data 예제 실행결과](http://10bun.tv/samples/realgrid2/part-2/03/step-05.html)
@@ -198,6 +214,15 @@ setRows(rows, treeField, needSorting, childrenField, iconField)
     });
 </script>
 ```
+
+### 예제에 사용된 데이터 포멧
+
+[데이터 포멧 확인하기](https://raw.githubusercontent.com/realgrid/open-tutorial/main/datas/treedata.json)
+
+![](./pic-1.png)
+* "남자" 노드 밑에 "rows"라는 배열로 아시아, 북아메리카 등이 바로 밑에 저장되어 있습니다.
+* 아시아의 경우 밑에 키프로스, 일본, 마카오, 터키가 묶여 있고 그림에서는 너무 길어서 아시아 밑에 저장된 데이터들을 접어서 표시해 둔 상태입니다.
+
 
 ### LocalTreeDataProvider.setObjectRows()
 
