@@ -23,6 +23,7 @@
     const provider = new RealGrid.LocalDataProvider();
     const gridView = new RealGrid.GridView("realgrid");
     gridView.setDataSource(provider);
+    
     gridView.setPaging(true, 10);
 
     provider.setFields([
