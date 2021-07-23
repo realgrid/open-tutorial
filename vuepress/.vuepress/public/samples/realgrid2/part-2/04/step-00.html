@@ -19,32 +19,30 @@
     gridView.setDataSource(provider);
 
     provider.setFields([
-        { fieldName: "area1code", dataType: "text" },
-        { fieldName: "area1name", dataType: "text" },
-        { fieldName: "area2code", dataType: "text" },
-        { fieldName: "area2name", dataType: "text" },
-        { fieldName: "area3code", dataType: "text" },
-        { fieldName: "area3name", dataType: "text" },
-        { fieldName: "treeId",    dataType: "text" },
-        { fieldName: "treeName",  dataType: "text" },
-        { fieldName: "iconField", dataType: "text" },
+        { fieldName: "KorName" },
+        { fieldName: "Gender" },
+        { fieldName: "Age" },
+        { fieldName: "Phone" },
+        { fieldName: "ProductId" },
+        { fieldName: "KorCountry" },
+        { fieldName: "OrderDate" },
+        { fieldName: "CardNumber" },
     ]);
 
     gridView.setColumns([
-        { fieldName: "treeName",  name: "treeName", width: 150 },
-        { fieldName: "treeId",    name: "treeId"    },
-        { fieldName: "area1code", name: "area1code" },
-        { fieldName: "area1name", name: "area1name" },
-        { fieldName: "area2code", name: "area2code" },
-        { fieldName: "area2name", name: "area2name" },
-        { fieldName: "area3code", name: "area3code" },
-        { fieldName: "area3name", name: "area3name" },
-        { fieldName: "iconField", name: "iconField" }
+        { fieldName: "KorName",      name: "KorName"},
+        { fieldName: "Gender",       name: "Gender"},
+        { fieldName: "Age",          name: "Age"},
+        { fieldName: "Phone",        name: "Phone"},
+        { fieldName: "ProductId",    name: "ProductId"},
+        { fieldName: "KorCountry",   name: "KorCountry"},
+        { fieldName: "OrderDate",    name: "OrderDate"},
+        { fieldName: "CardNumber",   name: "CardNumber"},
     ]);
 
     var data_url = 
-		"https://raw.githubusercontent.com/realgrid/" +
-    	"open-tutorial/main/datas/areatree.json";
+        "https://raw.githubusercontent.com/realgrid/" +
+        "open-tutorial/main/datas/data-001.json";
     $.getJSON(data_url, function (data) {
         console.log(data);
         provider.fillJsonData(data, { fillMode: "set" });
