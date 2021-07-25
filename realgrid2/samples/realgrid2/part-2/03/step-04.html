@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<link href="/lib/realgrid-style.css" rel="stylesheet" />
+		<script type="text/javascript" src="/lib/realgrid-lic.js"></script>
+		<script type="text/javascript" src="/lib/realgrid.2.3.3.min.js"></script>
+		<script type="text/javascript" src="/js/jquery-3.4.0.min.js"></script>
+	</head>
+	<body>
+		<div id="realgrid" style="width: 100%; height: 440px;">
+		</div>
+	</body>
+</html>
+
+<script>
+    const provider = new RealGrid.LocalTreeDataProvider();
+    const treeView = new RealGrid.TreeView("realgrid");
+    treeView.setDataSource(provider);
+
+    treeView.treeOptions.iconImagesRoot = "/images/";
+    treeView.treeOptions.iconImages = ["folder_open.png", "folder_close.png", "leaf.png"]
+    treeView.treeOptions.expandedIcon  = 0;
+    treeView.treeOptions.collapsedIcon = 1;
+    treeView.treeOptions.defaultIcon   = 2;
+
+    treeView.onTreeItemExpanding = function (tree, itemIndex, rowId) {
+        var value = tree.getValue(itemIndex, "treeName")
+        return value != '종로구';
+    };
+
+    treeView.onTreeItemCollapsing = function (tree, itemIndex, rowId) {
+        var value = tree.getValue(itemIndex, "treeName")
+        return value != '중구';
+    };
+
+    treeView.onTreeItemExpanded = function (tree, itemIndex, rowId) {
+        console.log("expanded");
+    }
+
+    treeView.onTreeItemCollapsed = function (tree, itemIndex, rowId) {
+        console.log("collpased");
+    }
+
+    provider.setFields([
+        { fieldName: "area1code", dataType: "text" },
+        { fieldName: "area1name", dataType: "text" },
+        { fieldName: "area2code", dataType: "text" },
+        { fieldName: "area2name", dataType: "text" },
+        { fieldName: "area3code", dataType: "text" },
+        { fieldName: "area3name", dataType: "text" },
+        { fieldName: "treeId",    dataType: "text" },
+        { fieldName: "treeName",  dataType: "text" },
+        { fieldName: "iconField", dataType: "text" },
+    ]);
+
+    treeView.setColumns([
+        { fieldName: "treeName",  name: "treeName", width: 150 },
+        { fieldName: "treeId",    name: "treeId"    },
+        { fieldName: "area1code", name: "area1code" },
+        { fieldName: "area1name", name: "area1name" },
+        { fieldName: "area2code", name: "area2code" },
+        { fieldName: "area2name", name: "area2name" },
+        { fieldName: "area3code", name: "area3code" },
+        { fieldName: "area3name", name: "area3name" },
+        { fieldName: "iconField", name: "iconField" }
+    ]);
+
+    var data_url = 
+		"https://raw.githubusercontent.com/realgrid/" +
+    	"open-tutorial/main/datas/areatree.json";
+    $.getJSON(data_url, function (data) {
+        console.log(data);
+        provider.setRows(data, "treeId", false, "", "iconField");
+        treeView.refresh();
+    });
+</script>

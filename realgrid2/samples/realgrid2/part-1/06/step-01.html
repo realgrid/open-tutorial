@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<link href="/lib/realgrid-style.css" rel="stylesheet" />
+		<script type="text/javascript" src="/lib/realgrid-lic.js"></script>
+		<script type="text/javascript" src="/lib/realgrid.2.3.3.min.js"></script>
+		<script type="text/javascript" src="/js/jquery-3.4.0.min.js"></script>
+	</head>
+	<body>
+		<div id="realgrid" style="width: 100%; height: 440px;">
+		</div>
+	</body>
+</html>
+
+<script>
+    const provider = new RealGrid.LocalDataProvider();
+    const gridView = new RealGrid.GridView("realgrid");
+    gridView.setDataSource(provider);
+
+    provider.setFields([
+        { fieldName: "KorName",    dataType: "text"     },
+        { fieldName: "Gender",     dataType: "text"     },
+        { fieldName: "Age",        dataType: "number"   },
+        { fieldName: "Phone",      dataType: "text"     },
+        { fieldName: "ProductId",  dataType: "text"     },
+        { fieldName: "KorCountry", dataType: "text"     },
+        { fieldName: "OrderDate",  dataType: "datetime" },
+    ]);
+
+    gridView.setColumns([
+        { name: "KorName",    fieldName: "KorName",    width:  "80" },
+        { name: "Gender",     fieldName: "Gender",     width:  "60" },
+        { name: "Age",        fieldName: "Age",        width:  "60" },
+        { name: "Phone",      fieldName: "Phone",      width: "120" },
+        { name: "ProductId",  fieldName: "ProductId",  width: "120" },
+        { name: "KorCountry", fieldName: "KorCountry", width: "100" },
+        { name: "OrderDate",  fieldName: "OrderDate",  width:  "80" },
+    ]);
+
+    const data_url = "https://raw.githubusercontent.com/realgrid/open-tutorial/main/datas/data-001.json";
+    $.getJSON(data_url, function (data) {
+        console.log(data);
+        provider.fillJsonData(data, { fillMode: "set" });
+    });
+</script>

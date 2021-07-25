@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+        <link href="/lib/realgrid-style.css" rel="stylesheet" />
+		<link href="/css/bootstrap.min.css" rel="stylesheet" />
+		<script type="text/javascript" src="/lib/realgrid-lic.js"></script>
+		<script type="text/javascript" src="/lib/realgrid.2.3.3.min.js"></script>
+		<script type="text/javascript" src="/js/jquery-3.4.0.min.js"></script>
+		<script type="text/javascript" src="/js/bootstrap.min.js"></script>
+		<script type="text/javascript" src="/js/luckmoshyJqueryPagnation.js"></script>
+	</head>
+	<body>
+		<div id="realgrid" style="width: 100%; height: 440px;">
+		</div>
+
+        <br>
+        <div id="pagination"></div>
+	</body>
+</html>
+
+<script>
+    const provider = new RealGrid.LocalDataProvider();
+    const gridView = new RealGrid.GridView("realgrid");
+    gridView.setDataSource(provider);
+    
+    gridView.setPaging(true, 10);
+
+    provider.setFields([
+        { fieldName: "KorName" },
+        { fieldName: "Gender" },
+        { fieldName: "Age" },
+        { fieldName: "Phone" },
+        { fieldName: "ProductId" },
+        { fieldName: "KorCountry" },
+        { fieldName: "OrderDate" },
+        { fieldName: "CardNumber" },
+    ]);
+
+    gridView.setColumns([
+        { fieldName: "KorName",      name: "KorName"},
+        { fieldName: "Gender",       name: "Gender"},
+        { fieldName: "Age",          name: "Age"},
+        { fieldName: "Phone",        name: "Phone"},
+        { fieldName: "ProductId",    name: "ProductId"},
+        { fieldName: "KorCountry",   name: "KorCountry"},
+        { fieldName: "OrderDate",    name: "OrderDate"},
+        { fieldName: "CardNumber",   name: "CardNumber"},
+    ]);
+
+    var data_url = 
+        "https://raw.githubusercontent.com/realgrid/" +
+        "open-tutorial/main/datas/data-001.json";
+    $.getJSON(data_url, function (data) {
+        console.log(data);
+        provider.fillJsonData(data, { fillMode: "set" });
+
+        $('#pagination').luckmoshyPagination({
+            totalPages: gridView.getPageCount(),
+            startPage: 1,
+            onPageClick: function (event, page) {
+                gridView.setPage(page);
+            },
+        });
+    });
+</script>

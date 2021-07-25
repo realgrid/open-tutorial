@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<link href="/lib/realgrid-style.css" rel="stylesheet" />
+		<script type="text/javascript" src="/lib/realgrid-lic.js"></script>
+		<script type="text/javascript" src="/lib/realgrid.2.3.3.min.js"></script>
+		<script type="text/javascript" src="/js/jquery-3.4.0.min.js"></script>
+	</head>
+	<body>
+        <div>
+            <button onclick="do_commit()">Commit</button>
+            <button onclick="do_delete()">Delete</button>
+        </div>
+        <br>
+
+		<div id="realgrid" style="width: 100%; height: 440px;">
+		</div>
+	</body>
+</html>
+
+<script>
+    const provider = new RealGrid.LocalDataProvider();
+    const gridView = new RealGrid.GridView("realgrid");
+    gridView.setDataSource(provider);
+
+    function do_commit() {
+        gridView.commit();
+    }
+
+    function do_delete() {
+        gridView.deleteSelection();
+    }
+
+	document.addEventListener("DOMContentLoaded", function () {
+        gridView.editOptions.insertable = true;
+        gridView.editOptions.appendable = true;
+        gridView.editOptions.deletable = true;
+
+		provider.onRowUpdating = function(p, row) {
+			var item = gridView.getEditingItem();
+			if (item) {
+				if (item.values["id"] < 0) {
+					setTimeout(function() {
+						alert("id는 0보다 커야 합니다.");
+					}, 10);
+					return false;
+				}
+			}
+			return true;
+		};
+
+		provider.onRowUpdated = function(p, row) {
+			var r = provider.getJsonRow(row);
+			alert(JSON.stringify(r));
+		};
+
+        provider.setFields([
+			{ fieldName: "id",    dataType: "number" },
+			{ fieldName: "title", dataType: "text"   },
+		]);
+
+		gridView.setColumns([
+			{
+				name: "id",    fieldName: "id",    width: 50,
+				header: {
+					text: "번호",
+				},
+			},
+			{
+				name: "title", fieldName: "title", width: 400,
+				header: {
+					text: "제목",
+				},
+			},
+		]);
+
+		$.getJSON("https://jsonplaceholder.typicode.com/posts", function (data) {
+			console.log(data);
+			provider.fillJsonData(data, { fillMode: "set" });
+		});
+	});
+</script>

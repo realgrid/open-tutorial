@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<link href="/lib/realgrid-style.css" rel="stylesheet" />
+		<script type="text/javascript" src="/lib/realgrid-lic.js"></script>
+		<script type="text/javascript" src="/lib/realgrid.2.3.3.min.js"></script>
+		<script type="text/javascript" src="/js/jquery-3.4.0.min.js"></script>
+		<script type="text/javascript" src="/lib/libs/jszip.min.js"></script>
+	</head>
+	<body>
+		<div>
+			<button onclick="saveToExcel()">엑셀로 내보내기</button>
+		</div>
+		<br>
+		
+		<div id="realgrid1" style="width: 100%; height: 440px;">
+		</div>
+		<br>
+		
+		<div id="realgrid2" style="width: 100%; height: 440px;">
+		</div>
+	</body>
+</html>
+
+<script>
+    const provider1 = new RealGrid.LocalDataProvider();
+    const gridView1 = new RealGrid.GridView("realgrid1");
+    gridView1.setDataSource(provider1);
+    provider1.setFields([
+		{ fieldName: "OrderID",     dataType: "text" },
+		{ fieldName: "Country",     dataType: "text" },
+		{ fieldName: "CustomerID",	dataType: "text" },
+		{ fieldName: "EmployeeID",  dataType: "text" },
+		{ fieldName: "CompanyName", dataType: "text" },
+    ]);	
+    gridView1.setColumns([
+		{ name: "OrderID",          fieldName: "OrderID", width: "80" },
+		{ name: "Country",          fieldName: "Country", width: "100" },	
+		{ name: "CustomerID",       fieldName: "CustomerID", width: "90" },
+		{ name: "EmployeeID",       fieldName: "EmployeeID", width: "90" },
+		{ name: "CompanyName",      fieldName: "CompanyName", width: "120" },
+    ]);
+
+    const provider2 = new RealGrid.LocalDataProvider();
+    const gridView2 = new RealGrid.GridView("realgrid2");
+    gridView2.setDataSource(provider2);
+    provider2.setFields([
+		{ fieldName: "UserId" },
+		{ fieldName: "StatusCode" },
+		{ fieldName: "Age" },
+		{ fieldName: "Gender" },
+		{ fieldName: "MobilePhone" },
+		{ fieldName: "Email" },
+		{ fieldName: "AgeLabel" },
+    ]);
+    gridView2.setColumns([
+		{ name: "UserId",      fieldName: "UserId",      width: "80" },
+		{ name: "StatusCode",  fieldName: "StatusCode",  width: "80" },
+		{ name: "Age",         fieldName: "Age",         width: "40" },
+		{ name: "Gender",      fieldName: "Gender",      width: "80" },
+		{ name: "MobilePhone", fieldName: "MobilePhone", width: "100" },
+		{ name: "Email", 	   fieldName: "Email",       width: "120" },
+		{ name: "AgeLabel",    fieldName: "AgeLabel",    width: "40" },
+    ]);
+
+    var data_url = 
+		"https://raw.githubusercontent.com/realgrid/" +
+    	"open-tutorial/main/datas/";
+	
+    $.getJSON(data_url + "data-005.json", function (data) {
+        console.log(data);
+        provider1.fillJsonData(data, { fillMode: "set" });
+    });
+
+	$.getJSON(data_url + "data-006.json", function (data) {
+        console.log(data);
+        provider2.fillJsonData(data, { fillMode: "set" });
+    });
+	
+	function saveToExcel() {
+		RealGrid.exportGrid({
+			type: "excel",
+			target: "local",
+			filename: "multiExport.xlsx",
+			exportGrids: [
+				{ grid: gridView1, sheetName: "Sheet 1" },
+				{ grid: gridView2, sheetName: "Sheet 2" }
+			]
+		});	
+	}
+</script>

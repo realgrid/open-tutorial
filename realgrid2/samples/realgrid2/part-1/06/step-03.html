@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<link href="/lib/realgrid-style.css" rel="stylesheet" />
+		<script type="text/javascript" src="/lib/realgrid-lic.js"></script>
+		<script type="text/javascript" src="/lib/realgrid.2.3.3.min.js"></script>
+		<script type="text/javascript" src="/js/jquery-3.4.0.min.js"></script>
+	</head>
+	<body>
+        <div>
+            <button onclick="addFilters()">필터 추가</button>
+            <button onclick="removeFilters()">필터 제거</button>
+            <button onclick="activateFilters()">필터 적용 (모잠비크, 캐나다)</button>
+            <button onclick="deactivateFilters()">필터 해제 (모잠비크)</button>
+            <button onclick="activateAllFilters()">모든 필터 적용</button>
+            <button onclick="deactivateAllFilters()">모든 필터 해제</button>
+        </div>
+        <br>
+
+		<div id="realgrid" style="width: 100%; height: 440px;">
+		</div>
+	</body>
+</html>
+
+<script>
+    const provider = new RealGrid.LocalDataProvider();
+    const gridView = new RealGrid.GridView("realgrid");
+    gridView.setDataSource(provider);
+
+    provider.setFields([
+        { fieldName: "KorName",    dataType: "text"     },
+        { fieldName: "Gender",     dataType: "text"     },
+        { fieldName: "Age",        dataType: "number"   },
+        { fieldName: "Phone",      dataType: "text"     },
+        { fieldName: "ProductId",  dataType: "text"     },
+        { fieldName: "KorCountry", dataType: "text"     },
+        { fieldName: "OrderDate",  dataType: "datetime" },
+    ]);
+
+    gridView.setColumns([
+        { name: "KorName",    fieldName: "KorName",    width:  "80" },
+        { name: "Gender",     fieldName: "Gender",     width:  "60" },
+        { name: "Age",        fieldName: "Age",        width:  "60" },
+        { name: "Phone",      fieldName: "Phone",      width: "120" },
+        { name: "ProductId",  fieldName: "ProductId",  width: "120" },
+        { name: "KorCountry", fieldName: "KorCountry", width: "100" },
+        { name: "OrderDate",  fieldName: "OrderDate",  width:  "80" },
+    ]);
+
+    const data_url = "https://raw.githubusercontent.com/realgrid/open-tutorial/main/datas/data-001.json";
+    $.getJSON(data_url, function (data) {
+        console.log(data);
+        provider.fillJsonData(data, { fillMode: "set" });
+    });
+
+    const filters = [
+        {
+            name: "우크라이나",
+            criteria: "value = '우크라이나'",
+            active: true
+        },
+        {
+            name: "브라질",
+            criteria: "value = '브라질'",
+        },
+        {
+            name: "모잠비크",
+            criteria: "value = '모잠비크'",
+        },
+        {
+            name: "캐나다",
+            criteria: "value = '캐나다'",
+        },
+    ];
+    gridView.setColumnFilters('KorCountry', filters);
+
+    function addFilters() {
+        const filters = [
+            {
+                name: "페루",
+                criteria: "value = '페루'"
+            }
+        ];
+        gridView.addColumnFilters("KorCountry", filters, true);
+    }
+
+    function removeFilters() {
+        gridView.removeColumnFilters("KorCountry", ["우크라이나", "브라질"]);
+    }
+
+    function activateFilters() {
+        gridView.activateColumnFilters("KorCountry", ["모잠비크", "캐나다"], true);
+    }
+
+    function deactivateFilters() {
+        gridView.activateColumnFilters("KorCountry", ["모잠비크"], false);
+    }
+
+    function activateAllFilters() {
+        gridView.activateAllColumnFilters("KorCountry", true);
+    }
+
+    function deactivateAllFilters() {
+        gridView.activateAllColumnFilters("KorCountry", false);
+    }
+</script>
