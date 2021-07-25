@@ -11,7 +11,7 @@
 기본 코드의 실행결과는 아래 링크에서 확인할 수 있습니다.
 * [기본 코드의 실행 결과](http://10bun.tv/samples/realgrid2/part-2/04/step-00.html)
 
-![](./code-001.png)
+[![](./code-001.png)](https://github.com/realgrid/open-tutorial/blob/main/vuepress/.vuepress/public/samples/realgrid2/part-2/04/step-00.html)
 
 
 ## 페이징 처리 1
