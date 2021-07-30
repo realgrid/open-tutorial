@@ -62,3 +62,128 @@
     });
 </script>
 ```
+
+
+## 컨텍스트 메뉴 보이기
+
+``` html
+...
+<script>
+    ...
+    gridView.setContextMenu([
+        {
+            label: "Menu1"
+        },
+        {
+            label: "Menu2"
+        },
+        {
+            label: "-" // menu separator를 삽입합니다.
+        },
+        {
+            label: "ExcelExport"
+        }
+    ]);
+    ...
+</script>
+```
+
+
+## onContextMenuItemClicked 이벤트
+
+``` html
+...
+<script>
+    ...
+    gridView.onContextMenuItemClicked = function(grid, item, clickData) {
+        console.log(item, clickData);
+
+        if (item.label == "ExcelExport") {
+            grid.exportGrid({
+                type: "excel",
+                target: "local"
+            });
+        }
+    };
+    ...
+</script>
+```
+
+
+## onContextMenuPopup 이벤트
+
+``` html
+...
+<script>
+    ...
+    gridView.onContextMenuPopup = function (grid, x, y, clickData) {
+        //헤더셀 영역에서는 컨텍스트 메뉴 실행하지 않음
+        return clickData.cellType != "header";
+    };
+    ...
+</script>
+```
+
+## 동적 컨텍스트 메뉴
+
+``` html
+...
+<script>
+    var menuHeader = [
+        {
+            label: "엑셀 내보내기",
+            tag: "excel"
+        }, 
+        {
+            label: "필터 만들기",
+            tag: "filter"
+        }, 
+        {
+            label: "-"
+        }, 
+        {
+            label: "컬럼 감추기",
+            tag: "column",
+            columnVisible: true
+        }, 
+    ];
+
+    var menuData = [
+        {
+            label: "엑셀 내보내기",
+            tag: "excel"
+        }, 
+        {
+            label: "-"
+        }, 
+        {
+            label: "..."
+        }, 
+    ];
+    ...
+    gridView.onContextMenuPopup = function (grid, x, y, clickData) {
+        if (clickData.cellType != "header") {
+            grid.setContextMenu(menuHeader);
+        } else {
+            grid.setContextMenu(menuData);
+        }
+    };
+
+    gridView.onContextMenuItemClicked = function (grid, item, clickData) {
+        if (item.tag == "column") {
+            menuHeader[3].columnVisible = !menuHeader[3].columnVisible;
+            if (menuHeader[3].columnVisible) {
+                menuHeader[3].label = "컬럼 감추기";
+            } else {
+                menuHeader[3].label = "컬럼 보이기";
+            }
+
+            var columns = grid.getColumns();
+            for (var i in columns) {
+                grid.setColumnProperty(columns[i].name, "visible", menuHeader[3].columnVisible);
+            }
+        }
+    };    
+    ...
+</script>
+```
