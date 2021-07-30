@@ -1,0 +1,64 @@
+# 컨텍스트 메뉴
+
+
+## 기본 코드
+
+예제들의 기본이 되는 코드부터 살펴보겠습니다.
+서버로부터 예제 데이터를 가져와서 표시해주기까지만 적용된 상태입니다.
+
+기본 코드의 실행결과는 아래 링크에서 확인할 수 있습니다.
+
+* [기본 코드의 실행 결과](http://10bun.tv/samples/realgrid2/part-2/05/step-00.html)
+
+``` html
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<link href="/lib/realgrid-style.css" rel="stylesheet" />
+		<script type="text/javascript" src="/lib/realgrid-lic.js"></script>
+		<script type="text/javascript" src="/lib/realgrid.2.3.3.min.js"></script>
+		<script type="text/javascript" src="/js/jquery-3.4.0.min.js"></script>
+	</head>
+	<body>
+		<div id="realgrid" style="width: 100%; height: 440px;">
+		</div>
+	</body>
+</html>
+
+<script>
+    const provider = new RealGrid.LocalDataProvider();
+    const gridView = new RealGrid.GridView("realgrid");
+    gridView.setDataSource(provider);
+
+    provider.setFields([
+        { fieldName: "KorName" },
+        { fieldName: "Gender" },
+        { fieldName: "Age" },
+        { fieldName: "Phone" },
+        { fieldName: "ProductId" },
+        { fieldName: "KorCountry" },
+        { fieldName: "OrderDate" },
+        { fieldName: "CardNumber" },
+    ]);
+
+    gridView.setColumns([
+        { fieldName: "KorName",      name: "KorName"},
+        { fieldName: "Gender",       name: "Gender"},
+        { fieldName: "Age",          name: "Age"},
+        { fieldName: "Phone",        name: "Phone"},
+        { fieldName: "ProductId",    name: "ProductId"},
+        { fieldName: "KorCountry",   name: "KorCountry"},
+        { fieldName: "OrderDate",    name: "OrderDate"},
+        { fieldName: "CardNumber",   name: "CardNumber"},
+    ]);
+
+    var data_url = 
+        "https://raw.githubusercontent.com/realgrid/" +
+        "open-tutorial/main/datas/data-001.json";
+    $.getJSON(data_url, function (data) {
+        console.log(data);
+        provider.fillJsonData(data, { fillMode: "set" });
+    });
+</script>
+```
