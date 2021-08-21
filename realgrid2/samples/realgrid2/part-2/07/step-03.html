@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <link href="/lib/realgrid-style.css" rel="stylesheet" />
+    <script type="text/javascript" src="/lib/realgrid-lic.js"></script>
+    <script type="text/javascript" src="/lib/realgrid.2.3.3.min.js"></script>
+    <script type="text/javascript" src="/js/jquery-3.4.0.min.js"></script>
+    <script type="text/javascript" src="/js/jszip.min.js"></script>
+</head>
+
+<body>
+    <div id="realgrid1" style="float: left; width: 50%; height: 440px;"></div>
+    <div id="realgrid2" style="float: right; width: 50%; height: 440px;"></div>
+</body>
+
+</html>
+
+<script>
+    const provider1 = new RealGrid.LocalDataProvider();
+    const gridView1 = new RealGrid.GridView("realgrid1");
+    gridView1.setDataSource(provider1);
+
+    const provider2 = new RealGrid.LocalDataProvider();
+    const gridView2 = new RealGrid.GridView("realgrid2");
+    gridView2.setDataSource(provider2);
+
+    gridView1.editOptions.movable = true;
+    gridView1.displayOptions.rowMovable = true;
+
+    gridView2.editOptions.movable = true;
+    gridView2.displayOptions.rowMovable = true;
+
+    gridView1.dataDropOptions.dropMode = "copy";
+    gridView2.dataDropOptions.dropMode = "move";
+
+    gridView2.dataDropOptions.callback = function (source, sourceItems, target, targetItem) {
+        console.log(sourceItems);
+        console.log(targetItem);
+    }
+
+    const fields = [
+        { fieldName: "KorName" },
+        { fieldName: "Gender" },
+        { fieldName: "Age" },
+        { fieldName: "Phone" },
+        { fieldName: "ProductId" },
+        { fieldName: "KorCountry" },
+        { fieldName: "OrderDate" },
+        { fieldName: "CardNumber" },
+    ];
+
+    const columns =[
+        { fieldName: "KorName",      name: "KorName"},
+        { fieldName: "Gender",       name: "Gender"},
+        { fieldName: "Age",          name: "Age"},
+        { fieldName: "Phone",        name: "Phone"},
+        { fieldName: "ProductId",    name: "ProductId"},
+        { fieldName: "KorCountry",   name: "KorCountry"},
+        { fieldName: "OrderDate",    name: "OrderDate"},
+        { fieldName: "CardNumber",   name: "CardNumber"},
+    ];
+
+    provider1.setFields(fields);
+    gridView1.setColumns(columns);
+
+    provider2.setFields(fields);
+    gridView2.setColumns(columns);
+
+    var data_url = 
+        "https://raw.githubusercontent.com/realgrid/" +
+        "open-tutorial/main/datas/data-001.json";
+    $.getJSON(data_url, function (data) {
+        provider1.fillJsonData(data, { fillMode: "set" });
+        provider2.fillJsonData(data, { fillMode: "set" });
+    });
+</script>
