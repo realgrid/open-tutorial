@@ -77,10 +77,10 @@
 ```
 
 
-## 
+## 시리즈 컬럼의 기본 예제
 
 예제 코드의 실행결과는 아래 링크에서 확인할 수 있습니다.
-* [XXXX 예제 실행결과](http://10bun.tv/samples/realgrid2/part-2/08/step-01.html)
+* [시리즈 컬럼의 기본 예제 실행결과](http://10bun.tv/samples/realgrid2/part-2/08/step-01.html)
 
 ``` html
 <!DOCTYPE html>
@@ -119,10 +119,10 @@
 ```
 
 
-## 
+## 그래프 형태로 표시하기
 
 예제 코드의 실행결과는 아래 링크에서 확인할 수 있습니다.
-* [XXXX 예제 실행결과](http://10bun.tv/samples/realgrid2/part-2/08/step-02.html)
+* [그래프 형태로 표시하기 예제 실행결과](http://10bun.tv/samples/realgrid2/part-2/08/step-02.html)
 
 ``` html
 <!DOCTYPE html>
@@ -164,10 +164,10 @@
 ```
 
 
-## 
+## Winloss
 
 예제 코드의 실행결과는 아래 링크에서 확인할 수 있습니다.
-* [XXXX 예제 실행결과](http://10bun.tv/samples/realgrid2/part-2/08/step-03.html)
+* [Winloss 예제 실행결과](http://10bun.tv/samples/realgrid2/part-2/08/step-03.html)
 
 ``` html
 <!DOCTYPE html>
