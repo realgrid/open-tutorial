@@ -1,5 +1,7 @@
 # 시리즈 컬럼
 
+[![](youtube-01.png)](https://youtu.be/dcaKFH0aIgE)
+
 
 ## 기본 코드
 
