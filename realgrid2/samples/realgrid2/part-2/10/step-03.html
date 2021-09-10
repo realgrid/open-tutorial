@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <link href="/lib/realgrid-style.css" rel="stylesheet" />
+    <script type="text/javascript" src="/lib/realgrid-lic.js"></script>
+    <script type="text/javascript" src="/lib/realgrid.2.3.3.min.js"></script>
+    <script type="text/javascript" src="/js/jquery-3.4.0.min.js"></script>
+    <script type="text/javascript" src="/js/jszip.min.js"></script>
+</head>
+
+<body>
+    <div id="realgrid" style="width: 100%; height: 440px;"></div>
+</body>
+
+</html>
+
+<script>
+    const provider = new RealGrid.LocalDataProvider();
+    const gridView = new RealGrid.GridView("realgrid");
+    gridView.setDataSource(provider);
+
+    provider.setFields([
+        { fieldName: "CompanyName" },
+        { fieldName: "Country" },
+        { fieldName: "EmployeeID" },
+        { fieldName: "OrderDate" },
+        { fieldName: "OrderID" },
+        { fieldName: "UnitPrice", dataType: "number" },
+    ]);
+
+    gridView.setColumns([
+        { fieldName: "CompanyName", name: "CompanyName" },
+
+        { 
+            fieldName: "Country",     name: "Country",
+            editor: {
+                type: "search",
+                searchLength: 1,   // 검색하기 위한 최소 글잡 입력 수
+                searchDelay: 500,  // 검색이 시작되기 전까지의 시간 (ms)
+            },
+        },
+
+        { fieldName: "EmployeeID",  name: "EmployeeID" },
+        { fieldName: "OrderDate",   name: "OrderDate" },
+        { fieldName: "OrderID",     name: "OrderID" },
+        { fieldName: "UnitPrice",   name: "UnitPrice" },
+    ]);
+
+    var data_url =
+        "https://raw.githubusercontent.com/realgrid/" +
+        "open-tutorial/main/datas/data-005.json";
+    $.getJSON(data_url, function (data) {
+        console.log(data);
+        provider.fillJsonData(data, { fillMode: "set" });
+    });
+
+    var Counties = ["Germany", "Brazil", "France", "Belgium", "Switzerland"];
+
+    gridView.onEditSearch = function (grid, index, text) {
+      var items = Counties.filter(function (str) {
+          return str.indexOf(text) == 0;
+      });
+      grid.fillEditSearchItems(index.column, text, items);
+  };    
+
+</script>
