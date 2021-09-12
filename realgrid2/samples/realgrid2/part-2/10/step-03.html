@@ -56,10 +56,10 @@
         provider.fillJsonData(data, { fillMode: "set" });
     });
 
-    var Counties = ["Germany", "Brazil", "France", "Belgium", "Switzerland"];
+    var Countries = ["Germany", "Brazil", "France", "Belgium", "Switzerland"];
 
     gridView.onEditSearch = function (grid, index, text) {
-      var items = Counties.filter(function (str) {
+      var items = Countries.filter(function (str) {
           return str.indexOf(text) == 0;
       });
       grid.fillEditSearchItems(index.column, text, items);
