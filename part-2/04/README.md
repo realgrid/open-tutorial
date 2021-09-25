@@ -19,7 +19,7 @@
 페이징 처리를 위해서 기본코드에서 아래와 같은 부분들을 수정합니다.
 
 예제 코드의 실행결과는 아래 링크에서 확인할 수 있습니다.
-* [트리뷰로 전환하기 예제 실행결과](http://10bun.tv/samples/realgrid2/part-2/04/step-01.html)
+* [페이징 처리 1 예제 실행결과](http://10bun.tv/samples/realgrid2/part-2/04/step-01.html)
 
 ![](./code-002.png)
 * 4: setPaging() 메소드를 이용해서 10개의 레코드 단위로 페이징을 시작합니다. true가 아닌 false가 전달되면 페이징이 중단됩니다.
@@ -35,7 +35,7 @@
 이번에는 Pagination 라이브러리를 이용해서 페이지 이동하는 방법에 대해서 알아보겠습니다.
 
 예제 코드의 실행결과는 아래 링크에서 확인할 수 있습니다.
-* [트리뷰로 전환하기 예제 실행결과](http://10bun.tv/samples/realgrid2/part-2/04/step-02.html)
+* [페이징 처리 2 예제 실행결과](http://10bun.tv/samples/realgrid2/part-2/04/step-02.html)
 
 ![](./code-003.png)
 * 13: 페이지 이동 버튼들이 있는 컨트롤이 들어갈 위치를 div 태그로 선점합니다.
