@@ -36,8 +36,9 @@
 * [기본 편집기](/part-2/10)
 
 
-## Part 3. 상황별로 배우는 RealGrid2
+## Part 3. Vue.js를 이용하여 관리 사이트 만들기
+* ...
 
-- Vue.Js 에서 RealGrid 사용하기 (http://help.realgrid.com/start/quick/vuejs-realgrid/)
-- 간단한 회원관리 프로젝트를 위한 예제
-- ...
+
+## Part 4. React.js를 이용하여 관리 사이트 만들기
+* ...
