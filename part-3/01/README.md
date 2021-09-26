@@ -10,6 +10,8 @@ Part-3에서는 Vue.js를 이용해서 게시판 만들기 프로젝트를 진�
 영상에서 사용된 코드는 아래 링크에서 확인 가능합니다.
 * [https://github.com/realgrid/open-tutorial/tree/main/vue.js/part-3/01](https://github.com/realgrid/open-tutorial/tree/main/vue.js/part-3/01)
 
+[![](youtube-01.jpg)](https://youtu.be/oV-vBrnkUyY)
+
 
 ## NodeJS 설치하기
 
