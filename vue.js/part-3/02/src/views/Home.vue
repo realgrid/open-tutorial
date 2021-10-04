@@ -15,17 +15,17 @@ export default {
         console.log(e);
       });
 
-    apiBoard.postArticle("userId", "title", "body")
+    apiBoard.getArticles(0)
       .then(function (response) {
-        console.log("postArticle", response);
+        console.log("getArticles", response);
       })
       .catch(function (e) {
         console.log(e);
       });
 
-    apiBoard.getArticles(0)
+    apiBoard.postArticle("userId", "title", "body")
       .then(function (response) {
-        console.log("getArticles", response);
+        console.log("postArticle", response);
       })
       .catch(function (e) {
         console.log(e);
