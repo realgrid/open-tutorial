@@ -29,7 +29,6 @@ src/views/Detail.vue
     <div>
         {{ article }}
     </div>
-
 </template>
 
 <script>
@@ -39,7 +38,6 @@ export default {
             article: "",
         }
     },
-
     mounted() {
         this.article = this.$route.params.id;
     },
@@ -97,7 +95,6 @@ export default {
             article: "",
         }
     },
-
     mounted() {
         apiBoard.getArticle(this.$route.params.id)
         .then((response) => {
