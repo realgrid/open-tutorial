@@ -11,7 +11,7 @@
             <el-col :span="2"></el-col>
         </el-row>
 
-        <br>
+        <br />
         <el-button type="success" @click="goBack">Back</el-button>
     </div>
 </template>
@@ -41,7 +41,7 @@ export default {
     methods: {
         goBack() {
             this.$router.go(-1);
-        }
+        },
     },
 };
 </script>
