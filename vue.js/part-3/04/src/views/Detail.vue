@@ -1,18 +1,18 @@
 <template>
-<div>
-    <el-row>
-        <el-col :span="2"></el-col>
-        <el-col :span="20">
-            <el-container>
-                <el-header>{{ article.title }}</el-header>
-                <el-main>{{ article.body }}</el-main>
-            </el-container>
-        </el-col>
-        <el-col :span="2"></el-col>
-    </el-row>
+    <div>
+        <el-row>
+            <el-col :span="2"></el-col>
+            <el-col :span="20">
+                <el-container>
+                    <el-header>{{ article.title }}</el-header>
+                    <el-main>{{ article.body }}</el-main>
+                </el-container>
+            </el-col>
+            <el-col :span="2"></el-col>
+        </el-row>
 
-    <br>
-    <el-button type="success" @click="goBack">Back</el-button>
+        <br>
+        <el-button type="success" @click="goBack">Back</el-button>
     </div>
 </template>
 
