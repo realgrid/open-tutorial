@@ -23,14 +23,14 @@
                         <el-form-item label="제목">
                             <el-input
                                 type="text"
-                                v-model="article.title"
+                                v-model="title"
                                 placeholder="제목을 입력하세요"
                             ></el-input>
                         </el-form-item>
                         <el-form-item label="본문">
                             <el-input
                                 type="textarea"
-                                v-model="article.body"
+                                v-model="body"
                                 placeholder="본문을 입력하세요"
                                 rows="10"
                             ></el-input>
@@ -49,7 +49,8 @@ import apiBoard from "@/api/board";
 export default {
     data() {
         return {
-            article: "",
+            title: "",
+            body: "",
         };
     },
 
@@ -66,7 +67,8 @@ export default {
                 .getArticle(this.$route.params.id)
                 .then((response) => {
                     console.log("getArticle", response);
-                    this.article = response.data;
+                    this.title = response.data.title;
+                    this.body = response.data.body;
                 })
                 .catch((e) => {
                     console.log(e);
@@ -76,14 +78,14 @@ export default {
 
     methods: {
         writeArticle() {
-            if ((!this.article.title) || (!this.article.body)) {
+            if ((!this.title) || (!this.body)) {
                 this.$message.error("제목과 본문을 작성해주세요.");
                 return;
             }
 
             if (this.$route.params.id) {
                 apiBoard
-                    .patchArticle(this.$route.params.id, this.article.title, this.article.body)
+                    .patchArticle(this.$route.params.id, this.title, this.body)
                     .then((response) => {
                         console.log(response);
                         this.$router.push({path: `/board/detail/${this.$route.params.id}`});
@@ -92,18 +94,19 @@ export default {
                         console.log(e);
                         this.$message.error("게시물 수정 중 에러가 발생하였습니다.");
                     });
-            } else {
-                apiBoard
-                    .postArticle(0, this.article.title, this.article.body)
-                    .then((response) => {
-                        console.log(response);
-                        this.$router.push({path: "/"});
-                    })
-                    .catch((e) => {
-                        console.log(e);
-                        this.$message.error("게시물 작성 중 에러가 발생하였습니다.");
-                    });
+                return;
             }
+
+            apiBoard
+                .postArticle(0, this.title, this.body)
+                .then((response) => {
+                    console.log(response);
+                    this.$router.push({path: "/"});
+                })
+                .catch((e) => {
+                    console.log(e);
+                    this.$message.error("게시물 작성 중 에러가 발생하였습니다.");
+                });
         },
     },
 };
