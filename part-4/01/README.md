@@ -195,3 +195,10 @@ body:
         status: "정상/차단"
     }
 ```
+
+
+## 기타
+
+* 디자인 참고: [Vue element admin](https://github.com/PanJiaChen/vue-element-admin)
+  * [온라인 데모](https://panjiachen.github.io/vue-element-admin)
+* 사용한 아이콘: [Font Awesome](https://fontawesome.com/v5.15/icons?d=gallery&p=1)
