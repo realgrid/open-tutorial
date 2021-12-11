@@ -12,15 +12,15 @@
                 <h3 class="title">Login Form</h3>
             </div>
 
-            <el-form-item prop="username">
+            <el-form-item prop="email">
                 <span class="svg-container">
                     <i class="fas fa-user"></i>
                 </span>
                 <el-input
-                    ref="username"
-                    v-model="loginForm.username"
+                    ref="email"
+                    v-model="loginForm.email"
                     placeholder="email"
-                    name="username"
+                    name="email"
                     type="text"
                     tabindex="1"
                     autocomplete="on"
@@ -59,11 +59,13 @@
 </template>
 
 <script>
+import apiManagers from '@/api/manager'
+
 export default {
     data() {
         return {
             loginForm: {
-                username: "",
+                email: "",
                 password: "",
             },
             pwOpened: false,
@@ -73,7 +75,7 @@ export default {
     },
 
     mounted() {
-        this.$refs.username.focus();
+        this.$refs.email.focus();
     },
 
     methods: {
@@ -90,7 +92,21 @@ export default {
         },
         handleLogin() {
             this.loading = true;
-            //
+            apiManagers
+                .signin(this.loginForm.email, this.loginForm.password)
+                .then((response) => {
+                    this.loading = false;
+
+                    if (response.data.resultCode !== 0) {
+                        this.$message.error(response.data.errorMsg);
+                        return;
+                    }
+
+                    this.$router.push({path: "/"});
+                })
+                .catch((e) => {
+                    console.log(e);
+                });
         },
     },
 };
