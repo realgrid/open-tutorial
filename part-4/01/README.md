@@ -233,6 +233,7 @@ C:\..> vue create realgrid
 #### 추가 모듈 설치
 
 ```
+C:\..> cd realgrid
 C:\..> npm install --save element-plus
 C:\..> npm install --save vuex-persistedstate
 ```
@@ -306,6 +307,12 @@ createApp(App)
     .use(router)
     .use(ElementPlus, {locale: ko})
     .mount('#app')
+```
+
+### 실행 및 확인
+
+```
+C:\..> npm run serve
 ```
 
 
