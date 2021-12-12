@@ -197,6 +197,118 @@ body:
 ```
 
 
+## Vue.js 프로젝트 생성
+
+node.js가 설치되어 있다고 가정한 상태에서의 프로젝트 생성 절차입니다.
+
+### vue-cli 설치
+
+```
+C:\..> npm install -g @vue/cli
+```
+
+### Vue.js 프로젝트 생성
+
+```
+C:\..> vue create realgrid
+```
+
+화면 캡쳐를 안한 곳은 디폴트로 선택된 상태에서 엔터 키를 치시면 됩니다.
+
+![](./vue-001.png)
+
+![](./vue-002.png)
+
+![](./vue-003.png)
+
+![](./vue-004.png)
+
+![](./vue-005.png)
+
+![](./vue-006.png)
+
+
+### 추가 설정
+
+#### 추가 모듈 설치
+
+```
+C:\..> npm install --save element-plus
+C:\..> npm install --save vuex-persistedstate
+```
+
+#### index.html 수정
+
+public 폴더에 있는 index.html 파일을 아래와 같이 수정합니다.
+* 다양한 아이콘을 제공하는 font-awesome을 설치합니다.
+* 배경색을 변경합니다.
+
+``` html
+<!DOCTYPE html>
+<html lang="">
+  <head>
+    ...
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css" />
+  </head>
+  <body style="background-color: #2D3A4B;">
+    ...
+  </body>
+</html>
+```
+
+#### store 수정
+
+store 폴더에 있는 index.js 파일을 아래와 같이 수정합니다.
+새로고침이 일어나도 store에 있는 데이터가 사라지지 않도록 로컬 저장소에 데이터를 저장하게 됩니다.
+
+``` js
+...
+import createPersistedState from 'vuex-persistedstate'
+
+export default createStore({
+    ...
+    modules: {
+    },
+    plugins: [createPersistedState()],
+})
+```
+
+#### App.vue 수정
+
+element plus의 css가 전역에 적용되도록 App.vue 파일에 import 시켜줍니다.
+
+``` html
+<template>
+    <router-view />
+</template>
+
+<script>
+import 'element-plus/dist/index.css'
+
+export default {
+}
+</script>
+```
+
+#### main.js 수정
+
+``` js
+import { createApp } from 'vue'
+import App from './App.vue'
+import router from './router'
+import store from './store'
+
+import ElementPlus from 'element-plus'
+import ko from 'element-plus/es/locale/lang/ko'
+
+createApp(App)
+    .use(store)
+    .use(router)
+    .use(ElementPlus, {locale: ko})
+    .mount('#app')
+```
+
+
 ## 기타
 
 * 디자인 참고: [Vue element admin](https://github.com/PanJiaChen/vue-element-admin)
