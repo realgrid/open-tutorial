@@ -226,7 +226,7 @@ src 폴더 밑에 data 폴더를 생성하고 managers.js 파일을 추가하겠
 
 실제 DB 시스템을 사용하지 않고 자바스크립트로 쉽게 처리하여 Vue.js 실습에 보다 무게를 두겠습니다.
 
-``` json
+``` js
 export default [
       {
         email: "admin",
