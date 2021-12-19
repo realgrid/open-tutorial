@@ -51,7 +51,7 @@
                 :loading="loading"
                 type="primary"
                 style="width: 100%; margin-bottom: 30px"
-                @click.prevent="handleLogin"
+                @click.prevent="login"
                 >Login</el-button
             >
         </el-form>
@@ -90,7 +90,7 @@ export default {
                 this.$refs.password.focus();
             });
         },
-        handleLogin() {
+        login() {
             this.loading = true;
             apiManagers
                 .signin(this.loginForm.email, this.loginForm.password)

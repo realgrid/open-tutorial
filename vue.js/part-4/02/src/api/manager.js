@@ -1,5 +1,6 @@
 import store from '@/store'
 import managers from '@/data/managers'
+import md5 from 'md5'
 
 let response = {
     data: {
@@ -10,6 +11,7 @@ let response = {
 
 export default {
     signin: async function (email, pw) {
+        pw = md5(pw).toUpperCase();
         return new Promise((resolve) => {
             const found = managers.find((e) => {
                 console.log("manager.signin", email, pw, e.email, e.pw);
