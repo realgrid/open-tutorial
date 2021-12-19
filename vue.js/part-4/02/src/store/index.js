@@ -5,9 +5,9 @@ export default createStore({
     state: {
         token: "",
     },
-    mutations: {
-        UPDATE_TOKEN(state, token) {
-            state.token = token;
+    getters: {
+        isLogined: (state) => {
+            return state.token !== "";
         },
     },
     actions: {
@@ -15,9 +15,9 @@ export default createStore({
             commit("UPDATE_TOKEN", token);
         },
     },
-    getters: {
-        isLogined: (state) => {
-            return state.token !== "";
+    mutations: {
+        UPDATE_TOKEN(state, token) {
+            state.token = token;
         },
     },
     modules: {
