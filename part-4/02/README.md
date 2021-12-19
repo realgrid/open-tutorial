@@ -83,9 +83,9 @@ export default createStore({
     state: {
         token: "",
     },
-    mutations: {
-        UPDATE_TOKEN(state, token) {
-            state.token = token;
+    getters: {
+        isLogined: (state) => {
+            return state.token !== "";
         },
     },
     actions: {
@@ -93,9 +93,9 @@ export default createStore({
             commit("UPDATE_TOKEN", token);
         },
     },
-    getters: {
-        isLogined: (state) => {
-            return state.token !== "";
+    mutations: {
+        UPDATE_TOKEN(state, token) {
+            state.token = token;
         },
     },
     ...
@@ -219,7 +219,7 @@ export default {
 ## 초기 계정 설정하기
 
 src 폴더 밑에 data 폴더를 생성하고 managers.js 파일을 추가하겠습니다.
-그리고 아래의 json 코드를 입력하고 저장합니다.
+그리고 아래의 코드를 입력하고 저장합니다.
 초기 계정의 아이디와 암호를 아래와 같이 지정하고 사용하겠습니다.
 
 * admin / 81DC9BDB52D04DC20036DBD8313ED055 (1234의 md5 인코딩 결과값)
@@ -293,3 +293,240 @@ export default {
 로그아웃이 진행되어 다시 로그인 화면이 나와야 합니다.
 
 ![](./pic-2.png)
+
+
+## 디자인 개선
+
+Login.vue의 코드를 아래처럼 수정하시면
+로그인 과정 중에 애니메이션이 표시되는 등의 개선된 UI를 완성할 수 있습니다.
+
+이전 에피소드에서 설치했던 [Font Awesome](https://fontawesome.com/v5.15/icons?d=gallery&p=1)과
+디자인 참고 사이트의 자료를 응용해보았습니다.
+
+지금의 파트에서는 Vue.js에 보다 집중하고 UI에 대해서는 다루지는 않을 에정입니다.
+UI 자료 및 코드는 참고만 해주시기 바랍니다.
+
+``` html
+<template>
+    <div class="login-container">
+        <el-form
+            ref="loginForm"
+            :model="loginForm"
+            :rules="loginRules"
+            class="login-form"
+            autocomplete="on"
+            label-position="left"
+        >
+            <div class="title-container">
+                <h3 class="title">Login Form</h3>
+            </div>
+
+            <el-form-item prop="email">
+                <span class="svg-container">
+                    <i class="fas fa-user"></i>
+                </span>
+                <el-input
+                    ref="email"
+                    v-model="loginForm.email"
+                    placeholder="email"
+                    name="email"
+                    type="text"
+                    tabindex="1"
+                    autocomplete="on"
+                />
+            </el-form-item>
+
+            <el-form-item prop="password">
+                <span class="svg-container">
+                    <i class="fas fa-lock"></i>
+                </span>
+                <el-input
+                    :key="passwordType"
+                    ref="password"
+                    v-model="loginForm.password"
+                    :type="passwordType"
+                    placeholder="Password"
+                    name="password"
+                    tabindex="2"
+                    autocomplete="on"
+                    @keyup.enter="handleLogin"
+                />
+                <span class="show-pwd" @click="showPwd">
+                    <i :class="{fas: true, 'fa-eye-slash': !pwOpened, 'fa-e
+                    ye': pwOpened}"></i>
+                </span>
+            </el-form-item>
+
+            <el-button
+                :loading="loading"
+                type="primary"
+                style="width: 100%; margin-bottom: 30px"
+                @click.prevent="login"
+                >Login</el-button
+            >
+        </el-form>
+    </div>
+</template>
+
+<script>
+import apiManagers from '@/api/manager'
+
+export default {
+    data() {
+        return {
+            loginForm: {
+                email: "",
+                password: "",
+            },
+            pwOpened: false,
+            passwordType: "password",
+            loading: false,
+        };
+    },
+
+    mounted() {
+        this.$refs.email.focus();
+    },
+
+    methods: {
+        showPwd() {
+            this.pwOpened = ! this.pwOpened;
+            if (this.pwOpened) {
+                this.passwordType = "";
+            } else {
+                this.passwordType = "password";
+            }
+            this.$nextTick(() => {
+                this.$refs.password.focus();
+            });
+        },
+        login() {
+            this.loading = true;
+            apiManagers
+                .signin(this.loginForm.email, this.loginForm.password)
+                .then((response) => {
+                    this.loading = false;
+
+                    if (response.data.resultCode !== 0) {
+                        this.$message.error(response.data.errorMsg);
+                        return;
+                    }
+
+                    this.$router.push({path: "/"});
+                })
+                .catch((e) => {
+                    console.log(e);
+                });
+        },
+    },
+};
+</script>
+
+<style lang="scss">
+$bg: #283443;
+$light_gray: #fff;
+$cursor: #fff;
+
+@supports (-webkit-mask: none) and (not (cater-color: $cursor)) {
+    .login-container .el-input input {
+        color: $cursor;
+    }
+}
+
+/* reset element-ui css */
+.login-container {
+    .el-input {
+        display: inline-block;
+        height: 47px;
+        width: 85%;
+        input {
+            background: transparent;
+            border: 0px;
+            -webkit-appearance: none;
+            border-radius: 0px;
+            padding: 12px 5px 12px 15px;
+            color: $light_gray;
+            height: 47px;
+            caret-color: $cursor;
+            &:-webkit-autofill {
+                box-shadow: 0 0 0px 1000px $bg inset !important;
+                -webkit-text-fill-color: $cursor !important;
+            }
+        }
+    }
+    .el-form-item {
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        background: rgba(0, 0, 0, 0.1);
+        border-radius: 5px;
+        color: #454545;
+    }
+}
+</style>
+
+<style lang="scss" scoped>
+$bg: #2d3a4b;
+$dark_gray: #889aa4;
+$light_gray: #eee;
+
+.login-container {
+    min-height: 100%;
+    width: 100%;
+    background-color: $bg;
+    overflow: hidden;
+    .login-form {
+        position: relative;
+        width: 520px;
+        max-width: 100%;
+        padding: 160px 35px 0;
+        margin: 0 auto;
+        overflow: hidden;
+    }
+    .tips {
+        font-size: 14px;
+        color: #fff;
+        margin-bottom: 10px;
+        span {
+            &:first-of-type {
+                margin-right: 16px;
+            }
+        }
+    }
+    .svg-container {
+        padding: 6px 5px 6px 15px;
+        color: $dark_gray;
+        vertical-align: middle;
+        width: 30px;
+        display: inline-block;
+    }
+    .title-container {
+        position: relative;
+        .title {
+            font-size: 26px;
+            color: $light_gray;
+            margin: 0px auto 40px auto;
+            text-align: center;
+            font-weight: bold;
+        }
+    }
+    .show-pwd {
+        position: absolute;
+        right: 10px;
+        top: 7px;
+        font-size: 16px;
+        color: $dark_gray;
+        cursor: pointer;
+        user-select: none;
+    }
+    .thirdparty-button {
+        position: absolute;
+        right: 0;
+        bottom: 6px;
+    }
+    @media only screen and (max-width: 470px) {
+        .thirdparty-button {
+            display: none;
+        }
+    }
+}
+</style>
+```
