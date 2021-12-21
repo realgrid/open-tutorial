@@ -303,8 +303,7 @@ UI 자료 및 코드는 참고만 해주시기 바랍니다.
                     @keyup.enter="handleLogin"
                 />
                 <span class="show-pwd" @click="showPwd">
-                    <i :class="{fas: true, 'fa-eye-slash': !pwOpened, 'fa-e
-                    ye': pwOpened}"></i>
+                    <i :class="{fas: true, 'fa-eye-slash': !pwOpened, 'fa-eye': pwOpened}"></i>
                 </span>
             </el-form-item>
 
