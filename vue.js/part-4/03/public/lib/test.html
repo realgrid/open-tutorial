@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<link href="./realgrid-style.css" rel="stylesheet" />
+		<script type="text/javascript" src="./realgrid-lic.js"></script>
+		<script type="text/javascript" src="./realgrid.2.3.3.min.js"></script>
+		<script type="text/javascript" src="./realgrid-utils.js"></script>	</head>
+	<body>
+		<div id="realgrid">
+		</div>
+
+		<style>
+			#realgrid {
+				width: 100%;
+				height: 440px;
+			}
+		</style>
+	</body>
+</html>
+
+<script>
+	document.addEventListener('DOMContentLoaded', function () {
+		const container = document.getElementById('realgrid');
+		const provider = new RealGrid.LocalDataProvider(false);
+		const gridView = new RealGrid.GridView(container);
+		gridView.setDataSource(provider);
+	});
+</script>

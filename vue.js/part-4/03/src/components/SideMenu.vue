@@ -19,7 +19,7 @@
                     </el-menu-item>
                     <el-menu-item index="/manager/findPassword">
                         <i class="fas fa-unlock-alt"></i>
-                        <span>비번 찾기 / 수정</span>
+                        <span>비번 찾기</span>
                     </el-menu-item>
                 </el-menu-item-group>
             </el-menu>

@@ -31,15 +31,20 @@ export default {
             }, 1000);
         });
     },
+
     signout: async function () {
         return new Promise((resolve) => {
             store.dispatch("updateToken", "");
-            let response = {
-                data: {
-                    resultCode: 0
-                }
-            }
-            setTimeout(() => resolve(response), 1000);
+            response.data.resultCode = 0;
+            setTimeout(() => resolve(response), 500);
+        });
+    },
+
+    list: async function () {
+        return new Promise((resolve) => {
+            response.data.resultCode = 0;
+            response.data.rows = managers;
+            setTimeout(() => resolve(response), 500);
         });
     },
 }

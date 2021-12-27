@@ -1,5 +1,5 @@
 <template>
     <div>
-        암호 찾기 / 수정
+        비번 찾기
     </div>
 </template>
