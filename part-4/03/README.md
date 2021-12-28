@@ -219,6 +219,9 @@ body {
 
 ## 사이드 메뉴 처리
 
+```
+C:..> npm run serve
+```
 
 ### /src/components/Logined.vue 수정
 
@@ -312,6 +315,11 @@ export default {
 ```
 
 
+### 테스트
+
+코드가 완성되면 웹 브로우져에서 메뉴를 클릭했을 때 주소와 화면이 바뀌는 지 확인해보세요.
+
+
 ## 관리자 목록 처리
 
 ### /src/views/manager/List.vue 수정
@@ -359,4 +367,13 @@ export default {
     },
 };
 </script>
+```
+
+
+### 재실행
+
+작업한 내용이 반영되지 않으면 터미널에서 "Ctrl+C"를 클릭한 다음 Vue.js를 다시 시작하면 됩니다.
+
+```
+C:..> npm run serve
 ```
