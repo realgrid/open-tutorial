@@ -1,6 +1,7 @@
 <template>
     <div class="main-body">
         <div class="toolbar">
+            <el-button @click="showFormView" type="warning" round>수정</el-button>
             <el-button @click="deleteRow" type="danger" round>삭제</el-button>
         </div>
 
@@ -39,6 +40,38 @@ export default {
             { name: "rule", fieldName: "rule" },
             { name: "phoneNumber", fieldName: "phoneNumber", width: 120 },
         ]);
+
+        this.formView = this.gridView._view.container.formView;
+        this.formView.visible = false;
+        this.formView.options.modal = true;
+        this.formView.options.saveLabel = "저장";
+        this.formView.options.cancelLabel = "취소";
+        this.formView.model.header.height = 40;
+
+        this.formView.model.load({
+            items: [
+                {
+                    header: "email",
+                    column: "email",
+                },
+                {
+                    header: "비번",
+                    column: "pw",
+                },
+                {
+                    header: "이름",
+                    column: "name",
+                },
+                {
+                    header: "권한",
+                    column: "rule",
+                },
+                {
+                    header: "전화번호",
+                    column: "phoneNumber",
+                },
+            ],
+        });
 
         this.gridView.onCellEdited = function (gridView, itemIndex, row, field) {
             if (field === 1) {
@@ -82,19 +115,19 @@ export default {
     },
 
     methods: {
-        deleteRow: async function () {
+        showFormView: function () {
+            if (this.gridView.getCurrent().itemIndex === -1) {
+                this.$message.error("편집할 데이터를 선택해주세요.");
+                return;
+            }
+            this.formView.visible = true;
+        },
+        deleteRow: function () {
             let itemIndex = this.gridView.getCurrent().itemIndex;
             if (itemIndex === -1) {
                 this.$message.error("편집할 데이터를 선택해주세요.");
                 return;
             }
-
-            try {
-                await this.$confirm("삭제 하시겠습니까?");
-            } catch (e) {
-                return;
-            }
-
             apiManagers
                 .delete(this.provider.getValue(itemIndex, "email"))
                 .then((response) => {
