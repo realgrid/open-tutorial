@@ -13,7 +13,7 @@
 /* eslint-disable */
 
 import apiManagers from "@/api/manager";
-import md5 from 'md5'
+import md5 from "md5";
 
 export default {
     mounted() {
@@ -37,9 +37,32 @@ export default {
             { name: "email", fieldName: "email", width: 120 },
             { name: "pw", fieldName: "pw" },
             { name: "name", fieldName: "name" },
-            { name: "rule", fieldName: "rule" },
-            { name: "phoneNumber", fieldName: "phoneNumber", width: 120 },
+
+            {
+                name: "rule",
+                fieldName: "rule",
+                editor: {
+                    type: "dropdown",
+                    domainOnly: true,
+                    values: ["기본관리자", "관리자1", "관리자2", "관리자3"],
+                    lables: ["기본관리자", "관리자1", "관리자2", "관리자3"],
+                },
+            },
+
+            {
+                name: "phoneNumber",
+                fieldName: "phoneNumber",
+                width: 120,
+                editor: {
+                        type:"text",
+                        mask: "000-0000-0000",
+                },
+                displayRegExp: "([0-9]{3})([0-9]{4})([0-9]{4})",
+                displayReplace: "$1-$2-$3"
+            },
         ]);
+
+        this.gridView.setColumnProperty("phoneNumber", "numberFormat", "###-####-####");
 
         this.formView = this.gridView._view.container.formView;
         this.formView.visible = false;
@@ -47,6 +70,7 @@ export default {
         this.formView.options.saveLabel = "저장";
         this.formView.options.cancelLabel = "취소";
         this.formView.model.header.height = 40;
+        this.formView.options.autoClose = true;
 
         this.formView.model.load({
             items: [
@@ -75,10 +99,10 @@ export default {
 
         this.gridView.onCellEdited = function (gridView, itemIndex, row, field) {
             if (field === 1) {
-                let data = gridView.getValue(itemIndex, 'pw');
-                gridView.setValue(itemIndex, 'pw', md5(data));
+                let data = gridView.getValue(itemIndex, "pw");
+                gridView.setValue(itemIndex, "pw", md5(data));
             }
-        }
+        };
 
         this.provider.onRowUpdated = function (provider, row) {
             apiManagers
@@ -137,7 +161,7 @@ export default {
                 .catch((e) => {
                     console.log(e);
                 });
-        }
+        },
     },
 };
 </script>
