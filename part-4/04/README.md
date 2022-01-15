@@ -9,13 +9,13 @@ CRUD에 해당하는 API 중 아직 구현이 안된 create, update, delete 메�
 ...
 export default {
     ...
-    create: async function (row) {
+    create: async function (manager) {
         let data = {
-            email: row.email,
-            pw: row.pw,
-            name: row.name,
-            rule: row.rule,
-            phoneNumber: row.phoneNumber
+            email: manager.email,
+            pw: manager.pw,
+            name: manager.name,
+            rule: manager.rule,
+            phoneNumber: manager.phoneNumber
         };
         managers.rows.push(data);
         return new Promise((resolve) => {
@@ -23,13 +23,13 @@ export default {
             setTimeout(() => resolve(response), 500);
         });
     },
-    update: async function (row) {
+    update: async function (manager) {
         managers.rows = managers.rows.map((e) => {
-            if (e.email === row.email) {
-                e.pw = row.pw;
-                e.name = row.name;
-                e.rule = row.rule;
-                e.phoneNumber = row.phoneNumber;
+            if (e.email === manager.email) {
+                e.pw = manager.pw;
+                e.name = manager.name;
+                e.rule = manager.rule;
+                e.phoneNumber = manager.phoneNumber;
             }
             return e;
         });
