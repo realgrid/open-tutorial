@@ -208,7 +208,7 @@ export default {
 export default {
     mounted() {
         ...
-        this.provider.onRowUpdated = function (provider, row) {
+        this.provider.onRowUpdated = (provider, row) => {
             apiManagers
                 .update(provider.getJsonRow(row))
                 .then((response) => {
@@ -233,7 +233,7 @@ export default {
 export default {
     mounted() {
         ...
-        this.provider.onRowInserted = function (provider, row) {
+        this.provider.onRowInserted = (provider, row) => {
             apiManagers
                 .create(provider.getJsonRow(row))
                 .then((response) => {
