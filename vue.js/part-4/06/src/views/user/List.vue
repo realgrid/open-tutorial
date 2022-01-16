@@ -4,13 +4,13 @@
         <br />
 
         <el-pagination
+            align="center"
             background
             layout="prev, pager, next"
             :total="rowCount"
             :page-size="pageSize"
             :page-count="pageCount"
             :current-page="currentPage"
-            align="center"
             @current-change="changeCurrentPage" />
     </div>
 </template>
