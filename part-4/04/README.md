@@ -157,6 +157,25 @@ export default {
 ...
 ```
 
+### 그리드 옵션 추가 설정
+
+그리드에서 데이터를 추가할 수 있도록 하고, 직접 삭제는 할 수 없도록 옵션을 조절합니다.
+
+``` html
+...
+<script>
+...
+export default {
+    mounted() {
+        ...
+        this.gridView.editOptions.insertable = true;
+        this.gridView.editOptions.appendable = true;
+        this.gridView.editOptions.deletable = false;
+        ...
+</script>
+...
+```
+
 ### md5를 이용해서 비번 감추기
 
 ``` html
@@ -175,25 +194,6 @@ export default {
                 gridView.setValue(itemIndex, 'pw', md5(data));
             }
         }
-        ...
-</script>
-...
-```
-
-### 그리드 옵션 추가 설정
-
-그리드에서 데이터를 추가할 수 있도록 하고, 직접 삭제는 할 수 없도록 옵션을 조절합니다.
-
-``` html
-...
-<script>
-...
-export default {
-    mounted() {
-        ...
-        this.gridView.editOptions.insertable = true;
-        this.gridView.editOptions.appendable = true;
-        this.gridView.editOptions.deletable = false;
         ...
 </script>
 ...
