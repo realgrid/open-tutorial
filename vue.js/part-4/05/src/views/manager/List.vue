@@ -1,8 +1,11 @@
 <template>
     <div class="main-body">
         <div class="toolbar">
-            <el-button @click="showFormView" type="warning" round>수정</el-button>
-            <el-button @click="deleteRow" type="danger" round>삭제</el-button>
+            <el-button @click="showFormView" type="primary">수정</el-button>
+            <el-button @click="deleteRow" type="warning">삭제</el-button>
+
+            <el-button v-if="!filtering" @click="setFltering(true)" type="Default">필터 해제됨 </el-button>
+            <el-button v-if="filtering" @click="setFltering(false)" type="danger">필터 적용중</el-button>
         </div>
 
         <div id="realgrid" style="width: 100%; height: 90vh"></div>
@@ -16,6 +19,11 @@ import apiManagers from "@/api/manager";
 import md5 from "md5";
 
 export default {
+    data() {
+        return {
+            filtering: false,
+        };
+    },
     mounted() {
         this.provider = new RealGrid.LocalDataProvider();
         this.gridView = new RealGrid.GridView("realgrid");
@@ -158,6 +166,14 @@ export default {
                 .catch((e) => {
                     console.log(e);
                 });
+        },
+        setFltering: function (value) {
+            this.filtering = value;
+            if (value) {
+                this.gridView.setColumnProperty("rule", "autoFilter", true);
+            } else {
+                this.gridView.setColumnProperty("rule", "autoFilter", false);
+            }
         },
     },
 };

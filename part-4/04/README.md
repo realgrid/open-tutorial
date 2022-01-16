@@ -1,4 +1,4 @@
-# CRUD 구현
+# 관리자 목록의 CRUD 구현
 
 
 ## 백엔드 API 추가 (/src/api/manager.js)
