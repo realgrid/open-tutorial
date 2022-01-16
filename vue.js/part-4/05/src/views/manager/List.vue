@@ -53,16 +53,13 @@ export default {
                 name: "phoneNumber",
                 fieldName: "phoneNumber",
                 width: 120,
+                textFormat: "([0-9]{3})([0-9]{4})([0-9]{4}); $1-$2-$3",
                 editor: {
                         type:"text",
                         mask: "000-0000-0000",
                 },
-                displayRegExp: "([0-9]{3})([0-9]{4})([0-9]{4})",
-                displayReplace: "$1-$2-$3"
             },
         ]);
-
-        this.gridView.setColumnProperty("phoneNumber", "numberFormat", "###-####-####");
 
         this.formView = this.gridView._view.container.formView;
         this.formView.visible = false;
