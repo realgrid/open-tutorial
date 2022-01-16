@@ -29,13 +29,13 @@ export default {
         }
     },
     mounted() {
+        window.setBlocked = this.setBlocked;
+
         this.provider = new RealGrid.LocalDataProvider();
         this.gridView = new RealGrid.GridView("realgrid");
         this.gridView.setDataSource(this.provider);
 
-        this.gridView.editOptions.insertable = true;
-        this.gridView.editOptions.appendable = true;
-        this.gridView.editOptions.deletable = false;
+        this.gridView.displayOptions.rowHeight = 36;
 
         this.provider.setFields([
             { fieldName: "id" },
@@ -45,16 +45,41 @@ export default {
             { fieldName: "phoneNumber" },
             { fieldName: "createdAt" },
             { fieldName: "statusCode" },
+            { fieldName: "blocked", dataType: "boolean" },
         ]);
 
         this.gridView.setColumns([
-            { fieldName: "id", fieldName: "id" },
-            { fieldName: "pw", fieldName: "pw", width: 120 },
-            { fieldName: "name", fieldName: "name" },
-            { fieldName: "gender", fieldName: "gender" },
-            { fieldName: "phoneNumber", fieldName: "phoneNumber", width: 120 },
-            { fieldName: "createdAt", fieldName: "createdAt", width: 180 },
-            { fieldName: "statusCode", fieldName: "statusCode" },
+            { name: "id", fieldName: "id" },
+            { name: "pw", fieldName: "pw", width: 120 },
+            { name: "name", fieldName: "name" },
+            { name: "gender", fieldName: "gender" },
+            { name: "phoneNumber", fieldName: "phoneNumber", width: 120 },
+            { name: "createdAt", fieldName: "createdAt", width: 180 },
+
+            {
+                name: "statusCode",
+                fieldName: "statusCode",
+                lookupDisplay: true,
+                values: ["0", "1", "2"],
+                lables: ["정상", "휴면", "분리보관"],
+
+                // editor: {
+                //     type: "dropdown",
+                //     domainOnly: true,
+                //     values: ["0", "1", "2"],
+                //     lables: ["정상", "휴면", "분리보관"],
+                // },
+            },
+
+            {
+                name: "blocked",
+                fieldName: "blocked",
+                editable: false,
+                renderer:{
+                    type:"html",
+                    callback: this.getBlockedButton
+                }
+            },
         ]);
 
         this.changeCurrentPage(1);
@@ -72,16 +97,51 @@ export default {
                     console.log(e);
                 });
         },
+        getBlockedButton: function (grid, cell, w, h) {
+            const toBlock = `<button class="danger" onclick=setBlocked("true")>차단</button>`;
+            const blocked = `<button class="success" onclick=setBlocked("false")>차단해제</button>`;
+
+            if (cell.value) {
+                return blocked;
+            } else {
+                return toBlock;
+            }
+        },
+        setBlocked: function (value) {
+            let current = this.gridView.getCurrent();
+            let row = this.gridView.getValues(current.itemIndex);
+            apiUser
+                .block(row.id, value)
+                .then(() => {
+                    this.gridView.setValue(current.itemIndex, "blocked", value);
+                });
+        }
     },
 };
 </script>
 
-<style scoped>
+<style>
 .main-body {
     padding: 8px;
 }
 .toolbar {
     width: 100%;
     height: 64px;
+}
+.success {
+    background-color: #67C23A;
+    color: white;
+    width: 80px;
+    padding: 6px;
+    border: 0px;
+    border-radius: 4px;
+}
+.danger {
+    background-color: #F56C6C;
+    color: white;
+    width: 80px;
+    padding: 6px;
+    border: 0px;
+    border-radius: 4px;
 }
 </style>

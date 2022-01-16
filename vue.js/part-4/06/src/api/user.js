@@ -31,6 +31,7 @@ export default {
                 e.phoneNumber = user.phoneNumber;
                 e.createdAt = user.createdAt;
                 e.statusCode = user.statusCode;
+                e.blocked = user.blocked;
             }
             return e;
         });
@@ -55,6 +56,19 @@ export default {
             } else {
                 reject();
             }
+        });
+    },
+
+    block: async function (id, value) {
+        users.rows = users.rows.map((e) => {
+            if (e.id === id) {
+                e.blocked = value;
+            }
+            return e;
+        });
+        return new Promise((resolve) => {
+            response.data.resultCode = 0;
+            setTimeout(() => resolve(response), 500);
         });
     },
 }

@@ -149,7 +149,7 @@ export default {
         deleteRow: function () {
             let itemIndex = this.gridView.getCurrent().itemIndex;
             if (itemIndex === -1) {
-                this.$message.error("편집할 데이터를 선택해주세요.");
+                this.$message.error("삭제할 데이터를 선택해주세요.");
                 return;
             }
             apiManagers

@@ -8,7 +8,8 @@ export default {
             gender: "남",
             phoneNumber: "000-0000-0000",
             createdAt: "2022-01-12 16:09:18",
-            statusCode: 0
+            statusCode: 0,
+            blocked: false,
         },
         {
             id: "user2",
@@ -17,7 +18,8 @@ export default {
             gender: "여",
             phoneNumber: "000-0000-0000",
             createdAt: "2022-01-12 16:09:18",
-            statusCode: 0
+            statusCode: 1,
+            blocked: true,
         },
         {
             id: "user3",
@@ -26,7 +28,8 @@ export default {
             gender: "남",
             phoneNumber: "000-0000-0000",
             createdAt: "2022-01-12 16:09:18",
-            statusCode: 0
+            statusCode: 2,
+            blocked: false,
         },
         {
             id: "user4",
@@ -35,7 +38,8 @@ export default {
             gender: "여",
             phoneNumber: "000-0000-0000",
             createdAt: "2022-01-12 16:09:18",
-            statusCode: 0
+            statusCode: 0,
+            blocked: false,
         },
         {
             id: "user5",
@@ -44,7 +48,8 @@ export default {
             gender: "남",
             phoneNumber: "000-0000-0000",
             createdAt: "2022-01-12 16:09:18",
-            statusCode: 0
+            statusCode: 0,
+            blocked: false,
         },
         {
             id: "user6",
@@ -53,7 +58,8 @@ export default {
             gender: "여",
             phoneNumber: "000-0000-0000",
             createdAt: "2022-01-12 16:09:18",
-            statusCode: 0
+            statusCode: 0,
+            blocked: false,
         },
         {
             id: "user7",
@@ -62,7 +68,8 @@ export default {
             gender: "남",
             phoneNumber: "000-0000-0000",
             createdAt: "2022-01-12 16:09:18",
-            statusCode: 0
+            statusCode: 0,
+            blocked: false,
         },
         {
             id: "user8",
@@ -71,7 +78,8 @@ export default {
             gender: "여",
             phoneNumber: "000-0000-0000",
             createdAt: "2022-01-12 16:09:18",
-            statusCode: 0
+            statusCode: 0,
+            blocked: false,
         },
         {
             id: "user9",
@@ -80,7 +88,8 @@ export default {
             gender: "남",
             phoneNumber: "000-0000-0000",
             createdAt: "2022-01-12 16:09:18",
-            statusCode: 0
+            statusCode: 0,
+            blocked: false,
         },
         {
             id: "user10",
@@ -89,7 +98,8 @@ export default {
             gender: "여",
             phoneNumber: "000-0000-0000",
             createdAt: "2022-01-12 16:09:18",
-            statusCode: 0
+            statusCode: 0,
+            blocked: false,
         },
         {
             id: "user11",
@@ -98,7 +108,8 @@ export default {
             gender: "남",
             phoneNumber: "000-0000-0000",
             createdAt: "2022-01-12 16:09:18",
-            statusCode: 0
+            statusCode: 0,
+            blocked: false,
         },
         {
             id: "user12",
@@ -107,7 +118,8 @@ export default {
             gender: "여",
             phoneNumber: "000-0000-0000",
             createdAt: "2022-01-12 16:09:18",
-            statusCode: 0
+            statusCode: 0,
+            blocked: false,
         },
         {
             id: "user13",
@@ -116,7 +128,8 @@ export default {
             gender: "남",
             phoneNumber: "000-0000-0000",
             createdAt: "2022-01-12 16:09:18",
-            statusCode: 0
+            statusCode: 0,
+            blocked: false,
         },
         {
             id: "user14",
@@ -125,7 +138,8 @@ export default {
             gender: "여",
             phoneNumber: "000-0000-0000",
             createdAt: "2022-01-12 16:09:18",
-            statusCode: 0
+            statusCode: 0,
+            blocked: false,
         },
         {
             id: "user15",
@@ -134,7 +148,8 @@ export default {
             gender: "남",
             phoneNumber: "000-0000-0000",
             createdAt: "2022-01-12 16:09:18",
-            statusCode: 0
+            statusCode: 0,
+            blocked: false,
         },
         {
             id: "user16",
@@ -143,7 +158,8 @@ export default {
             gender: "여",
             phoneNumber: "000-0000-0000",
             createdAt: "2022-01-12 16:09:18",
-            statusCode: 0
+            statusCode: 0,
+            blocked: false,
         },
         {
             id: "user17",
@@ -152,7 +168,8 @@ export default {
             gender: "남",
             phoneNumber: "000-0000-0000",
             createdAt: "2022-01-12 16:09:18",
-            statusCode: 0
+            statusCode: 0,
+            blocked: false,
         },
         {
             id: "user18",
@@ -161,7 +178,8 @@ export default {
             gender: "여",
             phoneNumber: "000-0000-0000",
             createdAt: "2022-01-12 16:09:18",
-            statusCode: 0
+            statusCode: 0,
+            blocked: false,
         },
         {
             id: "user19",
@@ -170,7 +188,8 @@ export default {
             gender: "남",
             phoneNumber: "000-0000-0000",
             createdAt: "2022-01-12 16:09:18",
-            statusCode: 0
+            statusCode: 0,
+            blocked: false,
         },
         {
             id: "user20",
@@ -179,7 +198,8 @@ export default {
             gender: "여",
             phoneNumber: "000-0000-0000",
             createdAt: "2022-01-12 16:09:18",
-            statusCode: 0
+            statusCode: 0,
+            blocked: false,
         },
     ]
 }
