@@ -151,12 +151,19 @@ export default {
             }
             this.formView.visible = true;
         },
-        deleteRow: function () {
+        deleteRow: async function () {
             let itemIndex = this.gridView.getCurrent().itemIndex;
             if (itemIndex === -1) {
                 this.$message.error("삭제할 데이터를 선택해주세요.");
                 return;
             }
+
+            try {
+                await this.$confirm("삭제 하시겠습니까?");
+            } catch (e) {
+                return;
+            }
+
             apiManagers
                 .delete(this.provider.getValue(itemIndex, "email"))
                 .then((response) => {
