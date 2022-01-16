@@ -79,26 +79,11 @@ export default {
 
         this.formView.model.load({
             items: [
-                {
-                    header: "email",
-                    column: "email",
-                },
-                {
-                    header: "비번",
-                    column: "pw",
-                },
-                {
-                    header: "이름",
-                    column: "name",
-                },
-                {
-                    header: "권한",
-                    column: "rule",
-                },
-                {
-                    header: "전화번호",
-                    column: "phoneNumber",
-                },
+                { header: "email", column: "email" },
+                { header: "비번", column: "pw" },
+                { header: "이름", column: "name" },
+                { header: "권한", column: "rule" },
+                { header: "전화번호", column: "phoneNumber" },
             ],
         });
 
