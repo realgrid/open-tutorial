@@ -43,7 +43,13 @@ export default {
             { fieldName: "name" },
             { fieldName: "gender" },
             { fieldName: "phoneNumber" },
-            { fieldName: "createdAt" },
+
+            {
+                fieldName: "createdAt",
+                dataType: "datetime",
+                datetimeFormat: "yyyy-MM-dd",
+            },
+
             { fieldName: "statusCode" },
             { fieldName: "blocked", dataType: "boolean" },
         ]);
@@ -54,29 +60,28 @@ export default {
             { name: "name", fieldName: "name" },
             { name: "gender", fieldName: "gender" },
             { name: "phoneNumber", fieldName: "phoneNumber", width: 120 },
-            { name: "createdAt", fieldName: "createdAt", width: 180 },
 
             {
-                name: "statusCode",
-                fieldName: "statusCode",
+                name: "createdAt",
+                fieldName: "createdAt",
+                editor: {
+                  type: "date"
+                },
+            },
+
+            {
+                name: "statusCode", fieldName: "statusCode",
                 lookupDisplay: true,
                 values: ["0", "1", "2"],
-                lables: ["정상", "휴면", "분리보관"],
-
-                // editor: {
-                //     type: "dropdown",
-                //     domainOnly: true,
-                //     values: ["0", "1", "2"],
-                //     lables: ["정상", "휴면", "분리보관"],
-                // },
+                labels: ["정상", "휴면", "분리보관"],
             },
 
             {
                 name: "blocked",
                 fieldName: "blocked",
                 editable: false,
-                renderer:{
-                    type:"html",
+                renderer: {
+                    type: "html",
                     callback: this.getBlockedButton
                 }
             },

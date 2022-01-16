@@ -45,7 +45,7 @@ export default {
                     type: "dropdown",
                     domainOnly: true,
                     values: ["기본관리자", "관리자1", "관리자2", "관리자3"],
-                    lables: ["기본관리자", "관리자1", "관리자2", "관리자3"],
+                    labels: ["기본관리자", "관리자1", "관리자2", "관리자3"],
                 },
             },
 
@@ -55,8 +55,8 @@ export default {
                 width: 120,
                 textFormat: "([0-9]{3})([0-9]{4})([0-9]{4}); $1-$2-$3",
                 editor: {
-                        type:"text",
-                        mask: "000-0000-0000",
+                    type:"text",
+                    mask: "000-0000-0000",
                 },
             },
         ]);
