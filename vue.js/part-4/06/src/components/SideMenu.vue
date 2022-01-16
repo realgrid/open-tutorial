@@ -29,7 +29,7 @@
                         <span>회원 목록</span>
                     </el-menu-item>
                     <el-menu-item index="/article/list">
-                        <i class="fas fa-unlock-alt"></i>
+                        <i class="fas fa-list-alt"></i>
                         <span>게시물 목록</span>
                     </el-menu-item>
                 </el-menu-item-group>
