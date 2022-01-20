@@ -1,7 +1,7 @@
 <template>
     <div class="main-body">
         <div class="toolbar">
-            <el-button @click="showFormView" type="primary">수정</el-button>
+            <el-button @click="formView.visible = true" type="primary">수정</el-button>
             <el-button @click="deleteRow" type="warning">삭제</el-button>
 
             <el-button v-if="!filtering" @click="setFltering(true)" type="Default">필터 해제됨 </el-button>
@@ -70,7 +70,6 @@ export default {
         ]);
 
         this.formView = this.gridView._view.container.formView;
-        this.formView.visible = false;
         this.formView.options.modal = true;
         this.formView.options.saveLabel = "저장";
         this.formView.options.cancelLabel = "취소";
@@ -79,11 +78,11 @@ export default {
 
         this.formView.model.load({
             items: [
-                { header: "email", column: "email" },
-                { header: "비번", column: "pw" },
-                { header: "이름", column: "name" },
-                { header: "권한", column: "rule" },
-                { header: "전화번호", column: "phoneNumber" },
+                { column: "email" },
+                { column: "pw" },
+                { column: "name" },
+                { column: "rule" },
+                { column: "phoneNumber" },
             ],
         });
 
@@ -131,14 +130,7 @@ export default {
     },
 
     methods: {
-        showFormView: function () {
-            if (this.gridView.getCurrent().itemIndex === -1) {
-                this.$message.error("편집할 데이터를 선택해주세요.");
-                return;
-            }
-            this.formView.visible = true;
-        },
-        deleteRow: function () {
+        deleteRow: async function () {
             let itemIndex = this.gridView.getCurrent().itemIndex;
             if (itemIndex === -1) {
                 this.$message.error("삭제할 데이터를 선택해주세요.");
@@ -163,11 +155,7 @@ export default {
         },
         setFltering: function (value) {
             this.filtering = value;
-            if (value) {
-                this.gridView.setColumnProperty("rule", "autoFilter", true);
-            } else {
-                this.gridView.setColumnProperty("rule", "autoFilter", false);
-            }
+            this.gridView.setColumnProperty("rule", "autoFilter", value);
         },
     },
 };

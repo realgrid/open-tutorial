@@ -42,40 +42,22 @@ export default {
             { fieldName: "pw" },
             { fieldName: "name" },
             { fieldName: "gender" },
+            { fieldName: "age" },
             { fieldName: "phoneNumber" },
-
-            {
-                fieldName: "createdAt",
-                dataType: "datetime",
-                datetimeFormat: "yyyy-MM-dd",
-            },
-
+            { fieldName: "createdAt" },
             { fieldName: "statusCode" },
             { fieldName: "blocked", dataType: "boolean" },
         ]);
 
         this.gridView.setColumns([
-            { name: "id", fieldName: "id" },
-            { name: "pw", fieldName: "pw", width: 120 },
-            { name: "name", fieldName: "name" },
-            { name: "gender", fieldName: "gender" },
-            { name: "phoneNumber", fieldName: "phoneNumber", width: 120 },
-
-            {
-                name: "createdAt",
-                fieldName: "createdAt",
-                editor: {
-                  type: "date"
-                },
-            },
-
-            {
-                name: "statusCode", fieldName: "statusCode",
-                lookupDisplay: true,
-                values: ["0", "1", "2"],
-                labels: ["정상", "휴면", "분리보관"],
-            },
-
+            { name: "id", fieldName: "id", width: 60 },
+            { name: "pw", fieldName: "pw",  },
+            { name: "name", fieldName: "name", width: 60 },
+            { name: "gender", fieldName: "gender", width: 50 },
+            { name: "age", fieldName: "age", width: 50 },
+            { name: "phoneNumber", fieldName: "phoneNumber" },
+            { name: "createdAt", fieldName: "createdAt"},
+            { name: "statusCode", fieldName: "statusCode", width: 80 },
             {
                 name: "blocked",
                 fieldName: "blocked",
@@ -120,7 +102,7 @@ export default {
                 .then(() => {
                     this.gridView.setValue(current.itemIndex, "blocked", value);
                 });
-        }
+        },
     },
 };
 </script>
