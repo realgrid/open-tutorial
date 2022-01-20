@@ -84,7 +84,7 @@ export default {
 ```
 
 
-## 필터링 (/src/views/manager/List.vue)
+## 자동 필터링 (/src/views/manager/List.vue)
 
 ``` html
 <template>
@@ -112,11 +112,7 @@ export default {
         ...
         setFltering: function (value) {
             this.filtering = value;
-            if (value) {
-                this.gridView.setColumnProperty("rule", "autoFilter", true);
-            } else {
-                this.gridView.setColumnProperty("rule", "autoFilter", false);
-            }
+            this.gridView.setColumnProperty("rule", "autoFilter", value);
         },
     },
 };
@@ -135,7 +131,7 @@ export default {
     <div class="main-body">
         <div class="toolbar">
             ...
-            <el-button @click="showFormView" type="primary">수정</el-button>
+            <el-button @click="formView.visible=true" type="primary">수정</el-button>
             ...
         </div>
         ...
@@ -168,16 +164,7 @@ export default {
         });
         ...
     },
-    methods: {
-        ...
-        showFormView: function () {
-            if (this.gridView.getCurrent().itemIndex === -1) {
-                this.$message.error("편집할 데이터를 선택해주세요.");
-                return;
-            }
-            this.formView.visible = true;
-        },
-    },
+    ...
 };
 </script>
 
