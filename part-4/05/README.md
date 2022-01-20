@@ -146,20 +146,16 @@ export default {
     mounted() {
         ...
         this.formView = this.gridView._view.container.formView;
-        this.formView.visible = false;
-        this.formView.options.modal = true;
-        this.formView.options.saveLabel = "저장";
-        this.formView.options.cancelLabel = "취소";
         this.formView.model.header.height = 40;
         this.formView.options.autoClose = true;
 
         this.formView.model.load({
             items: [
-                { header: "email", column: "email" },
-                { header: "비번", column: "pw" },
-                { header: "이름", column: "name" },
-                { header: "권한", column: "rule" },
-                { header: "전화번호", column: "phoneNumber" },
+                { column: "email" },
+                { column: "pw" },
+                { column: "name" },
+                { column: "rule" },
+                { column: "phoneNumber" },
             ],
         });
         ...
