@@ -146,9 +146,6 @@ export default {
     mounted() {
         ...
         this.formView = this.gridView._view.container.formView;
-        this.formView.model.header.height = 40;
-        this.formView.options.autoClose = true;
-
         this.formView.model.load({
             items: [
                 { column: "email" },
