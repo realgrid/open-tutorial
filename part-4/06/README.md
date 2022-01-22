@@ -1,4 +1,4 @@
-# 사용자 목록의 페이징 처리 등
+# 사용자 목록의 페이징 및 html 렌더러 활용
 
 
 ## users API 추가 (/src/api/manager.js)

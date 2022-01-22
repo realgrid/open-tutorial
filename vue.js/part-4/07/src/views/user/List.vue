@@ -95,6 +95,21 @@ export default {
             },
         ]);
 
+        this.gridView.setColumnFilters("age", [
+            {
+                name: "filter1",
+                text: "10대 이하",
+                tag: 10,
+                callback: this.ageFilter,
+            },
+            {
+                name: "filter2",
+                text: "20대 이상",
+                tag: 20,
+                callback: this.ageFilter,
+            },
+        ]);
+
         this.changeCurrentPage(1);
     },
     methods: {
@@ -128,6 +143,13 @@ export default {
                 .then(() => {
                     this.gridView.setValue(current.itemIndex, "blocked", value);
                 });
+        },
+        ageFilter: (provider, row, level, fieldName, filter, value) => {
+            if (filter.tag === 10) {
+                return value < 20;
+            } else {
+                return value >= 20;
+            }
         },
     },
 };
