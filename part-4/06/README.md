@@ -1,7 +1,7 @@
 # 사용자 목록의 페이징 및 html 렌더러 활용
 
 
-## users API 추가 (/src/api/manager.js)
+## user API 추가 (/src/api/user.js)
 
 ``` js
 import users from '@/data/users'
@@ -319,14 +319,10 @@ export default {
         ...
         <div class="client">
                 ...
-                <el-menu-item-group title="회원 / 게시물 관리">
+                <el-menu-item-group title="회원 관리">
                     <el-menu-item index="/user/list">
                         <i class="fas fa-address-book"></i>
                         <span>회원 목록</span>
-                    </el-menu-item>
-                    <el-menu-item index="/article/list">
-                        <i class="fas fa-list-alt"></i>
-                        <span>게시물 목록</span>
                     </el-menu-item>
                 </el-menu-item-group>
                 ...
@@ -439,9 +435,6 @@ export default {
         <br>
 
         <el-pagination
-            align="center"
-            background
-            layout="prev, pager, next"
             :total="rowCount"
             :page-size="pageSize"
             :page-count="pageCount"
@@ -489,33 +482,11 @@ export default {
 차단 여부를 표시하는 blocked 필드를 버튼으로 토글해서 수정할 수 있도록 합니다.
 
 ``` html
-<template>
-    <div class="main-body">
-        <div id="realgrid" style="width: 100%; height: 400px"></div>
-        <br>
-
-        <el-pagination
-            align="center"
-            background
-            layout="prev, pager, next"
-            :total="rowCount"
-            :page-size="pageSize"
-            :page-count="pageCount"
-            :current-page="currentPage"
-            @current-change="changeCurrentPage" />
-    </div>
-</template>
-
+...
 <script>
 ...
 export default {
-    data() {
-        return {
-            rowCount: 0,
-            pageSize: 10,
-            currentPage: 1,
-        }
-    },
+    ...
     mounted() {
         window.setBlocked = this.setBlocked;
         ...
@@ -530,7 +501,6 @@ export default {
             {
                 name: "blocked",
                 fieldName: "blocked",
-                editable: false,
                 renderer: {
                     type: "html",
                     callback: this.getBlockedButton

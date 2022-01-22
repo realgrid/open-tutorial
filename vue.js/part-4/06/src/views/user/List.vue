@@ -61,7 +61,6 @@ export default {
             {
                 name: "blocked",
                 fieldName: "blocked",
-                editable: false,
                 renderer: {
                     type: "html",
                     callback: this.getBlockedButton
