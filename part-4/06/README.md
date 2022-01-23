@@ -437,7 +437,6 @@ export default {
         <el-pagination
             :total="rowCount"
             :page-size="pageSize"
-            :page-count="pageCount"
             :current-page="currentPage"
             @current-change="changeCurrentPage" />
     </div>
