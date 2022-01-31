@@ -3,6 +3,8 @@
 
 ## 날짜 포멧
 
+Datetime Format의 형식은 yyyy: 년, yy: 2000년 기준 년, MM:월, dd:일, HH:시간, NN:분, SS:초 의 조합으로 설정합니다.
+
 ``` html
 ...
 <script>
