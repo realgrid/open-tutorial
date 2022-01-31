@@ -37,7 +37,12 @@ export default {
 
         this.gridView.displayOptions.rowHeight = 36;
 
+        this.gridView.setRowIndicator({
+            visible: false
+        });
+
         this.provider.setFields([
+            { fieldName: "no" },
             { fieldName: "id" },
             { fieldName: "pw" },
             { fieldName: "name" },
@@ -56,6 +61,7 @@ export default {
         ]);
 
         this.gridView.setColumns([
+            { name: "no", fieldName: "no", width: 60 },
             { name: "id", fieldName: "id", width: 60 },
             { name: "pw", fieldName: "pw",  },
             { name: "name", fieldName: "name", width: 60 },

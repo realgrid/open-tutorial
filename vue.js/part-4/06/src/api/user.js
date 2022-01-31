@@ -12,12 +12,19 @@ export default {
         return new Promise((resolve) => {
             response.data.resultCode = 0;
             response.data.rowCount = users.rowCount;
-            var count = 0;
-            response.data.rows = users.rows.filter(() => {
-                var page = parseInt(count / 10) + 1;
-                count = count + 1;
-                return currentPage === page;
-            });
+            response.data.rows = [];
+
+            var startNo = (currentPage - 1) * 10;
+            try {
+                for (var i=0; i<10; i++) {
+                    users.rows[startNo + i].no = startNo + i + 1;
+                    response.data.rows.push(users.rows[startNo + i]);
+                }
+
+            } catch (error) {
+                // range 에러 무시
+            }
+
             setTimeout(() => resolve(response), 500);
         });
     },
