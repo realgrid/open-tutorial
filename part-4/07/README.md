@@ -130,3 +130,91 @@ export default {
 }
 </script>
 ```
+
+
+## RowIndicator 설정
+
+RowIndicator 설정에 대한 자세한 내용은 아래 링크를 참고하시기 바랍니다.
+
+* https://docs.realgrid.com/refs/row-indicator
+
+
+### Indicator 감추기
+
+``` html
+<template>
+    ...
+</template>
+
+<script>
+...
+export default {
+    ...
+    mounted() {
+        ...
+        this.gridView.setRowIndicator({
+            visible: false
+        });
+        ...
+    },
+    ...
+};
+</script>
+...
+```
+
+
+### 순번 표시하기
+
+``` js
+export default {
+    list: async function (currentPage) {
+        return new Promise((resolve) => {
+            response.data.resultCode = 0;
+            response.data.rowCount = users.rowCount;
+            response.data.rows = [];
+
+            var startNo = (currentPage - 1) * 10;
+            try {
+                for (var i=0; i<10; i++) {
+                    users.rows[startNo + i].no = startNo + i + 1;
+                    response.data.rows.push(users.rows[startNo + i]);
+                }
+
+            } catch (error) {
+                // range 에러 무시
+            }
+
+            setTimeout(() => resolve(response), 500);
+        });
+    },
+    ...
+}
+```
+
+``` html
+<template>
+    ...
+</template>
+
+<script>
+...
+export default {
+    ...
+    mounted() {
+        ...
+        this.provider.setFields([
+            { fieldName: "no" },
+            ...
+        ]);
+        this.gridView.setColumns([
+            { name: "no", fieldName: "no", width: 60 },
+            ...
+        ]);
+        ...
+    },
+    ...
+};
+</script>
+...
+```
