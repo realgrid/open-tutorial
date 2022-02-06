@@ -168,6 +168,7 @@ export default {
 
 ### 순번 표시하기
 
+#### API 내부의 순번 관련 코드 (/src/api/user.js)
 ``` js
 export default {
     list: async function (currentPage) {
@@ -193,6 +194,9 @@ export default {
     ...
 }
 ```
+
+
+#### 순번 필드 사용
 
 ``` html
 <template>
