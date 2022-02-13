@@ -1,7 +1,5 @@
 <template>
-    <div class="main-body">
-        <div id="realgrid2" style="width: 100%; height: 90vh"></div>
-    </div>
+    <div id="realgrid2" style="width: 100%; height: 90vh"></div>
 </template>
 
 <script>
@@ -46,9 +44,3 @@ export default {
     },
 };
 </script>
-
-<style scoped>
-.main-body {
-    padding: 8px;
-}
-</style>
