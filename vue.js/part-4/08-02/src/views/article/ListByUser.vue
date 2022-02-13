@@ -21,15 +21,6 @@ export default {
         ArticleList,
     },
 
-    data() {
-        return {
-            users: [],
-        }
-    },
-
-    mounted() {
-    },
-
     methods: {
         onUserIdSelected(userId) {
             this.$refs.articleList.load(userId);
