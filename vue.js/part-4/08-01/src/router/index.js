@@ -27,10 +27,6 @@ const routes = [
         path: '/article/listByUser',
         component: () => import('@/views/article/ListByUser.vue')
     },
-    {
-        path: '/article/reported',
-        component: () => import('@/views/article/Reported.vue')
-    },
 ]
 
 const router = createRouter({

@@ -40,6 +40,5 @@ export default {
             response.data.rows = articles.rows.filter((e) => e.userId === userId);
             setTimeout(() => resolve(response), 500);
         });
-
     }
 }

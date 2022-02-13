@@ -17,15 +17,8 @@
 import apiUser from "@/api/user";
 import apiArticle from "@/api/article";
 
-
 export default {
-    data() {
-        return {
-            users: [],
-        }
-    },
-
-mounted() {
+    mounted() {
         this.provider1 = new RealGrid.LocalDataProvider();
         this.gridView1 = new RealGrid.GridView("realgrid1");
         this.gridView1.setDataSource(this.provider1);

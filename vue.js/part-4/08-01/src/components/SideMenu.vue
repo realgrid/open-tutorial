@@ -35,10 +35,6 @@
                         <i class="fas fa-list-alt"></i>
                         <span>회원별 게시물 목록</span>
                     </el-menu-item>
-                    <el-menu-item index="/article/reported">
-                        <i class="fas fa-list-alt"></i>
-                        <span>신고 게시물</span>
-                    </el-menu-item>
                 </el-menu-item-group>
             </el-menu>
         </div>

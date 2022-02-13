@@ -1,0 +1,70 @@
+@charset "UTF-8";
+
+.alternate-row {
+    background: #f8f8f8;
+}
+
+.blue-column {
+    color: blue;
+}
+
+.bold-cell {
+    font-weight: bold;
+    background-color: greenyellow;
+}
+
+#actions {
+    height: 50px;
+}
+
+#realgrid {
+    width: 100%;
+    height: 450px; /* for WebKit */
+}
+
+.test-style {
+    background: linear-gradient(to right, #96f58f, red);
+}
+
+.right-column {
+    text-align: right;
+}
+
+.left-column {
+    text-align: left;
+}
+
+.red-bar-solid .rg-bar-renderer-bar {
+    background: #ff0000;
+}
+
+.green-bar-solid .rg-bar-renderer-bar-right {
+    background: #00ff00;
+}
+
+.blue-bar-solid .rg-bar-renderer-bar-top {
+    background: #0000ff;
+}
+
+.yellow-bar-solid .rg-bar-renderer-bar-bottom {
+    background: #ffff00;
+}
+
+.green-hidden span {
+    right: 12% !important;
+    transform: translate(0%, -50%) !important;
+    display: none !important;
+}
+
+.yellow-column {
+    background: #ffff00;
+}
+
+.cursor {
+    cursor: crosshair;
+}
+
+.orange-column {
+    background: #ff8b00;
+    white-space: pre;
+}
