@@ -12,6 +12,13 @@ export default {
         return new Promise((resolve) => {
             response.data.resultCode = 0;
             response.data.rowCount = users.rowCount;
+
+            if (!currentPage) {
+                response.data.rows = users.rows;
+                setTimeout(() => resolve(response), 500);
+                return;
+            }
+
             response.data.rows = [];
 
             var startNo = (currentPage - 1) * 10;
@@ -20,7 +27,6 @@ export default {
                     users.rows[startNo + i].no = startNo + i + 1;
                     response.data.rows.push(users.rows[startNo + i]);
                 }
-
             } catch (error) {
                 // range 에러 무시
             }
