@@ -25,7 +25,8 @@ THEME : Realgrid galaxy blue
     border-spacing: 0 !important;
     border-collapse: separate !important;
     box-sizing: border-box !important;
-    line-height: 1.5em; }
+    line-height: 1.5em;
+    outline: none; }
   .rg-root input::-ms-clear {
     display: none; }
 
@@ -494,6 +495,9 @@ THEME : Realgrid galaxy blue
   text-align: center;
   font-weight: bold; }
 
+.rg-rowgroup-summary {
+  background: white; }
+
 .rg-rowgroup-foot {
   text-align: center;
   background: white; }
@@ -573,6 +577,16 @@ THEME : Realgrid galaxy blue
 
 .rg-collapsed-cell {
   margin-left: 18px; }
+
+.rg-column-expanded {
+  border: none;
+  background: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz48c3ZnIHZlcnNpb249IjEuMSIgaWQ9IkxheWVyXzEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHg9IjBweCIgeT0iMHB4IiB2aWV3Qm94PSIwIDAgMTYgMTYiIHN0eWxlPSJlbmFibGUtYmFja2dyb3VuZDpuZXcgMCAwIDE2IDE2OyIgeG1sOnNwYWNlPSJwcmVzZXJ2ZSI+PHN0eWxlIHR5cGU9InRleHQvY3NzIj4uc3Qxe2ZpbGw6IzFCMkE4Rjt9LnN0N3tmaWxsOiMxN0JERjk7fTwvc3R5bGU+PHBhdGggY2xhc3M9InN0NyIgZD0iTTEzLDJjMC42LDAsMSwwLjQsMSwxdjEwYzAsMC42LTAuNCwxLTEsMUgzYy0wLjYsMC0xLTAuNC0xLTFWM2MwLTAuNiwwLjQtMSwxLTFIMTMgTTEzLDFIM0MxLjksMSwxLDEuOSwxLDN2MTBjMCwxLjEsMC45LDIsMiwyaDEwYzEuMSwwLDItMC45LDItMlYzQzE1LDEuOSwxNC4xLDEsMTMsMUwxMywxeiIvPjxwb2x5Z29uIGNsYXNzPSJzdDciIHBvaW50cz0iMTIsNyA0LDcgNCw5IDEyLDkgIi8+PC9zdmc+) no-repeat center center;
+  vertical-align: middle; }
+
+.rg-column-collapsed {
+  border: none;
+  background: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz48c3ZnIHZlcnNpb249IjEuMSIgaWQ9IkxheWVyXzEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHg9IjBweCIgeT0iMHB4IiB2aWV3Qm94PSIwIDAgMTYgMTYiIHN0eWxlPSJlbmFibGUtYmFja2dyb3VuZDpuZXcgMCAwIDE2IDE2OyIgeG1sOnNwYWNlPSJwcmVzZXJ2ZSI+PHN0eWxlIHR5cGU9InRleHQvY3NzIj4uc3Qxe2ZpbGw6IzFCMkE4Rjt9LnN0N3tmaWxsOiMxN0JERjk7fTwvc3R5bGU+PHBhdGggY2xhc3M9InN0NyIgZD0iTTEzLDJjMC42LDAsMSwwLjQsMSwxdjEwYzAsMC42LTAuNCwxLTEsMUgzYy0wLjYsMC0xLTAuNC0xLTFWM2MwLTAuNiwwLjQtMSwxLTFIMTMgTTEzLDFIM0MxLjksMSwxLDEuOSwxLDN2MTBjMCwxLjEsMC45LDIsMiwyaDEwYzEuMSwwLDItMC45LDItMlYzQzE1LDEuOSwxNC4xLDEsMTMsMUwxMywxeiIvPjxwb2x5Z29uIGNsYXNzPSJzdDciIHBvaW50cz0iMTIsNyA5LDcgOSw0IDcsNCA3LDcgNCw3IDQsOSA3LDkgNywxMiA5LDEyIDksOSAxMiw5ICIvPjwvc3ZnPg==) no-repeat center center;
+  vertical-align: middle; }
 
 .rg-group-panel {
   box-sizing: border-box;
@@ -660,6 +674,9 @@ THEME : Realgrid galaxy blue
   width: 16px; }
 
 .rg-focus {
+  border: 2px solid rgba(13, 19, 66, 0.8); }
+
+.rg-deactive-focus {
   border: 2px solid rgba(13, 19, 66, 0.8); }
 
 .rg-focus-line {
@@ -932,7 +949,7 @@ THEME : Realgrid galaxy blue
 .rg-popup-item-disable {
   color: #b6b6b6; }
 
-.rg-popup-item:hover {
+.rg-popup-item:hover, .rg-popup-item-focused {
   color: #FFFFFF;
   background-color: #d0d0d0; }
 
