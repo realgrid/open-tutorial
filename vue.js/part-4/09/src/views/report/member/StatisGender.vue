@@ -67,7 +67,8 @@ export default {
     methods: {
         callbackGroupCount(grid, column, groupFooterIndex, group, value) {
             var groupModel = grid.getGroupModel(group.index);
-            return grid.getGroupSummary(groupModel, "count").sum;
+            var level = group.level == 1 ? "합계: " : "소계: ";
+            return level + grid.getGroupSummary(groupModel, "count").sum;
         },
     },
 };
