@@ -448,3 +448,5 @@ export default {
     },
 };
 ```
+
+> getGroupSummary 참고 자료: [https://docs.realgrid.com/refs/group-summary](https://docs.realgrid.com/refs/group-summary)
