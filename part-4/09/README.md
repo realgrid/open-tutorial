@@ -204,7 +204,7 @@ const routes = [
 ```
 
 
-## 연도별 회원 비율 통계 처리 (StatisYear.vue)
+## 연도별 회원 비율 통계 처리 (src\views\report\member\StatisYear.vue)
 
 ### 그리드 기본 코드 준비
 
@@ -282,7 +282,7 @@ export default {
 ```
 
 
-## 남녀 성별 회원 비율 통계 처리 (StatisGender.vue)
+## 남녀 성별 회원 비율 통계 처리 (src\views\report\member\StatisGender.vue)
 
 ### 그리드 기본 코드 준비
 
