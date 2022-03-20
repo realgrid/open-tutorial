@@ -328,9 +328,6 @@ export default {
             .catch((e) => {
                 console.log(e);
             });
-
-        this.gridView.groupPanel.visible = true;
-        this.gridView.groupBy(["year", "gender"]);
     },
 };
 </script>
