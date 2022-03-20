@@ -5,7 +5,7 @@
 
 ## API 및 data 준비
 
-### API 추가 (/src/api/statisYear.js.js)
+### API 추가 (/src/api/statisYear.js)
 
 ``` js
 import statisYears from '@/data/statisYears'
@@ -34,7 +34,7 @@ export default {
 }
 ```
 
-### 데이터 추가 (src/data/statisYears.js.js)
+### 데이터 추가 (src/data/statisYears.js)
 
 ``` js
 export default {
