@@ -15,10 +15,6 @@ export default {
         this.gridView = new RealGrid.GridView("realgrid");
         this.gridView.setDataSource(this.provider);
 
-        this.gridView.editOptions.insertable = true;
-        this.gridView.editOptions.appendable = true;
-        this.gridView.editOptions.deletable = false;
-
         this.provider.setFields([
             { fieldName: "year" },
             { fieldName: "gender" },
@@ -66,20 +62,10 @@ export default {
 
     methods: {
         callbackGroupCount(grid, column, groupFooterIndex, group, value) {
-            var groupModel = grid.getGroupModel(group.index);
             var level = group.level == 1 ? "합계: " : "소계: ";
+            var groupModel = grid.getGroupModel(group.index);
             return level + grid.getGroupSummary(groupModel, "count").sum;
         },
     },
 };
 </script>
-
-<style scoped>
-.main-body {
-    padding: 8px;
-}
-.toolbar {
-    width: 100%;
-    height: 64px;
-}
-</style>

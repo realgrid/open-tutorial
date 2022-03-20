@@ -15,10 +15,6 @@ export default {
         this.gridView = new RealGrid.GridView("realgrid");
         this.gridView.setDataSource(this.provider);
 
-        this.gridView.editOptions.insertable = true;
-        this.gridView.editOptions.appendable = true;
-        this.gridView.editOptions.deletable = false;
-
         this.provider.setFields([
             { fieldName: "year" },
             { fieldName: "gender" },
@@ -37,11 +33,7 @@ export default {
                 mergeRule: { criteria: "value" }
             },
 
-            {
-                name: "level", fieldName: "level",
-                mergeRule: { criteria: "value" }
-            },
-
+            { name: "level", fieldName: "level" },
             { name: "count", fieldName: "count" },
         ]);
 
@@ -59,12 +51,3 @@ export default {
 };
 </script>
 
-<style scoped>
-.main-body {
-    padding: 8px;
-}
-.toolbar {
-    width: 100%;
-    height: 64px;
-}
-</style>
