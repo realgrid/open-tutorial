@@ -57,9 +57,8 @@
 * [통계](/part-4/09)
 
 
-## Part 5. React.js로 게시판 만들기
-* ...
+## Part 5. Real Report
+* [Hello, World? I'm RealReport!](/part-5/01)
+* [급여명세서 출력하기](/part-5/02)
 
 
-## Part 6. React.js를 이용하여 관리 사이트 만들기
-* ...
