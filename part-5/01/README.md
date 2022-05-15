@@ -75,7 +75,7 @@ VS Code의 Live Server 등을 이용해서 index.html을 실행하시면
 
 ### realreport
 
-* 기술과 관련된 문의사항은 [RealReport 기술지원 포럼](https://forum.realgrid.com/categories/z6SA78vS9G6cgiYht에 문의해 주세요.
+* 기술과 관련된 문의사항은 [RealReport 기술지원 포럼](https://forum.realgrid.com/categories/z6SA78vS9G6cgiYht)에 문의해 주세요.
 
 ### highcharts
 
