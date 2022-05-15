@@ -1,0 +1,751 @@
+@charset "UTF-8";
+.rr-report-root {
+    font-family: "Malgun Gothic", "맑은 고딕", AppleSDGothicNeo-Light, sans-serif;
+    font-size: 13px;
+    color: #000000;
+    -webkit-appearance: none;
+    outline: none;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    touch-action: none;
+    -ms-touch-action: none; 
+    -webkit-print-color-adjust: exact;
+}   
+.rr-report-container {
+    border: 1px solid #777786; 
+    background-color: #efefef;
+}
+/* .rr-print-container {
+    border: 1px solid #777786; 
+    background-color: #efefef;
+} */
+.rr-report-preview {
+    position: absolute;
+    padding: 1px; /** 현재 이 설정이 없으면 중간 빈 페이지가 출력된다! */
+    background-color: transparent;
+}
+.rr-feedback-container {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+}
+
+.rr-report-view {
+    background-color: #fff;
+    box-shadow: rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
+}
+
+.rr-page {
+    /* border: 1px dashed lightgray; */
+    border: 1px solid #e0e0e0a0;
+}
+.rr-page-border-horz {
+    pointer-events: none;
+    position: absolute;
+    height: 1px;
+    box-sizing: border-box;
+    border-top: 1px dashed #aaaaff80;
+}
+.rr-page-border-vert {
+    pointer-events: none;
+    position: absolute;
+    width: 1px;
+    box-sizing: border-box;
+    border-left: 1px dashed #aaaaff80;
+}
+
+.rr-text-edit {
+    border: 1px solid #555;
+    border-radius: 0;
+}
+.rr-text-edit:focus {
+    border: 1px solid #555;
+    border-radius: 0;
+}
+
+.rr-design-box {
+    color: #888;
+    font-style: italic;
+    font-size: 8pt;
+}
+.rr-design-box[data-vis='false'] {
+    border: 1px solid #eee;
+    background: none;
+}
+
+.rr-design-back {
+    position: absolute;
+    display: inline-block;
+    box-sizing: border-box;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    border: 1px solid rgba(200, 200, 200, 0.8);
+    padding-top: 0px;
+    padding-left: 1px;
+    pointer-events: none;
+    color: #888;
+    font-style: italic;
+    font-size: 8pt;
+}
+
+.rr-bind-marker {
+    position: absolute;
+    display: none;
+    width: 9px; 
+    height: 9px; 
+    top: -1px;
+    right: -1px;
+    background: url("./bind-marker.png") no-repeat center/contain;
+}
+.rr-bind-marker[data-sys] {
+    background: url("./bind-marker-sys.png") no-repeat center/contain;
+}
+.rr-bind-marker[data-vis] {
+    display: inline-block;
+    z-index: 1;
+}
+
+/* .rr-item-element {
+    border: 1px solid transparent;
+}
+.rr-item-element[data-design] {
+    border: 1px solid #ddd;
+}  */
+
+/* .rr-group-element {
+    border: 1px solid transparent;
+}
+.rr-group-element[data-design] {
+    border: 1px solid #ddd;
+}  */
+.rr-group-element[data-empty='true'] {
+    background: #f8f8f8;
+} 
+
+.rr-floating[data-empty='true'] {
+    background: #f0f0f0cc;
+} 
+
+.rr-empty {
+    background-color: white;
+    border: 1px dashed lightgray;
+    color: darkgray;
+}
+
+.rr-empty-message {
+    border: none;
+    font-size: 20pt;
+}
+
+.rr-empty-bottom {
+    border: none;
+    font-size: 11pt;
+}
+
+.rr-empty-error {
+    border: none;
+    font-family: monospace;
+    font-size: 14pt;
+    color: red;
+    text-align: center;
+}
+
+.rr-select-view {
+    box-sizing: content-box !important;
+    border: 2px solid rgba(33, 33, 127, 0.6);
+    /* border: 2px solid rgba(127, 33, 33, 0.5); */
+    pointer-events: none;
+}
+.rr-select-view[data-cell='1'] {
+    background-color: rgba(0, 0, 255, 0.08);
+}
+.rr-table-select-view {
+    pointer-events: none;
+    /* border: 1px solid rgba(33, 33, 66, 0.6); */
+    background-color: rgba(0, 0, 255, 0.08);
+}
+
+.rr-focus-view {
+    box-sizing: content-box !important;
+    border: 2px solid rgba(33, 33, 127, 0.7);
+    pointer-events: none;
+}
+
+.rr-focus-handle {
+    border: 1px solid white;
+    background-color: rgba(33, 33, 127, 0.7);
+    pointer-events: auto;
+    cursor: nwse-resize;
+}
+.rr-focus-handle[data-dir='horz'] {
+    cursor: ew-resize;
+}
+.rr-focus-handle[data-dir='vert'] {
+    cursor: ns-resize;
+}
+.rr-focus-handle[data-dir='up'] {
+    cursor: nesw-resize;
+}
+.rr-focus-handle[data-dir='down'] {
+    cursor: nwse-resize;
+}
+.rr-focus-handle:hover {
+    background-color: rgba(33, 127, 33, 0.7);
+}
+.rr-focus-handle[data-disabled='true'] {
+    cursor: inherit;
+    background-color: rgba(188, 188, 188);
+}
+.rr-focus-handle[data-hidden='true'] {
+    visibility: hidden;
+}
+
+.rr-table {
+    table-layout: fixed;
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.rr-table tr {
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
+/** 
+  1. line-height를 절대 설정하지 말 것!
+*/
+
+.rr-table tr td {
+    position: relative;
+    margin: 0 !important;
+    padding: 0;
+    border-spacing: 0 !important;
+    box-sizing: border-box !important;
+    border-collapse: separate;
+    border: 1px solid #aaa;
+    height: 0px;
+    overflow: hidden;
+}
+.rr-table tr td[data-design]:hover {
+    background-color: rgba(0, 127, 255, 0.05);
+}
+
+.rr-table thead tr td {
+    border: none;
+    border-image-width: 0;
+    padding: 0;
+    height: 0px;
+    max-height: 0px;
+    font-size: 0;
+    line-height: 0;
+    overflow: hidden;
+}
+
+/* .rr-table-cell[data-design]:hover {
+    background-color: rgba(0, 127, 255, 0.05);
+} */
+
+.rr-table-focus {
+    pointer-events: none;
+    /* background-color: #00000010;
+    border: 1px dotted #00000020; */
+}
+.rr-table-focus[data-focused] {
+    background-color: #0000ff10;
+    /* border: 1px dotted #000088c0; */
+    border: 2px solid #000088a0;
+}
+.rr-table-select {
+    pointer-events: none;
+    background-color: #0000ff10;
+    border: 2px solid rgba(127, 33, 33, 0.5);
+}
+
+.rr-list-cell[data-design]:hover {
+    background-color: rgba(0, 127, 255, 0.05);
+}
+
+.rr-report-root ::-webkit-scrollbar {
+    height: 16px;
+    width: 16px;
+    overflow: visible;
+}
+.rr-report-root ::-webkit-scrollbar-corner {
+    background: transparent;
+}
+.rr-report-root ::-webkit-scrollbar-button {
+    height: 0px;
+    width: 0px;
+}
+.rr-report-root ::-webkit-scrollbar-thumb {
+    background-color: rgba(0, 0, 0, 0.2);
+    background-clip: padding-box;
+    min-height: 28px;
+    box-shadow: rgba(0, 0, 0, 0.1) 1px 1px 0px inset, rgba(0, 0, 0, 0.07) 0px -1px 0px inset;
+    border-style: solid;
+    border-color: transparent;
+    border-image: initial;
+    border-width: 1px 1px 1px 6px;
+    padding: 100px 0px 0px;
+
+    background-color: rgb(218, 220, 224);
+    background-color: rgb(200, 201, 204);
+    box-shadow: none;
+    border-style: solid;
+    border-color: transparent;
+    border-width: 4px;
+    border-radius: 8px;
+}
+.rr-report-root ::-webkit-scrollbar-track {
+    background-clip: padding-box;
+    border-style: solid;
+    border-color: transparent;
+    border-image: initial;
+    border-width: 0px 0px 0px 4px;
+
+    box-shadow: none;
+    margin: 0px 4px;
+}
+
+.rr-print-error {
+    font-size: 13px;
+}
+
+.rr-print-error-title {
+    font-size: 14px;
+    font-weight: bold;
+    color: #800;
+}
+
+.rr-print-page {
+    position: relative;
+    background-color: white;
+    /* border: none !important;
+    box-shadow: none !important; */
+}
+.rr-page-break {
+    border: 1px solid gray;
+    box-shadow: rgba(50, 54, 57, 0.15) 0px 1px 3px 1px;
+}
+
+@page {
+    margin: 0;
+}
+@media print {
+    .rr-page-break {
+        page-break-after: always;
+        page-break-inside: avoid;
+        -webkit-region-break-inside: avoid;
+        border: none !important;
+        box-shadow: none !important;
+    }
+    .rr-print-space {
+        page-break-after: always;
+        display: none;
+    }
+}
+
+.rr-stack-container {
+    overflow: hidden;
+}
+.rr-box-container {
+    overflow: hidden;
+}
+.rr-floating-container {
+    overflow: hidden;
+}
+
+/** diagonal box 대각선 */
+.rr-dbox span[data-line] {
+    border-top: 1px solid #555;
+}
+
+.rr-text {
+    display: inline-block;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+    /** 상위에서 지정할 수 있도록 여기에 font-size를 지정하지 말 것. */
+}
+.rr-text[data-design]:hover {
+    background-color: rgba(111, 111, 0, 0.1);
+}
+.rr-text[data-empty] {
+    background: #ddd;
+    color: #777;
+    border: 1px solid #aaa;
+}
+
+.rr-summary {
+    display: table;
+    margin: 0;
+    padding: 0;
+}
+.rr-summary[data-design]:hover {
+    background-color: rgba(111, 111, 0, 0.1);
+}
+.rr-summary[data-error='1'] {
+    color: red;
+    font-weight: bold;
+}
+
+.rr-image[data-empty] {
+    display: table;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+    background: #ddd;
+    color: #777;
+    border: 1px solid #aaa;
+}
+.rr-image[data-empty] span:before {
+    content: "[IMAGE]";
+    white-space: nowrap;
+}
+.rr-image[data-design]:hover {
+    background-color: rgba(111, 111, 0, 0.1);
+}
+
+.rr-svg[data-empty] {
+    display: table;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+    background: #ddd;
+    color: #777;
+    border: 1px solid #aaa;
+}
+.rr-svg[data-empty] span:before {
+    content: "[ SVG ]";
+    white-space: nowrap;
+}
+.rr-svg[data-design]:hover {
+    background-color: rgba(111, 111, 0, 0.1);
+}
+
+.rr-bar {
+    overflow: hidden;
+}
+.rr-bar-bar {
+    background-color: green;
+}
+.rr-bar-bar[data-design] {
+    background-color: transparent;
+}
+
+.rr-barcode-bar {
+    fill: #555;
+}
+
+.rr-shape-shape {
+    fill: #555;
+}
+
+.rr-rating-shape {
+    fill: #080;
+}
+
+.rr-rating-shape-back {
+    fill: #ddd;
+}
+
+.rr-check {
+    display: table;
+    margin: 0;
+    padding: 1px;
+    text-align: center;
+    /** 상위에서 지정할 수 있도록 여기에 font-size를 지정하지 말 것. */
+}
+.rr-check-check {
+    min-width: 16px;
+    min-height: 16px;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+    background-image: url("./check-checked.png");
+}
+/* .rr-check-check:before {
+    content: "\feff";
+} */
+.rr-check-check[data-checked='0'] {
+    background-image: url("./check-unchecked.png");
+}
+.rr-check-check[data-checked='-1'] {
+    background-image: url("./check-empty.png");
+}
+
+
+/** design */
+.rr-section-guard {
+    background-color: #f0f0f0;
+    border-right: 1px solid #aaa;
+}
+
+.rr-section-guard-item {
+    background-color: #f5deb3;
+    /* border-top: 1px solid #f0f0f0;
+    border-bottom: 1px solid #ccc; */
+    color: #666;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 9px;
+}
+
+.rr-section-guard-item-odd {
+    background-color: #f0e6bc;
+    /* border-top: 1px solid #f0f0f0;
+    border-bottom: 1px solid #ccc; */
+    color: #666;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 9px;
+}
+
+.rr-section-guard-item-focus {
+    border-top: 1px solid #555;
+    border-bottom: 1px solid #555;
+    background-color: white;
+}
+
+.rr-ruler {
+    background-color: #eee;
+}
+.rr-ruler-vertical {
+    /* border-left: 1px solid #ccc; */
+    border-right: 1px solid #ccc;
+}
+.rr-ruler-horizontal {
+    /* border-top: 1px solid #ccc; */
+    border-bottom: 1px solid #ccc;
+}
+.rr-ruler-content {
+    background-color: #fff;
+}
+.rr-ruler-indicator {
+    background-color: #0000ff10;
+}
+.rr-ruler-indicator-horz {
+    border-left: 1px solid #0000ff80;
+    border-right: 1px solid #0000ff80;
+}
+.rr-ruler-indicator-vert {
+    border-top: 1px solid #0000ff80;
+    border-bottom: 1px solid #0000ff80;
+}
+
+.rr-section-head {
+    z-index: 2;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0;
+    padding: 0px 4px 0px 4px;
+    /* min-width: 50px; */
+    white-space: nowrap;
+    cursor: pointer;
+    font-size: 9px;
+    background-color: #efffef;
+    color: #898;
+    border: 1px solid #bbb;
+    border-bottom: none;
+    /* border-radius: 3px 3px 0 0; */
+}
+.rr-section-head:hover {
+    color: #555;
+    border-color: #999;
+    /* filter: drop-shadow(1px 1px 1px #555555); */
+}
+.rr-section-head[data-selected] {
+    /* color: #555;
+    border-color: #999; */
+    color: white;
+    background-color: #333;
+    border-color: #333;
+}
+.rr-page-head {
+    background-color: #efffef;
+}
+.rr-back-head {
+    background-color: #efefff;
+}
+.rr-front-head {
+    background-color: #efefff;
+}
+.rr-band-head {
+    background-color: #efffef;
+}
+
+
+.rr-band-col {
+    position: absolute;
+    display: inline-flex;
+    box-sizing: border-box;
+    align-items: center;
+    justify-content: center;
+    background-color: #ddd;
+    border: 3px solid #aaa;
+    color: #777;
+    font-size: 20px;
+    font-style: normal;
+}
+.rr-band-col[data-hidden] {
+    display: none;
+}
+
+/* .rr-tableband-group {
+} */
+
+.rr-end-row-message {
+    font-size: 13px;
+    color: #333;
+}
+
+.rr-simpleband-end-row {
+    border-bottom: 1px solid lightgray;
+}
+
+.rr-select-feedback {
+    border: 2px solid #11111180;
+    background-color: #0000ff10;
+}
+
+.rr-move-feedback {
+    pointer-events: none;
+    background-color: #00000020;
+    border: 1px dashed #333;
+}
+.rr-move-feedback span {
+    position: absolute;
+    pointer-events: none;
+    top: -16px;
+    white-space: nowrap;
+    color: blue;
+    font-weight: bold;
+}
+.rr-move-feedback span[data-change] {
+    color: #800;
+}
+.rr-move-line-feedback {
+    position: absolute;
+    box-sizing: border-box;
+    border-color: #00008844;
+    border-style: solid;
+    border-width: 0px;
+}
+.rr-move-mask-feedback {
+    position: absolute;
+    pointer-events: none;
+    background-color: #0000ff10;
+    border: 1px solid 0000ff80;
+}
+.rr-move-guide-feedback {
+    position: absolute;
+    box-sizing: border-box;
+    border-color: #f00;
+    border-style: solid;
+    border-width: 0px;
+}
+
+.rr-add-feedback {
+    position: absolute;
+    background-color: #0088ff30;
+}
+
+.rr-add-effect {
+    position: absolute;
+    min-width: 50px;
+    padding: 0px 4px;
+    border: 1px solid #004488;
+    border-radius: 2px;
+    background-color: #0088ffcc;
+    color: white;
+    text-align: center;
+}
+
+.rr-edit-marquee {
+    position: absolute;
+    pointer-events: none;
+    z-index: 11;
+}
+
+.rr-edit-marquee-item {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid #fff;
+    background-color: #555566cc;
+    color: white;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 10px;
+    pointer-events: all;
+    white-space: nowrap;
+    cursor: pointer;
+}
+.rr-edit-marquee-item:hover {
+    background-color: #444455ff;
+}
+.rr-edit-marquee-item[data-select] {
+    background-color: #0088ddb0;
+}
+.rr-edit-marquee-item[data-focus] {
+    background-color: #0044eeb0;
+}
+.rr-edit-marquee-item[data-cellselect] {
+    background-color: #000000b0;
+}
+
+.rr-edit-marquee-tracker {
+    position: absolute;
+    background-color: transparent;
+    pointer-events: all;
+}
+
+.rr-edit-feedback-span {
+    font-size: 18px;
+    color: white;
+    background: #333;
+    padding: 4px 8px;
+    border-radius: 5px;
+}
+
+.rr-error-view {
+    display: block;
+    padding: 10px 20px;
+    min-width: 120px;
+    border: 2px solid #333;
+    border-radius: 5px;
+    font-size: 13px;
+    line-height: 1.2em;
+    color: #111;
+    font-weight: bold;
+    background-color: #ffff00dd;
+}
+.rr-error-view-hide {
+    animation: fade-out 0.5s;
+    animation-fill-mode: forwards;
+}
+@keyframes fade-out {
+    from {
+      opacity: 1;
+    }
+    to {
+      opacity: 0;
+    }
+}
+
+.rr-print-indicator {
+    background-image: url("./indicator.gif");
+    background-size: 40px;
+    background-repeat: no-repeat;
+    background-attachment: local;
+    background-position: center;
+}
