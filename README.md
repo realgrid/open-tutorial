@@ -1,6 +1,5 @@
 # 참고자료 및 링크
 
-* [작성중인 문서 확인](http://realgrid2.s3-website.ap-northeast-2.amazonaws.com/)
 * [예제소스 포함 및 미니 웹서버 다운로드](https://github.com/realgrid/open-tutorial/raw/main/realgrid2.zip)
 * [라이선스 발급](https://service.realgrid.com/join)
   * [라이센스 발급 받기 동영상 설명](https://youtu.be/M8bWc0p86lM)
