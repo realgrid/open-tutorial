@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="">
+    <head>
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+
+        <script type="text/javascript" src="/js/pdfkit.js"></script>
+
+        <link href="/highcharts/highcharts.css" rel="stylesheet" />
+        <script src="/highcharts/highcharts.js"></script>
+        <script src="/highcharts/highcharts-more.js"></script>
+
+        <link href="/realreport/realreport.css" rel="stylesheet" />
+        <script src="/realreport/realreport-lic.js"></script>
+        <script type="text/javascript" src="/realreport/realreport.js?v=4"></script>
+
+        <script src="./reportForm.js"></script>
+        <script src="./reportData.js"></script>
+
+        <title>Real Report</title>
+    </head>
+    <body>
+        <div style="height: 32px; position: fixed;">
+            <input id="zoomScale" value="100%" />
+            <button onclick="zoom('zoomIn')">zoomIn</button>
+            <button onclick="zoom('zoomOut')">zoomOut</button>
+            <button onclick="zoom('fitToHeight')">fitToHeight</button>
+            <button onclick="zoom('fitToWidth')">fitToWidth</button>
+            <button onclick="zoom('fitToPage')">fitToPage</button>
+        </div>
+
+        <div style="height: 32px; position: fixed; top: 32px;">
+            <input id="page" value="1" onchange="onPageChange()"/>
+            <button onclick="setPage('first')"><<</button>
+            <button onclick="setPage('prev')"><</button>
+            <button onclick="setPage('next')">></button>
+            <button onclick="setPage('last')">>></button>
+        </div>
+
+        <div style="height: 64px;"></div>
+
+        <div id="realreport" class="scroller"></div>
+    </body>
+</html>
+
+<script>
+    const viewer = new RealReport.ReportViewer("realreport", reportForm);
+    viewer.dataSet = reportData;
+    viewer.preview();
+
+    function zoom(method) {
+        viewer[method]();
+        zoomScale.value = Math.trunc(viewer.zoom * 100) + "%";
+    }
+
+    function setPage(method) {
+        viewer[method]();
+        page.value = viewer.page;
+    }
+
+    function onPageChange() {
+        viewer.page = page.value;
+    }
+</script>
+
+<style>
+.scroller {
+    flex: 1;
+    direction: ltr;
+    height: 90vh;
+    width: 100%;
+    overflow: auto;
+    position: relative;
+}
+</style>
