@@ -92,6 +92,30 @@
 ...
 ```
 
+### 파일이름 지정하기
+
+``` html
+<!DOCTYPE html>
+<html lang="">
+    ...
+    <body>
+        <div style="height: 32px; position: fixed">
+            <button onclick="exportPdf()">pdf</button>
+        </div>
+        ...
+    </body>
+</html>
+
+<script>
+    reportForm.report.name = "급여명세서";
+    const viewer = new RealReport.ReportViewer("realreport", reportForm);
+    viewer.dataSet = reportData;
+    viewer.preview();
+    ...
+</script>
+...
+```
+
 ### 이미지 내보내기
 
 ``` html
