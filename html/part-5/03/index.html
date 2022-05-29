@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="">
+    <head>
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+
+        <script type="text/javascript" src="/js/pdfkit.js"></script>
+
+        <link href="/highcharts/highcharts.css" rel="stylesheet" />
+        <script src="/highcharts/highcharts.js"></script>
+        <script src="/highcharts/highcharts-more.js"></script>
+
+        <link href="/realreport/realreport.css" rel="stylesheet" />
+        <script src="/realreport/realreport-lic.js"></script>
+        <script type="text/javascript" src="/realreport/realreport.js?v=4"></script>
+
+        <script src="./reportForm.js"></script>
+        <script src="./reportData.js"></script>
+
+        <script src="./fonts/malgun.js"></script>
+        <script src="./fonts/malgun-bold.js"></script>
+
+        <title>Real Report</title>
+    </head>
+    <body>
+        <div style="height: 32px; position: fixed">
+            <button onclick="exportPdf()">pdf</button>
+            &nbsp;&nbsp;
+
+            <button onclick="exportImage('png')">png</button>
+            <button onclick="exportImage('jpeg')">jpeg</button>
+            &nbsp;&nbsp;
+
+            <button onclick="exportDocument('hwp')">hwp</button>
+            <button onclick="exportDocument('docx')">docx</button>
+            &nbsp;&nbsp;
+
+            <button onclick="print()">print</button>
+        </div>
+
+        <div style="height: 32px"></div>
+
+        <div id="realreport" class="scroller"></div>
+
+        <iframe id="printPreview" src="./print.html" style="display: none;"></iframe>
+    </body>
+</html>
+
+<script>
+    const viewer = new RealReport.ReportViewer("realreport", reportForm);
+    viewer.dataSet = reportData;
+    viewer.preview();
+
+    function exportPdf() {
+        const pdfFonts = [
+            {
+                name: "regular",
+                content: malgun,
+                style: "normal",
+                weight: "normal",
+            },
+            {
+                name: "bold",
+                content: malgunBold,
+                style: "normal",
+                weight: "bold",
+            },
+        ];
+        viewer.exportPdf(pdfFonts);
+    }
+
+    function exportImage(imageType) {
+        // imageType: png, jpeg, gif, tif, tiff
+        viewer.exportImage({type: imageType});
+    }
+
+    function exportDocument(docType) {
+        viewer.exportDocument({type: docType});
+    }
+
+    function print() {
+        const container = printPreview.contentWindow.document.getElementById('realreport');
+        container.innerHTML = viewer.getHtml();
+        console.log(container);
+        printPreview.contentWindow.print();
+    }
+</script>
+
+<style>
+    .scroller {
+        flex: 1;
+        direction: ltr;
+        height: 90vh;
+        width: 100%;
+        overflow: auto;
+        position: relative;
+    }
+</style>
