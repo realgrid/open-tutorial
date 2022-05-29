@@ -30,6 +30,9 @@
 
             <button onclick="exportImage('png')">png</button>
             <button onclick="exportImage('jpeg')">jpeg</button>
+            <button onclick="exportImage('gif')">gif</button>
+            <button onclick="exportImage('tif')">tif</button>
+            <button onclick="exportImage('tiff')">tiff</button>
             &nbsp;&nbsp;
 
             <button onclick="exportDocument('hwp')">hwp</button>
@@ -73,7 +76,6 @@
     }
 
     function exportImage(imageType) {
-        // imageType: png, jpeg, gif, tif, tiff
         viewer.exportImage({type: imageType});
     }
 
@@ -84,7 +86,6 @@
     function print() {
         const container = printPreview.contentWindow.document.getElementById('realreport');
         container.innerHTML = viewer.getHtml();
-        console.log(container);
         printPreview.contentWindow.print();
     }
 </script>
