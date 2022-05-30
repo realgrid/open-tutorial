@@ -111,24 +111,11 @@
     z-index: 1;
 }
 
-/* .rr-item-element {
-    border: 1px solid transparent;
-}
-.rr-item-element[data-design] {
-    border: 1px solid #ddd;
-}  */
-
-/* .rr-group-element {
-    border: 1px solid transparent;
-}
-.rr-group-element[data-design] {
-    border: 1px solid #ddd;
-}  */
-.rr-group-element[data-empty='true'] {
+.rr-group-element[data-empty] {
     background: #f8f8f8;
 } 
 
-.rr-floating[data-empty='true'] {
+.rr-floating[data-empty] {
     background: #f0f0f0cc;
 } 
 
@@ -173,12 +160,14 @@
 
 .rr-focus-view {
     box-sizing: content-box !important;
+    /* border: 1px solid rgba(33, 33, 127, 0.7); */
     border: 2px solid rgba(33, 33, 127, 0.7);
     pointer-events: none;
 }
 
 .rr-focus-handle {
     border: 1px solid white;
+    /* border-radius: 50%; */
     background-color: rgba(33, 33, 127, 0.7);
     pointer-events: auto;
     cursor: nwse-resize;
@@ -480,6 +469,31 @@
     background-image: url("./check-empty.png");
 }
 
+.rr-datalist[data-empty] {
+    display: table;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+    background: #eaeaea;
+    color: #777;
+    border: 1px solid #aaa;
+}
+.rr-datalist[data-design]:hover {
+    background-color: rgba(111, 111, 0, 0.1);
+}
+
+.rr-bandgroupcell[data-empty] {
+    display: table;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+    background: #eaeaea;
+    color: #777;
+    border: 1px solid #aaa;
+}
+.rr-bandgroupcell[data-empty]:hover {
+    background-color: rgba(111, 111, 0, 0.1);
+}
 
 /** design */
 .rr-section-guard {
@@ -583,7 +597,6 @@
     background-color: #efffef;
 }
 
-
 .rr-band-col {
     position: absolute;
     display: inline-flex;
@@ -600,9 +613,6 @@
     display: none;
 }
 
-/* .rr-tableband-group {
-} */
-
 .rr-end-row-message {
     font-size: 13px;
     color: #333;
@@ -610,6 +620,54 @@
 
 .rr-simpleband-end-row {
     border-bottom: 1px solid lightgray;
+}
+
+.rr-crosstab-head {
+    text-align: center;
+    background-color: #f0f0f0;
+}
+
+.rr-crosstab-section-table tr td {
+    position: relative;
+    margin: 0 !important;
+    padding: 1px 4px;
+    border-spacing: 0 !important;
+    box-sizing: border-box !important;
+    border-collapse: separate;
+    border: 1px solid #aaa;
+    height: 0px;
+    overflow: hidden;
+    color: gray;
+}
+
+.rr-crosstab-field-container {
+    background-color: #efefef;
+    border: 1px solid lightgray;
+    max-width: 150px;
+}
+
+.rr-crosstab-field {
+    padding: 2px 2px;
+}
+
+.rr-crosstab-field:hover {
+    background-color: #ddd;
+}
+
+.rr-crosstab-field-arrow {
+    box-sizing: border-box;
+    margin-left: 4px;
+    padding: 0px 5px;
+    font-size: 16px;
+    line-height: 16px;
+    color: #555;
+    border: 1px solid transparent;
+}
+
+.rr-crosstab-field-arrow:hover {
+    color: black;
+    border: 1px solid #555;
+    border-radius: 3px;
 }
 
 .rr-select-feedback {

@@ -1,7 +1,7 @@
 /// <reference types="node" />
 /** 
-* RealReport v1.1.4
-* commit 2468f17
+* RealReport v1.2.0
+* commit 5ef147c
 
 * Copyright (C) 2013-2022 WooriTech Inc.
 	https://real-report.com
@@ -152,6 +152,7 @@ declare abstract class Base {
     assignFrom(source: any): void;
     extend(source: ConfigObject): void;
     toProxy(): ConfigObject;
+    assignProps(target: object, props: string[], all?: boolean): object;
     toString(): string;
 }
 
@@ -781,9 +782,9 @@ declare abstract class VisualContainer extends EventAware implements VisualToolO
     getHtml(): string;
     addElement(element: VisualElement): boolean;
     removeElement(element: VisualElement): boolean;
-    addFeedback(element: UIElement): boolean;
+    addFeedback(element: UIElement | HTMLElement): boolean;
     addFeedbacks(...elements: UIElement[]): void;
-    removeFeedback(element: UIElement): boolean;
+    removeFeedback(element: UIElement | HTMLElement): boolean;
     removeFeedbacks(...elements: UIElement[]): void;
     resetSize(callback?: any): void;
     measureText(style: string, text: string): number;
@@ -1041,6 +1042,66 @@ declare class LayerElement extends VisualElement {
 }
 
 /**
+ * Property 모델 구성 요소.
+ */
+declare abstract class PropertyItem extends Base {
+    private _prop;
+    private _group;
+    constructor(prop: IPropInfo);
+    get group(): PropertyGroup;
+    get prop(): IPropInfo;
+    get name(): string;
+    get label(): string;
+    get domain(): any[];
+    get parent(): any;
+    isVisible(source: IPropertySource): boolean;
+    isReadOnly(source: IPropertySource): boolean;
+    getValue(source: IPropertySource): any;
+    setValue(source: IPropertySource, value: any): void;
+    setValues(sources: IPropertySource[], value: any): void;
+    hasColor(): boolean;
+}
+declare class PropertyGroup extends Base {
+    private _label;
+    private _items;
+    private _pool;
+    source: IPropertySource;
+    constructor(label: string);
+    get label(): string;
+    get count(): number;
+    get(index: number): PropertyItem;
+    borrow(info: IPropInfo): PropertyItem;
+    add(item: PropertyItem): void;
+    clear(): void;
+}
+/**
+ * Value property base.
+ */
+declare abstract class ValueProperty extends PropertyItem {
+    private _defaultValue;
+    constructor(prop: IPropInfo);
+    /**
+     * 기본값.
+     */
+    get defaultValue(): any;
+    set defaultValue(value: any);
+}
+/**
+ * String property.
+ */
+declare class StringProperty extends ValueProperty {
+    static readonly $_ctor: string;
+    constructor(prop: IPropInfo);
+}
+/**
+ * 참조 항목 list를 갖는 property.
+ */
+declare class ListableProperty extends StringProperty {
+    static readonly $_ctor: string;
+    constructor(prop: IPropInfo);
+}
+
+/**
  */
 declare class PageItemContainer extends BoundedContainer {
     static readonly $_ctor: string;
@@ -1089,8 +1150,8 @@ declare abstract class BoxContainer extends ReportGroupItem {
      * ReportPage에서 bodyItems를 통해 호출한다.
      */
     loadProps(src: any): void;
-    protected _getEditProps(): IPropInfo[];
     protected _datable(): boolean;
+    protected _getEditProps(): IPropInfo[];
     protected _getStyleProps(): string[];
     protected _doLoad(loader: IReportLoader, src: any): void;
     protected _doSave(target: object): void;
@@ -1216,6 +1277,7 @@ declare class ReportPage extends ReportGroupItem implements IEventAware {
     static readonly ITEM_REMOVED = "onPageItemRemoved";
     static readonly ITEMS_REMOVED = "onPageItemsRemoved";
     static readonly ITEM_CHANGED = "onPageItemChanged";
+    static readonly COLLECTION_CHANGED = "onPageCollectionChanged";
     static readonly $_ctor: string;
     private _report;
     private _events;
@@ -1298,6 +1360,7 @@ declare class ReportPage extends ReportGroupItem implements IEventAware {
     private $_removeItem;
     private $_itemsRemoved;
     private $_itemChanged;
+    private $_collectionChanged;
     /**
      * ReportItem.name에서 호출한다.
      */
@@ -1315,6 +1378,7 @@ declare class ReportPage extends ReportGroupItem implements IEventAware {
     protected _fireItemRemoved(item: ReportPageItem, oldParent: ReportGroupItem): void;
     protected _fireItemsRemoved(items: ReportPageItem[]): void;
     protected _fireItemChanged(item: ReportPageItem, prop: string, value: any, oldValue: any): void;
+    protected _fireCollectionChanged(collection: ReportItemCollection<any>): void;
 }
 /**
  * Report header/footer, Page header/footer를 제외한 리포트 페이지 영역.
@@ -1612,9 +1676,38 @@ declare abstract class BandData extends ReportData$1 {
     readValue(field: IBandDataField, value: any): any;
     readRow(row: any): any;
     dateToStr(field: IBandDataField, v: Date): string;
-    abstract getFieldValues(field: string | number): any[];
+    abstract getFieldValues(field: string | number, rows?: number[]): any[];
     get isBand(): boolean;
     preparePrint(ctx: PrintContext, design: boolean): void;
+    protected _readRows(): void;
+    protected _prepareCalcField(fields: IBandDataField[], fieldMap: any, calcField: IBandDataField, index: number, node: ExpressionNode): void;
+}
+/**
+ * {}들의 배열.
+ * values는 리포트에 저장하지 않는다.
+ * 필요하다면 application이 별도로 관리한다. (파일로 저장/로드)
+ * (필드.sample로 최초 한 행을 생성하고, 추후 다른 tool로 관리할 수 있도록 한다.)
+ */
+declare class BandArrayData extends BandData implements IBandData {
+    private _values;
+    private _sampleCount;
+    private _sampled;
+    constructor(name: string, fields: IBandDataField[], values: any[], sampleCount?: number, dp?: IReportDataProvider);
+    get rowCount(): number;
+    getRowValues(row: number): any;
+    getValue(path: string): any;
+    getRowValue(row: number, field: string | number): any;
+    getFieldValues(field: string | number, rows?: number[]): any[];
+    equalValues(row: number, fields: string[], values: any[]): boolean;
+    equalRows(row1: number, row2: number, fields?: string[]): boolean;
+    findRows(values: object): number[];
+    get sample(): any[];
+    getValues(): any[];
+    setValues(vals: any[]): void;
+    getSaveType(): string;
+    getSaveValues(): any;
+    private $_cloneRow;
+    private $_prepareSample;
     protected _readRows(): void;
     protected _prepareCalcField(fields: IBandDataField[], fieldMap: any, calcField: IBandDataField, index: number, node: ExpressionNode): void;
 }
@@ -1644,7 +1737,7 @@ declare class DesignDataManager extends EventAware implements IReportDataProvide
      */
     getValue(path: string, row: number): any;
     getValueAt(data: string, path: string, row: number): any;
-    getFieldValues(data: string, field: string): any[];
+    getFieldValues(data: string, field: string, rows?: number[]): any[];
     addData(data: IReportData): boolean;
     removeData(data: string | IReportData): IReportData;
     dataNameChanged(data: IReportData, oldName: string): void;
@@ -1711,7 +1804,6 @@ declare class TableRow extends ReportItemCollectionItem {
     get displayPath(): string;
     get collection(): TableRowCollection;
     get marqueeParent(): ReportItem;
-    get level(): number;
     isAncestor(group: ReportGroupItem): boolean;
     canRemoveFrom(): boolean;
     canSelectedWith(other: ISelectionSource): boolean;
@@ -1732,6 +1824,7 @@ declare class TableRowCollection extends ReportItemCollection<TableRow> {
     get outlineExpandable(): boolean;
     get outlineItems(): IOutlineSource[];
     getSaveType(): string;
+    get owner(): ReportItem;
     /** table */
     get table(): TableBase;
     /** count */
@@ -1768,6 +1861,7 @@ declare class TableRowCollection extends ReportItemCollection<TableRow> {
     get level(): number;
     get marqueeParent(): ReportItem;
     isAncestor(group: ReportGroupItem): boolean;
+    protected _doMoveItem(from: number, to: number): boolean;
     private $_add;
     private $_invalidateRows;
     private $_rowChanged;
@@ -1878,6 +1972,7 @@ declare class TableCellCollection extends ReportItemCollection<TableCell> {
     get outlineItems(): IOutlineSource[];
     getSaveType(): string;
     isCollectionProp(): boolean;
+    get owner(): ReportItem;
     /** table */
     get table(): TableBase;
     /** count */
@@ -1890,6 +1985,7 @@ declare class TableCellCollection extends ReportItemCollection<TableCell> {
     getColCount(row: number): number;
     get(index: number): TableCell;
     getAt(row: number, col: number): TableCell;
+    indexOf(item: TableCell): number;
     getRectangle(from: TableCell, to: TableCell): IRect;
     getRectangleCells(from: TableCell, to: TableCell, ignoreHiddens?: boolean): TableCell[];
     /**
@@ -1953,6 +2049,7 @@ declare class TableCellCollection extends ReportItemCollection<TableCell> {
     get level(): number;
     get marqueeParent(): ReportItem;
     isAncestor(group: ReportGroupItem): boolean;
+    protected _doMoveItem(from: number, to: number): boolean;
     protected _createCell(row: number, col: number): TableCell;
 }
 declare type TableBounds = {
@@ -2137,7 +2234,6 @@ declare abstract class TableColumnBase extends ReportItemCollectionItem {
     getWidth(bounds: number): number;
     get itemType(): string;
     get page(): ReportPage;
-    get level(): number;
     canSelectedWith(other: ISelectionSource): boolean;
     protected _getStyleProps(): string[];
     protected _doLoad(src: any): void;
@@ -2200,9 +2296,10 @@ declare abstract class TableColumnCollectionBase<T extends ReportGroupItem, C ex
     get level(): number;
     get marqueeParent(): ReportItem;
     isAncestor(group: ReportGroupItem): boolean;
+    protected _doMoveItem(from: number, to: number): boolean;
     protected abstract _createColumn(src: any): C;
     private $_add;
-    private $_invalidateColumns;
+    private $_resetColumns;
     private $_columnChanged;
 }
 
@@ -2468,8 +2565,10 @@ declare abstract class DataBand extends ReportGroupItem {
     getMin(field: string, count: number, rows?: number[]): number;
     getMax(field: string, count: number, rows?: number[]): number;
     getAvg(field: string, count: number, rows?: number[]): number;
+    abstract containsInSection(item: ReportItem): boolean;
     get designLevel(): number;
     get dataDominant(): boolean;
+    protected _datable(): boolean;
     protected _getEditProps(): IPropInfo[];
     protected _getStyleProps(): string[];
     canAddTo(group: ReportGroupItem): boolean;
@@ -2702,6 +2801,7 @@ declare class TableBandRowGroupCollection extends ReportItemCollection<TableBand
     get outlineExpandable(): boolean;
     get outlineItems(): IOutlineSource[];
     getSaveType(): string;
+    get owner(): ReportItem;
     /** band */
     get band(): TableBand;
     /** count */
@@ -2724,6 +2824,7 @@ declare class TableBandRowGroupCollection extends ReportItemCollection<TableBand
     get displayPath(): string;
     get level(): number;
     isAncestorOf(item: ReportPageItem): boolean;
+    protected _doMoveItem(from: number, to: number): boolean;
     private $_add;
     private $_invalidateGroups;
     private $_groupChanged;
@@ -2797,7 +2898,6 @@ declare class TableBand extends DataBand {
     get outlineLabel(): string;
     get isBand(): boolean;
     protected _ignoreItems(): boolean;
-    protected _valueable(): boolean;
     protected _getEditProps(): IPropInfo[];
     protected _doDefaultInit(loader: IReportLoader, parent: ReportGroupItem, hintWidth: number, hintHeight: number): void;
     isAncestorOf(item: ReportPageItem): boolean;
@@ -2810,6 +2910,7 @@ declare class TableBand extends DataBand {
     remove(item: ReportPageItem): void;
     getNextDetailRows(ctx: PrintContext): number[];
     skipDetailRows(ctx: PrintContext): void;
+    containsInSection(item: ReportItem): boolean;
 }
 
 declare class TableColumn extends TableColumnBase {
@@ -2912,7 +3013,6 @@ declare abstract class SimpleBandSection extends StackContainer {
     setFieldOf(item: ReportItem, value: string): void;
     get designLevel(): number;
     get marqueeParent(): ReportItem;
-    protected _getStyleProps(): string[];
     canResize(dir: ResizeDirection): boolean;
     protected _doLoad(loader: IReportLoader, src: any): void;
     protected _doSave(target: object): void;
@@ -3011,6 +3111,7 @@ declare class SimpleBandRowGroupCollection extends ReportItemCollection<SimpleBa
     getSaveType(): string;
     canRemoveFrom(): boolean;
     canParentOf(itemType: string): boolean;
+    get owner(): ReportItem;
     /** band */
     get band(): SimpleBand;
     /** count */
@@ -3033,6 +3134,7 @@ declare class SimpleBandRowGroupCollection extends ReportItemCollection<SimpleBa
     get displayPath(): string;
     get level(): number;
     isAncestorOf(item: ReportPageItem): boolean;
+    protected _doMoveItem(from: number, to: number): boolean;
     private $_add;
     private $_invalidateGroups;
     private $_groupChanged;
@@ -3070,7 +3172,6 @@ declare class SimpleBand extends DataBand {
     getSaveType(): string;
     get outlineLabel(): string;
     get isBand(): boolean;
-    protected _valueable(): boolean;
     protected _ignoreItems(): boolean;
     protected _getEditProps(): IPropInfo[];
     isAncestorOf(item: ReportPageItem): boolean;
@@ -3082,6 +3183,7 @@ declare class SimpleBand extends DataBand {
     canRemove(item: ReportItem): boolean;
     getNextDetailRows(ctx: PrintContext): number[];
     skipDetailRows(ctx: PrintContext): void;
+    containsInSection(item: ReportItem): boolean;
 }
 
 /**
@@ -3228,10 +3330,11 @@ declare abstract class ReportGroupItemElement<T extends ReportGroupItem> extends
     constructor(doc: Document, model: T, name: string);
     protected _doDispose(): void;
     get navigable(): boolean;
+    get lazyLayoutChildren(): boolean;
     isContentDom(dom: HTMLElement): boolean;
     findElement(modelName: string): ReportItemView;
     findElementOf(dom: HTMLElement): ReportItemView;
-    getElementOf(model: ReportItem): ReportItemView;
+    getElementOf(model: ReportPageItem): ReportElement;
     indexOfElement(elt: ReportItemView): number;
     getLeaves(): ReportItemView[];
     getFirst(): ReportItemView;
@@ -3265,8 +3368,8 @@ declare abstract class ReportGroupItemElement<T extends ReportGroupItem> extends
     protected _doMeasure(ctx: PrintContext, dom: HTMLElement, hintWidth: number, hintHeight: number): Size;
     protected _doPrepareMeasure(ctx: PrintContext, dom: HTMLElement): void;
     protected _getDesignText(): string;
-    protected _setDesignContent(empty: boolean): void;
-    protected _doMeasureItem(ctx: PrintContext, elt: ReportElement, hintWidth: number, hintHeight: number): void;
+    protected _setDesignContent(empty: boolean, designView: HTMLDivElement): void;
+    protected _doMeasureItem(ctx: PrintContext, index: number, elt: ReportElement, hintWidth: number, hintHeight: number): void;
     protected _createElement(report: ReportView, parent: ReportElement, item: ReportItem): ReportElement;
     protected _buildItems(ctx: PrintContext, report: ReportView, model: ReportGroupItem): void;
     protected _prepareChild(child: ReportElement): void;
@@ -3284,6 +3387,309 @@ interface ITable {
     columns: TableColumnCollectionBase<ReportGroupItem, TableColumnBase>;
     getColumn(index: number): TableColumnBase;
     getColPoints(): number[];
+}
+
+declare enum CrosstabSummary {
+    SUM = "sum",
+    AVG = "avg",
+    MIN = "min",
+    MAX = "max",
+    COUNT = "count",
+    DISTINCT = "distinct"
+}
+declare class CrosstabFieldHeader extends ReportItem {
+    static readonly PROP_SUFFIX = "suffix";
+    static readonly PROPINFOS: IPropInfo[];
+    private _suffix;
+    private _field;
+    constructor(field: CrosstabField, source: any);
+    get field(): CrosstabField;
+    /** suffix */
+    get suffix(): string;
+    set suffix(value: string);
+    get page(): ReportPage;
+    get outlineSource(): IOutlineSource;
+    protected _getEditProps(): IPropInfo[];
+    protected _getStyleProps(): string[];
+    protected _doLoad(loader: IReportLoader, src: any): void;
+    protected _doSave(target: object): void;
+}
+declare class CrosstabFieldSummary extends ReportItem {
+    static readonly PROP_SUMMARY = "summary";
+    static readonly PROPINFOS: IPropInfo[];
+    private _summary;
+    private _field;
+    constructor(field: CrosstabField, source: any);
+    get field(): CrosstabField;
+    /** summary */
+    get summary(): CrosstabSummary;
+    set summary(value: CrosstabSummary);
+    get page(): ReportPage;
+    get outlineSource(): IOutlineSource;
+    protected _getEditProps(): IPropInfo[];
+    protected _getStyleProps(): string[];
+    protected _doLoad(loader: IReportLoader, src: any): void;
+    protected _doSave(target: object): void;
+}
+declare abstract class CrosstabField extends ReportItemCollectionItem {
+    static readonly PROP_FIELD = "field";
+    static readonly PROP_VALUE = "value";
+    static readonly PROPINFOS: IPropInfo[];
+    private static readonly styleProps;
+    private _field;
+    private _value;
+    private _index;
+    fieldIndex: number;
+    dataType: string;
+    private _header;
+    private _summary;
+    constructor(collection: CrosstabFieldCollection<any>, source: any);
+    /** band */
+    get band(): CrosstabBand;
+    /** index */
+    get index(): number;
+    /** field */
+    get field(): string;
+    set field(value: string);
+    /** value */
+    get value(): string;
+    set value(value: string);
+    /** header */
+    get header(): CrosstabFieldHeader;
+    /** summary */
+    get summary(): CrosstabFieldSummary;
+    get itemType(): string;
+    get page(): ReportPage;
+    get displayPath(): string;
+    get collection(): CrosstabFieldCollection<any>;
+    get marqueeParent(): ReportItem;
+    isAncestor(group: ReportGroupItem): boolean;
+    getEditProps(): IPropInfo[];
+    protected _getStyleProps(): string[];
+    protected _changed(prop: string, newValue: any, oldValue: any): void;
+    protected _doLoad(src: any): void;
+    protected _doSave(target: any): any;
+}
+declare abstract class CrosstabFieldCollection<T extends CrosstabField> extends ReportItemCollection<T> {
+    private _band;
+    private _type;
+    private _fields;
+    constructor(owner: CrosstabBand, type: string);
+    get band(): CrosstabBand;
+    load(src: any[]): void;
+    save(target: any): void;
+    contains(field: string): boolean;
+    getField(field: string): T;
+    indexOf(field: T): number;
+    add(field: any, index?: number): T;
+    removeAt(index: number): boolean;
+    remove(field: T): void;
+    get owner(): ReportItem;
+    get count(): number;
+    get items(): CrosstabField[];
+    get outlineLabel(): string;
+    get outlineParent(): IOutlineSource;
+    get outlineExpandable(): boolean;
+    get outlineItems(): IOutlineSource[];
+    get page(): ReportPage;
+    get displayPath(): string;
+    get level(): number;
+    get(index: number): T;
+    getSaveType(): string;
+    private $_add;
+    protected _doMoveItem(from: number, to: number): boolean;
+    protected abstract _createField(src: any): T;
+    protected _resetFields(): void;
+    protected _fieldChanged(field: CrosstabField): void;
+}
+declare type CrosstabFieldCell = CrosstabField | CrosstabFieldHeader | CrosstabFieldSummary;
+declare class CrosstabRowField extends CrosstabField {
+    get itemType(): string;
+    getCollectionLabel(): string;
+}
+declare class CrosstabRowFieldCollection extends CrosstabFieldCollection<CrosstabRowField> {
+    constructor(owner: CrosstabBand);
+    protected _createField(src: any): CrosstabRowField;
+}
+declare class CrosstabColumnField extends CrosstabField {
+    constructor(collection: CrosstabColumnFieldCollection, source: any);
+    get itemType(): string;
+    getCollectionLabel(): string;
+    protected _doLoad(src: any): void;
+    protected _doSave(target: any): any;
+}
+declare class CrosstabColumnFieldCollection extends CrosstabFieldCollection<CrosstabColumnField> {
+    constructor(owner: CrosstabBand);
+    protected _createField(src: any): CrosstabColumnField;
+}
+declare class CrosstabValueField extends CrosstabField {
+    get itemType(): string;
+    getCollectionLabel(): string;
+}
+declare class CrosstabValueFieldCollection extends CrosstabFieldCollection<CrosstabValueField> {
+    constructor(owner: CrosstabBand);
+    protected _createField(src: any): CrosstabRowField;
+}
+declare class CrosstabRec {
+    private _keys;
+    private _rows;
+    private sum;
+    constructor(keys: any[], rows: number[]);
+    get rowCount(): number;
+    getKey(field: number): any;
+    getSummary(data: IBandData, field: number, exp: string): number;
+}
+interface IFilter {
+    select(data: IBandData, row: number): boolean;
+}
+declare class RecCollection {
+    private _band;
+    private _filters;
+    private _recs;
+    constructor(band: CrosstabBand);
+    get count(): number;
+    getKey(rec: number, field: number): any;
+    getRec(index: number): CrosstabRec;
+    getRecs(start?: number, end?: number): CrosstabRec[];
+    setFilters(filters: IFilter[]): void;
+    build(data: BandArrayData): void;
+    private $_collectRows;
+    private $_sortRows;
+    private $_buildRecs;
+}
+declare class CrosstabColumn {
+    hash: number;
+    parent: CrosstabColumn;
+    private _field;
+    private _value;
+    private _children;
+    constructor(field: CrosstabColumnField, value: any);
+    get field(): CrosstabColumnField;
+    get value(): any;
+    get count(): number;
+    get children(): CrosstabColumn[];
+    get level(): number;
+    get leafCount(): number;
+    getChild(index: number): CrosstabColumn;
+    clear(): void;
+    add(column: CrosstabColumn, force?: boolean): void;
+    sort(): void;
+    getHeader(): string;
+}
+declare class CrosstabLeafColumn extends CrosstabColumn {
+    private _valueField;
+    constructor(field: CrosstabColumnField, valueField: CrosstabValueField, value: any);
+    get valueField(): CrosstabValueField;
+    get leafCount(): number;
+    getHeader(): string;
+}
+declare class ColumnCollection {
+    private _band;
+    private _root;
+    _leafs: CrosstabLeafColumn[];
+    constructor(band: CrosstabBand);
+    get root(): CrosstabColumn;
+    get count(): number;
+    get leafCount(): number;
+    get levels(): number;
+    get(index: number): CrosstabColumn;
+    getLeaf(index: number): CrosstabLeafColumn;
+    getColumns(parent: CrosstabColumn, columns: CrosstabColumn[][]): void;
+    build(recs: RecCollection): void;
+    private $_collectColumns;
+}
+/**
+ * rowField들이 동일한 행들.
+ */
+declare class CrosstabRow {
+    private _values;
+    private _recs;
+    private _map;
+    constructor(band: CrosstabBand, values: any[], recs: CrosstabRec[]);
+    getValue(index: number): any;
+    getRec(index: number): CrosstabRec;
+    getColumnRec(column: CrosstabColumn): CrosstabRec;
+    getSummary(data: IBandData, column: CrosstabColumn, field: number, value: string): number;
+}
+declare class RowCollection {
+    private _band;
+    private _rows;
+    constructor(band: CrosstabBand);
+    get rowCount(): number;
+    getRow(index: number): CrosstabRow;
+    build(data: BandArrayData, recs: RecCollection): void;
+    private $_collectRows;
+}
+/**
+ * Crosstab band topLeft 모서리 셀에 표시되는 내용에 대한 모델.
+ */
+declare class CrosstabBandTitle extends ReportItem {
+    static readonly PROP_TEXT = "text";
+    static readonly PROPINFOS: IPropInfo[];
+    private static readonly styleProps;
+    private _text;
+    private _band;
+    constructor(band: CrosstabBand);
+    /** text */
+    get text(): string;
+    set text(value: string);
+    protected _getEditProps(): any[];
+    protected _getStyleProps(): string[];
+    protected _doLoad(loader: IReportLoader, src: any): void;
+    protected _doSave(target: object): void;
+}
+/**
+ * Crosstab band
+ */
+declare class CrosstabBand extends ReportGroupItem {
+    static readonly PROP_TITLE = "title";
+    static readonly PROP_MAX_ROW_COUNT = "maxRowCount";
+    static readonly PROPINFOS: IPropInfo[];
+    static readonly $_ctor: string;
+    static getFieldOf(cell: CrosstabFieldCell): CrosstabField;
+    static getBandOf(cell: CrosstabFieldCell): CrosstabBand;
+    private _maxRowCount;
+    private _title;
+    private _rowFields;
+    private _columnFields;
+    private _valueFields;
+    private _recs;
+    _columns: ColumnCollection;
+    private _rows;
+    constructor(name: string);
+    /**
+     * Cross table 생성시 사용될 원본 데이터 최대 행 수.
+     */
+    get maxRowCount(): number;
+    set maxRowCount(value: number);
+    /**
+     * title
+     */
+    get title(): CrosstabBandTitle;
+    /** rowFields */
+    get rowFields(): CrosstabRowFieldCollection;
+    /** columnFields */
+    get columnFields(): CrosstabColumnFieldCollection;
+    /** valueFields */
+    get valueFields(): CrosstabValueFieldCollection;
+    get rows(): RowCollection;
+    get bandData(): BandArrayData;
+    containsField(field: string): boolean;
+    getRowField(index: number): CrosstabField;
+    getColumnField(index: number): CrosstabColumnField;
+    getGroupFields(): CrosstabField[];
+    build(): void;
+    getCellValue(data: BandArrayData, r: number, c: number): any;
+    getSaveType(): string;
+    get outlineLabel(): string;
+    get outlineItems(): IOutlineSource[];
+    get isBand(): boolean;
+    protected _datable(): boolean;
+    protected _getEditProps(): IPropInfo[];
+    isAncestorOf(item: ReportPageItem): boolean;
+    protected _doLoad(loader: IReportLoader, src: any): void;
+    protected _doSave(target: any): void;
+    _fieldsChanged(field: CrosstabField): void;
 }
 
 declare enum PaperSize {
@@ -3441,7 +3847,7 @@ declare class ReportRootItem extends ReportGroupItem {
 /**
  * Report model.
  */
-declare class Report extends EventAware implements IEditCommandStackOwner {
+declare class Report extends EventAware implements IEditCommandStackOwner, IPropertyContainer {
     static readonly RESET = "onReportReset";
     static readonly PAPER_CHANGED = "onReportPaperChanged";
     static readonly ITEM_ADD = "onReportItemAdd";
@@ -3451,6 +3857,7 @@ declare class Report extends EventAware implements IEditCommandStackOwner {
     static readonly ITEMS_REMOVED = "onReportItemsRemoved";
     static readonly ITEM_CHANGED = "onReportItemChanged";
     static readonly ITEM_MOVED = "onReportItemMoved";
+    static readonly COLLECTION_CHANGED = "onReportCollectionChanged";
     static readonly COMMANDS_STACK_CHANGED = "onReportCommandStackChanged";
     static readonly DIRTY_CHANGED = "onReportDirtyChanged";
     static readonly DATA_ADDED = "onReportDataAdded";
@@ -3485,6 +3892,7 @@ declare class Report extends EventAware implements IEditCommandStackOwner {
     onDesignDataManagerFieldNameChanged(dm: DesignDataManager, data: IReportData, newName: string, oldName: string): void;
     editCommandStackChanged(stack: EditCommandStack, cmd: EditCommand, undoable: boolean, redoable: boolean): void;
     editCommandStackDirtyChanged(stack: EditCommandStack): void;
+    addCollectionItem(collection: IPropertySource): void;
     /** @internal */
     get loader(): IReportLoader;
     /** info */
@@ -3528,6 +3936,10 @@ declare class Report extends EventAware implements IEditCommandStackOwner {
     itemByName(name: string): ReportItem;
     defaultInit(item: ReportItem, group: ReportGroupItem, hintWidth: number, hintHeight: number): void;
     addItem(parent: ReportGroupItem, item: ReportItem, index?: number): boolean;
+    moveCollectionItem(collection: ReportItemCollection<any>, from: number, to: number): void;
+    addChartSeries(chart: HichartItem, seriesType: string): HichartSeries;
+    addHichartPlotLine(axis: HichartAxis, config?: object): HichartAxisPlotLine;
+    addHichartPlotBand(axis: HichartAxis, config?: object): HichartAxisPlotBand;
     /**
      * 테이블 행을 추가한다.
      *
@@ -3567,6 +3979,7 @@ declare class Report extends EventAware implements IEditCommandStackOwner {
      */
     moveTableColumns(table: TableContainer | TableBand, col: number, count: number, delta: number): void;
     moveTableColumnsToNearest(table: TableContainer | TableBand, col: number, count: number, delta: number): void;
+    addCrosstabField(collection: CrosstabFieldCollection<any>, field: string): void;
     /**
      * 리포트 아이템을 제거한다.
      *
@@ -3639,10 +4052,12 @@ declare class Report extends EventAware implements IEditCommandStackOwner {
     private onPageItemRemoved;
     private onPageItemsRemoved;
     private onPageItemChanged;
+    private onPageCollectionChanged;
     protected _fireReset(): void;
     protected _firePaperChanged(): void;
     protected _fireItemAdd(group: ReportGroupItem, item: ReportItem, index: number): boolean;
     protected _fireItemMoved(item: ReportItem, index: number): void;
+    protected _fireCollectionChanged(collection: ReportItemCollection<any>): void;
     protected _fireCellMerged(cell: TableCell): void;
     protected _fireAlert(item: ReportItem, message: string): void;
 }
@@ -3664,6 +4079,7 @@ declare abstract class ChartObject<T extends ReportGroupItem> extends ReportItem
     constructor(chart: T, name?: string);
     get chart(): T;
     canHide(): boolean;
+    getWrapper(): object;
     get page(): ReportPage;
     get report(): Report;
     get dataParent(): ReportGroupItem;
@@ -3689,17 +4105,26 @@ declare abstract class ChartTextObject<T extends ReportGroupItem> extends ChartO
     protected _getStyleProps(): string[];
     protected _doLoad(loader: IReportLoader, src: any): void;
     protected _doSave(target: object): void;
+    getWrapper(): object;
 }
 declare abstract class ChartSeries<T extends ReportGroupItem> extends ChartObject<T> {
+    static readonly PROP_SERIES_ID = "id";
+    static readonly PROP_DESIGN_VISIBLE = "designVisible";
     static readonly PROP_VALUE_FIELD = "valueField";
     static readonly PROP_VALUES = "values";
     static readonly PROPINFOS: IPropInfo[];
+    private _id;
     private _designVisible;
     private _valueField;
     private _values;
     constructor(chart: T);
     getPropDomain(prop: IPropInfo): any[];
     abstract get seriesType(): string;
+    /**
+     * id
+     */
+    get id(): string;
+    set id(value: string);
     /**
      * design visible
      */
@@ -3715,7 +4140,8 @@ declare abstract class ChartSeries<T extends ReportGroupItem> extends ChartObjec
      */
     get values(): number[];
     set values(value: number[]);
-    getValues(printing: boolean, dp: IReportDataProvider): any[];
+    hasValuesProp(): boolean;
+    getValues(ctx: PrintContext, dp: IReportDataProvider): any[];
     getSaveType(): string;
     get displayPath(): string;
     get outlineLabel(): string;
@@ -3725,12 +4151,13 @@ declare abstract class ChartSeries<T extends ReportGroupItem> extends ChartObjec
 }
 declare abstract class ChartSeriesCollection<T extends ReportGroupItem> extends ReportItemCollection<ChartSeries<T>> {
     private _chart;
-    private _series;
+    protected _series: ChartSeries<T>[];
     constructor(chart?: T);
     get outlineParent(): IOutlineSource;
     get outlineLabel(): string;
     get outlineExpandable(): boolean;
     get outlineItems(): IOutlineSource[];
+    get owner(): ReportItem;
     /** chart */
     get chart(): T;
     /** count */
@@ -3757,15 +4184,72 @@ declare abstract class ChartSeriesCollection<T extends ReportGroupItem> extends 
     private $_add;
     private $_invalidateSeries;
     private $_seriesChanged;
+    protected _doMoveItem(from: number, to: number): boolean;
 }
 
+declare enum HichartDash {
+    DASH = "Dash",
+    DASH_DOT = "DashDot",
+    DOT = "Dot",
+    LONG_DASH = "LongDash",
+    LONG_DASH_DOT = "LongDashDot",
+    LONG_DASH_DOT_DOT = "LongDashDotDot",
+    SHORT_DASH = "ShortDash",
+    SHORT_DASH_DOT = "ShortDashDot",
+    SHORT_DASH_DOT_DOT = "ShortDashDotDot",
+    SHORT_DOT = "ShortDot",
+    SOLID = "Solid"
+}
 /**
  * Chart title.
  */
 declare class HichartTitle extends ChartTextObject<HichartItem> {
+    static readonly PROP_TITLE_ALIGN = "align";
+    static readonly PROP_TITLE_VERTICAL_ALIGN = "verticalAlign";
+    static readonly PROP_TITLE_X = "x";
+    static readonly PROP_TITLE_Y = "y";
+    static readonly PROPINFOS: IPropInfo[];
+    private _align;
+    private _verticalAlign;
+    private _x;
+    private _y;
+    constructor(chart: HichartItem);
+    /**
+     * align
+     */
+    get align(): Align;
+    set align(value: Align);
+    /**
+     * vertical align
+     */
+    get verticalAlign(): VerticalAlign;
+    set verticalAlign(value: VerticalAlign);
+    /**
+     * x
+     */
+    get x(): number;
+    set x(value: number);
+    /**
+     * y
+     */
+    get y(): number;
+    set y(value: number);
+    getWrapper(): object;
+    getSaveLabel(): string;
+    protected _getEditProps(): IPropInfo[];
+    protected _doLoad(loader: IReportLoader, src: any): void;
+    protected _doSave(target: object): void;
+    protected _doDefaultInit(loader: IReportLoader, parent: ReportGroupItem, hintWidth: number, hintHeight: number): void;
+}
+declare class HichartSubtitle extends HichartTitle {
     constructor(chart: HichartItem);
     getSaveLabel(): string;
+    protected _isDefaultVisible(): boolean;
     protected _doDefaultInit(loader: IReportLoader, parent: ReportGroupItem, hintWidth: number, hintHeight: number): void;
+}
+declare enum HichartStacking {
+    NORMAL = "normal",
+    PERCENT = "percent"
 }
 /**
  * Highcharts chart item.
@@ -3773,7 +4257,11 @@ declare class HichartTitle extends ChartTextObject<HichartItem> {
 declare class HichartItem extends ReportGroupItem {
     static readonly PROP_HICHART_THEME = "theme";
     static readonly PROP_HICHART_INVERTED = "inverted";
+    static readonly PROP_HICHART_STACKING = "stacking";
+    static readonly PROP_HICHART_PLOT_BORDER_WIDTH = "plotBorderWidth";
+    static readonly PROP_HICHART_PLOT_BORDER_COLOR = "plotBorderColor";
     static readonly PROP_HICHART_TITLE = "title";
+    static readonly PROP_HICHART_SUBTITLE = "subtitle";
     static readonly PROP_HICHART_XAXIS = "xAxis";
     static readonly PROP_HICHART_YAXIS = "yAxis";
     static readonly PROP_HICHART_LEGEND = "legend";
@@ -3784,7 +4272,12 @@ declare class HichartItem extends ReportGroupItem {
     static readonly ITEM_TYPE = "Highchart";
     private _theme;
     private _inverted;
+    private _stacking;
+    private _plotBorderWidth;
+    private _plotBorderColor;
+    private _colors;
     private _title;
+    private _subtitle;
     private _xAxis;
     private _yAxis;
     private _legend;
@@ -3797,8 +4290,19 @@ declare class HichartItem extends ReportGroupItem {
     /** inverted */
     get inverted(): boolean;
     set inverted(value: boolean);
+    /** stacking */
+    get stacking(): HichartStacking;
+    set stacking(value: HichartStacking);
+    /** plotBorderWidth */
+    get plotBorderWidth(): number;
+    set plotBorderWidth(value: number);
+    /** plotBorderColor */
+    get plotBorderColor(): string;
+    set plotBorderColor(value: string);
     /** title */
     get title(): HichartTitle;
+    /** subtitle */
+    get subtitle(): HichartSubtitle;
     /** xAxis */
     get xAxis(): HichartXAxis;
     /** yAxis */
@@ -3815,6 +4319,7 @@ declare class HichartItem extends ReportGroupItem {
     addSeries(series: any, index?: number): HichartSeries;
     removeSeries(series: HichartSeries): void;
     selectSeries(series: HichartSeries): void;
+    getParentBand(): DataBand;
     getSaveType(): string;
     get outlineLabel(): string;
     needDesignWidth(): boolean;
@@ -3831,41 +4336,296 @@ declare class HichartItem extends ReportGroupItem {
  * Axis title.
  */
 declare class HichartAxisTitle extends ChartTextObject<HichartItem> {
+    static readonly PROPINFOS: IPropInfo[];
     constructor(chart: HichartItem);
     getSaveLabel(): string;
-}
-declare abstract class HichartAxis extends ChartObject<HichartItem> {
-    static readonly PROP_TITLE = "title";
-    static readonly PROPINFOS: IPropInfo[];
-    private _title;
-    constructor(chart: HichartItem);
-    get title(): HichartAxisTitle;
-    get outlineParent(): IOutlineSource;
+    canRotate(): boolean;
     protected _getEditProps(): IPropInfo[];
     protected _doLoad(loader: IReportLoader, src: any): void;
     protected _doSave(target: object): void;
+    getWrapper(): object;
 }
-declare class HichartXAxis extends HichartAxis {
+declare class HichartAxisLabels extends ChartObject<HichartItem> {
+    static readonly PROP_ALIGN = "align";
+    static readonly PROP_FORMAT = "format";
+    static readonly PROP_PADDING = "padding";
+    static readonly PROP_STAGGER_LINES = "staggerLines";
+    static readonly PROP_STEP = "step";
+    static readonly PROPINFOS: IPropInfo[];
+    private _align;
+    private _format;
+    private _padding;
+    private _staggerLines;
+    private _step;
+    constructor(chart: HichartItem);
+    /** align */
+    get align(): Align;
+    set align(value: Align);
+    /** format */
+    get format(): string;
+    set format(value: string);
+    /** padding */
+    get padding(): number;
+    set padding(value: number);
+    /** staggerLines */
+    get staggerLines(): number;
+    set staggerLines(value: number);
+    /** step */
+    get step(): number;
+    set step(value: number);
+    canRotate(): boolean;
+    getSaveLabel(): string;
+    protected _getEditProps(): IPropInfo[];
+    protected _doLoad(loader: IReportLoader, src: any): void;
+    protected _doSave(target: object): void;
+    getWrapper(): object;
+}
+declare class HichartAxisPlotLabel extends ChartObject<HichartItem> {
+    static readonly PROP_ALIGN = "align";
+    static readonly PROP_VERTICAL_ALIGN = "verticalAlign";
+    static readonly PROP_TEXT = "text";
+    static readonly PROP_TEXT_ALIGN = "textAlign";
+    static readonly PROP_X = "x";
+    static readonly PROP_Y = "y";
+    static readonly PROPINFOS: IPropInfo[];
+    private static readonly styleProps;
+    private _align;
+    private _verticalAlign;
+    private _text;
+    private _textAlign;
+    private _x;
+    private _y;
+    constructor(chart: HichartItem);
+    /** align */
+    get align(): Align;
+    set align(value: Align);
+    /** verticalAlign */
+    get verticalAlign(): VerticalAlign;
+    set verticalAlign(value: VerticalAlign);
+    /** text */
+    get text(): string;
+    set text(value: string);
+    /** textAlign */
+    get textAlign(): Align;
+    set textAlign(value: Align);
+    /** x */
+    get x(): number;
+    set x(value: number);
+    /** y */
+    get y(): number;
+    set y(value: number);
+    getSaveLabel(): string;
+    canRotate(): boolean;
+    protected _getEditProps(): IPropInfo[];
+    protected _getStyleProps(): string[];
+    protected _doLoad(loader: IReportLoader, src: any): void;
+    protected _doSave(target: object): void;
+    getWrapper(): object;
+}
+declare class HichartAxisPlotLine extends ReportItemCollectionItem {
+    static readonly PROP_VALUE = "value";
+    static readonly PROP_COLOR = "color";
+    static readonly PROP_WIDTH = "width";
+    static readonly PROP_DASH_STYLE = "dashStyle";
+    static readonly PROP_LABEL = "label";
+    static readonly PROP_Z_INDEX = "zIndex";
+    static readonly PROPINFOS: IPropInfo[];
+    private _value;
+    private _color;
+    private _width;
+    private _dashStyle;
+    private _zIndex;
+    private _index;
+    private _label;
+    constructor(collection: HichartAxisPlotLineCollection, src: any);
+    /** value */
+    get value(): number;
+    set value(value: number);
+    /** color */
+    get color(): string;
+    set color(value: string);
+    /** width */
+    get width(): number;
+    set width(value: number);
+    /** dashStyle */
+    get dashStyle(): HichartDash;
+    set dashStyle(value: HichartDash);
+    /** zIndex */
+    get zIndex(): number;
+    set zIndex(value: number);
+    get label(): HichartAxisPlotLabel;
+    get itemType(): string;
+    get index(): number;
+    get page(): ReportPage;
+    get collection(): HichartAxisPlotLineCollection;
+    get displayPath(): string;
+    get marqueeParent(): ReportItem;
+    protected _getStyleProps(): string[];
+    getEditProps(): IPropInfo[];
+    protected _doLoad(src: any): void;
+    protected _doSave(target: any): void;
+    getWrapper(): object;
+    getCollectionLabel(): string;
+}
+declare class HichartAxisPlotLineCollection extends ReportItemCollection<HichartAxisPlotLine> {
+    private _owner;
+    private _lines;
+    constructor(owner: HichartAxis);
+    get owner(): ReportItem;
+    get axis(): HichartAxis;
+    load(src: any): void;
+    save(target: any): void;
+    indexOf(item: HichartAxisPlotLine): number;
+    add(line: HichartAxisPlotLine | ConfigObject, index?: number): HichartAxisPlotLine;
+    remove(line: HichartAxisPlotLine): void;
+    getWrapper(): any;
+    get count(): number;
+    get items(): ReportPageItem[];
+    get outlineParent(): IOutlineSource;
+    get outlineExpandable(): boolean;
+    get outlineLabel(): string;
+    get outlineItems(): IOutlineSource[];
+    isEditableCollection(): boolean;
+    getCollectionLabel(): string;
+    get page(): ReportPage;
+    get displayPath(): string;
+    get level(): number;
+    get marqueeParent(): ReportItem;
+    get(index: number): HichartAxisPlotLine;
+    getSaveType(): string;
+    protected _doMoveItem(from: number, to: number): boolean;
+    private $_resetLines;
+}
+declare class HichartAxisPlotBand extends ReportItemCollectionItem {
+    static readonly PROP_FROM = "from";
+    static readonly PROP_TO = "to";
+    static readonly PROP_COLOR = "color";
+    static readonly PROP_LABEL = "label";
+    static readonly PROP_Z_INDEX = "zIndex";
+    static readonly PROPINFOS: IPropInfo[];
+    private _color;
+    private _from;
+    private _to;
+    private _zIndex;
+    private _index;
+    private _label;
+    constructor(collection: HichartAxisPlotBandCollection, src: any);
+    /** color */
+    get color(): string;
+    set color(value: string);
+    /** from */
+    get from(): number;
+    set from(value: number);
+    /** to */
+    get to(): number;
+    set to(value: number);
+    /** zIndex */
+    get zIndex(): number;
+    set zIndex(value: number);
+    get label(): HichartAxisPlotLabel;
+    get itemType(): string;
+    get index(): number;
+    get page(): ReportPage;
+    get collection(): HichartAxisPlotBandCollection;
+    get displayPath(): string;
+    get marqueeParent(): ReportItem;
+    protected _getStyleProps(): string[];
+    getEditProps(): IPropInfo[];
+    protected _doLoad(src: any): void;
+    protected _doSave(target: any): void;
+    getWrapper(): object;
+    getCollectionLabel(): string;
+}
+declare class HichartAxisPlotBandCollection extends ReportItemCollection<HichartAxisPlotBand> {
+    private _owner;
+    private _bands;
+    constructor(owner: HichartAxis);
+    get owner(): ReportItem;
+    get axis(): HichartAxis;
+    load(src: any): void;
+    save(target: any): void;
+    indexOf(item: HichartAxisPlotBand): number;
+    add(band: HichartAxisPlotBand | ConfigObject, index?: number): HichartAxisPlotBand;
+    remove(line: HichartAxisPlotBand): void;
+    getWrapper(): any;
+    get count(): number;
+    get items(): ReportPageItem[];
+    get outlineParent(): IOutlineSource;
+    get outlineExpandable(): boolean;
+    get outlineLabel(): string;
+    get outlineItems(): IOutlineSource[];
+    isEditableCollection(): boolean;
+    getCollectionLabel(): string;
+    get page(): ReportPage;
+    get displayPath(): string;
+    get level(): number;
+    get marqueeParent(): ReportItem;
+    get(index: number): HichartAxisPlotBand;
+    getSaveType(): string;
+    protected _doMoveItem(from: number, to: number): boolean;
+    private $_resetBands;
+}
+declare abstract class HichartAxis extends ChartObject<HichartItem> {
+    static readonly PROP_TITLE = "title";
     static readonly PROP_CATEGORIES = "categories";
     static readonly PROP_CATEGORY_FIELD = "categoryField";
+    static readonly PROP_LABELS = "labels";
+    static readonly PROP_MIN_PADDING = "minPadding";
+    static readonly PROP_MAX_PADDING = "maxPadding";
+    static readonly PROP_PLOT_LINES = "plotLines";
+    static readonly PROP_PLOT_BANDS = "plotBands";
     static readonly PROPINFOS: IPropInfo[];
     private _categories;
     private _categoryField;
+    private _minPadding;
+    private _maxPadding;
+    private _title;
+    private _labels;
+    private _plotLines;
+    private _plotBands;
     constructor(chart: HichartItem);
     getPropDomain(prop: IPropInfo): any[];
+    getPopupPropLabel(prop: string): string;
+    get outlineItems(): IOutlineSource[];
+    get outlineExpandable(): boolean;
+    get title(): HichartAxisTitle;
+    get labels(): HichartAxisLabels;
     /** categories */
     get categories(): string[];
     set categories(value: string[]);
     /** categoryField */
     get categoryField(): string;
     set categoryField(value: string);
+    /** minPadding */
+    get minPadding(): number;
+    set minPadding(value: number);
+    /** minPadding */
+    get maxPadding(): number;
+    set maxPadding(value: number);
+    get plotLines(): HichartAxisPlotLineCollection;
+    get plotBands(): HichartAxisPlotBandCollection;
     getCategories(printing: boolean, dp: IReportDataProvider): any[];
+    abstract getPlotLineConfig(): object;
+    abstract getPlotBandConfig(): object;
+    get outlineParent(): IOutlineSource;
+    protected _getEditProps(): IPropInfo[];
+    protected _doLoad(loader: IReportLoader, src: any): void;
+    protected _doSave(target: object): void;
+    getWrapper(): object;
+}
+declare class HichartXAxis extends HichartAxis {
+    static readonly PROPINFOS: IPropInfo[];
+    constructor(chart: HichartItem);
+    getPropDomain(prop: IPropInfo): any[];
     getSaveLabel(): string;
     get displayPath(): string;
     get outlineLabel(): string;
     protected _getEditProps(): IPropInfo[];
     protected _doLoad(loader: IReportLoader, src: any): void;
     protected _doSave(target: object): void;
+    getWrapper(): object;
+    getPlotLineConfig(): object;
+    getPlotBandConfig(): object;
 }
 declare class HichartYAxis extends HichartAxis {
     static readonly PROP_MIN = "min";
@@ -3886,25 +4646,59 @@ declare class HichartYAxis extends HichartAxis {
     protected _getEditProps(): IPropInfo[];
     protected _doLoad(loader: IReportLoader, src: any): void;
     protected _doSave(target: object): void;
+    getWrapper(): object;
+    getPlotLineConfig(): object;
+    getPlotBandConfig(): object;
 }
 declare abstract class HichartSeries extends ChartSeries<HichartItem> {
+    static readonly PROP_SERIES_COLOR = "color";
+    static readonly PROP_SERIES_COLORS = "colors";
+    static readonly PROP_SERIES_COLOR_BY_POINT = "colorByPoint";
+    static readonly PROP_SERIES_SHOW_IN_LEGEND = "showInLegend";
     static readonly PROPINFOS: IPropInfo[];
+    private _color;
+    private _colors;
+    private _colorByPoint;
+    private _showInLegend;
     constructor(chart: HichartItem);
     /**
-     * label
+     * color
      */
+    get color(): string;
+    set color(value: string);
+    /**
+     * colors
+     */
+    get colors(): string[];
+    set colors(value: string[]);
+    /**
+     * colorByPoint
+     */
+    get colorByPoint(): boolean;
+    set colorByPoint(value: boolean);
+    /**
+     * showInLegend
+     */
+    get showInLegend(): boolean;
+    set showInLegend(value: boolean);
     canHideMarker(): boolean;
-    getWrapper(config: any): any;
+    wrap(target: any): any;
     get outlineParent(): IOutlineSource;
     protected _getEditProps(): IPropInfo[];
-    protected _doDefaultInit(loader: IReportLoader, parent: ReportGroupItem, hintWidth: number, hintHeight: number): void;
+    getPropDomain(prop: IPropInfo): any[];
     protected _doLoad(loader: IReportLoader, src: any): void;
     protected _doSave(target: object): void;
     getCollectionLabel(): string;
     canRemoveFrom(): boolean;
+    getValues(ctx: PrintContext, dp: IReportDataProvider): any[];
+    protected _getFieldProps(): string[];
+    protected _getValues(ctx: PrintContext, prop: string, dp: IReportDataProvider): number[];
 }
 declare class HichartSeriesCollection extends ChartSeriesCollection<HichartItem> {
     constructor(chart?: HichartItem);
+    getIds(exept: string): string[];
+    getCollectionLabel(): string;
+    isCollectionProp(): boolean;
     protected _createSeries(loader: IReportLoader, src: any): HichartSeries;
     protected _seriesChanged(series: HichartSeries): void;
 }
@@ -3917,10 +4711,20 @@ declare class HichartLegend extends ChartObject<HichartItem> {
     static readonly PROP_HICHART_ALIGN = "align";
     static readonly PROP_HICHART_VERTICAL_ALIGN = "verticalAlign";
     static readonly PROP_HICHART_LAYOUT = "layout";
+    static readonly PROP_HICHART_FLOATING = "floating";
+    static readonly PROP_HICHART_X = "x";
+    static readonly PROP_HICHART_Y = "y";
+    static readonly PROP_HICHART_BORDER_WIDTH = "borderWidth";
+    static readonly PROP_HICHART_SHADOW = "shadow";
     static readonly PROPINFOS: IPropInfo[];
     private _layout;
     private _align;
     private _verticalAlign;
+    private _floating;
+    private _x;
+    private _y;
+    private _borderWidth;
+    private _shadow;
     constructor(chart?: HichartItem);
     /** align */
     get align(): Align;
@@ -3931,11 +4735,38 @@ declare class HichartLegend extends ChartObject<HichartItem> {
     /** layout */
     get layout(): HichartLegendLayout;
     set layout(value: HichartLegendLayout);
-    protected _getEditProps(): IPropInfo[];
-    protected _doLoad(loader: IReportLoader, src: any): void;
-    protected _doSave(target: object): void;
+    /**
+     * flaoting
+     */
+    get floating(): boolean;
+    set floating(value: boolean);
+    /**
+     * x
+     */
+    get x(): number;
+    set x(value: number);
+    /**
+     * y
+     */
+    get y(): number;
+    set y(value: number);
+    /**
+     * border width
+     */
+    get borderWidth(): number;
+    set borderWidth(value: number);
+    /**
+     * flaoting
+     */
+    get shadow(): boolean;
+    set shadow(value: boolean);
     getSaveLabel(): string;
     protected _isDefaultVisible(): boolean;
+    protected _getEditProps(): IPropInfo[];
+    protected _getStyleProps(): string[];
+    protected _doLoad(loader: IReportLoader, src: any): void;
+    protected _doSave(target: object): void;
+    getWrapper(): object;
 }
 
 /**
@@ -3998,13 +4829,17 @@ declare abstract class ReportPageItem extends Base implements ISelectionSource, 
      */
     isDominantProp(prop: IPropInfo): boolean;
     isCollectionProp(): boolean;
+    isEditableCollection(): boolean;
+    isCollectionItem(): boolean;
     getPropertySources(): IPropertySource[];
     getCollectionLabel(): string;
     setItemsStyleProperty(sources: IPropertySource[], prop: string, value: any): void;
+    getPopupPropLabel(prop: string): string;
     abstract get page(): ReportPage;
     abstract get displayPath(): string;
     abstract get level(): number;
     abstract get styles(): Styles;
+    get outlineSource(): IOutlineSource;
     get parent(): ReportGroupItem;
     get dataParent(): ReportGroupItem;
     get displayParent(): ReportPageItem;
@@ -4029,6 +4864,10 @@ declare abstract class ReportPageItem extends Base implements ISelectionSource, 
      */
     protected _savePropOf(target: object, info: IPropInfo): void;
     protected _savePropsOf(target: object, infos: IPropInfo[]): void;
+    protected _loadObject(item: ReportItem, loader: IReportLoader, src: any): void;
+    protected _loadObjects(items: ReportItem[], loader: IReportLoader, src: any): void;
+    protected _saveObject(item: ReportItem, target: any): void;
+    protected _saveObjects(items: ReportItem[], target: any): void;
     protected _arrangePaddingStyles(styles: Styles): void;
     protected _validateSize(v: ValueString): ValueString;
 }
@@ -4072,6 +4911,24 @@ declare abstract class ReportItem extends ReportPageItem {
     static readonly PROP_LOCKED = "locked";
     static readonly PROP_PAGE_BREAK = "pageBreak";
     static readonly PROP_STYLE_CALLBACK = "styleCallback";
+    static readonly PROP_ROTATION = "rotation";
+    static readonly DATA_PROP: {
+        name: string;
+        category: PropCategory;
+        type: typeof ListableProperty;
+        multiple: boolean;
+        default: any;
+        domain: any;
+    };
+    static readonly VALUE_PROP: {
+        name: string;
+        category: PropCategory;
+        type: typeof ListableProperty;
+        multiple: boolean;
+        default: any;
+        domain: any;
+        validate: (source: ReportItem, value: any) => void;
+    };
     static readonly PROPINFOS: IPropInfo[];
     static readonly SIZE_PROPINFOS: IPropInfo[];
     static readonly VALUE_PROPINFOS: IPropInfo[];
@@ -4088,6 +4945,7 @@ declare abstract class ReportItem extends ReportPageItem {
     private _height;
     private _minWidth;
     private _minHeight;
+    private _rotation;
     private _styles;
     private _styleCallback;
     private _onGetStyles;
@@ -4219,6 +5077,11 @@ declare abstract class ReportItem extends ReportPageItem {
     get minHeight(): ValueString;
     set minHeight(value: ValueString);
     /**
+     * rotation
+     */
+    get rotation(): number;
+    set rotation(value: number);
+    /**
      * onGetValue
      */
     get onGetValue(): string;
@@ -4344,10 +5207,12 @@ declare abstract class ReportItem extends ReportPageItem {
     getHeight(domain: number): number;
     getMinWidth(domain: number): number;
     getMinHeight(domain: number): number;
+    canSized(): boolean;
     canResize(dir: ResizeDirection): boolean;
     canResizeWidth(): boolean;
     canResizeHeight(): boolean;
     resize(width: number, height: number): ReportItem;
+    canRotate(): boolean;
     hasStyle(style: string): boolean;
     getStyle(style: string): string;
     setStyle(style: string, value: string): void;
@@ -4413,10 +5278,6 @@ declare abstract class ReportItem extends ReportPageItem {
     protected _doSave(target: object): void;
     protected _doPrepareLayout(printing: boolean): void;
     protected _doPreparePrint(ctx: PrintContext): void;
-    protected _loadObject(item: ReportItem, loader: IReportLoader, src: any): void;
-    protected _loadObjects(items: ReportItem[], loader: IReportLoader, src: any): void;
-    protected _saveObject(item: ReportItem, target: any): void;
-    protected _saveObjects(items: ReportItem[], target: any): void;
 }
 /**
  * 하나 이상의 report item을 포함하는 group item 기반 클래스.
@@ -4454,7 +5315,8 @@ declare abstract class ReportGroupItem extends ReportItem {
     needDesignHeight(): boolean;
     get(index: number): ReportItem;
     canContainsBand(): boolean;
-    contains(item: ReportPageItem): boolean;
+    canContainsBandGroup(): boolean;
+    contains(item: ReportPageItem, deep?: boolean): boolean;
     indexOf(item: ReportPageItem): number;
     getNames(list: string[], recursive?: boolean): string[];
     find(name: string, recursive?: boolean): ReportItem;
@@ -4466,6 +5328,7 @@ declare abstract class ReportGroupItem extends ReportItem {
     add(item: ReportPageItem, index?: number, silent?: boolean): boolean;
     canRemove(item: ReportItem): boolean;
     remove(item: ReportItem): void;
+    removeLast(): void;
     clear(): void;
     getMoveType(item: ReportItem): ItemMoveType;
     canResizeChild(item: ReportItem, dir: ResizeDirection): boolean;
@@ -4538,14 +5401,15 @@ declare abstract class ReportItemCollectionItem extends ReportPageItem {
     setItemsSubStyleProperty(sources: IPropertySource[], prop: string, style: string, value: any): void;
     canPropAdoptDragSource(prop: IPropInfo, source: any): boolean;
     adoptPropDragSource(prop: IPropInfo, source: any): IDropResult;
+    isCollectionItem(): boolean;
     abstract get itemType(): string;
     /** styles */
     get styles(): Styles;
     set styles(value: Styles);
-    get collection(): ReportItemCollection<any>;
-    get level(): number;
     load(src: any): void;
     save(target: any): any;
+    get collection(): ReportItemCollection<any>;
+    get level(): number;
     protected _doLoad(src: any): void;
     protected _doSave(target: any): void;
     protected abstract _getStyleProps(): string[];
@@ -4575,17 +5439,22 @@ declare abstract class ReportItemCollection<T extends ReportPageItem> extends Re
     adoptPropDragSource(prop: IPropInfo, source: any): IDropResult;
     isCollectionProp(): boolean;
     getPropertySources(): IPropertySource[];
+    abstract get owner(): ReportItem;
     abstract get count(): number;
     abstract get items(): ReportPageItem[];
     abstract get(index: number): T;
+    abstract indexOf(item: T): number;
     preparePrint(ctx: PrintContext): void;
     forEach(callback: (item: T, index: number) => void): void;
+    protected abstract _doMoveItem(from: number, to: number): boolean;
+    moveItem(from: number, to: number): boolean;
     get styles(): Styles;
     protected _itemChanged(item: ReportPageItem, prop: string, newValue: any, oldValue: any): void;
     protected _itemAdded(item: ReportPageItem): void;
     protected _itemsAdded(items: ReportPageItem[]): void;
     protected _itemRemoved(item: ReportPageItem, oldParent: ReportGroupItem): void;
     protected _itemsRemoved(items: ReportPageItem[]): void;
+    protected _indexChanged(): void;
     protected _doPreparePrint(ctx: PrintContext): void;
 }
 declare enum AnchorPosition {
@@ -4664,7 +5533,7 @@ declare abstract class CellContainer extends ReportGroupItem {
     /** @internal */
     noPrepareCell: boolean;
     constructor(name: string);
-    contains(item: ReportItem): boolean;
+    contains(item: ReportItem, deep?: boolean): boolean;
     indexOf(item: ReportItem): number;
     findCell(item: ReportItem): CellGroup;
     find(name: string, recursive?: boolean): ReportItem;
@@ -4699,8 +5568,48 @@ interface IPropertySource {
     canPropAdoptDragSource(prop: IPropInfo, source: any): boolean;
     adoptPropDragSource(prop: IPropInfo, source: any): IDropResult;
     isCollectionProp(): boolean;
-    getPropertySources(): IPropertySource[];
+    isEditableCollection(): boolean;
+    isCollectionItem(): boolean;
     getCollectionLabel(): string;
+    getPropertySources(): IPropertySource[];
+    getPopupPropLabel(prop: string): string;
+}
+interface IPropertyContainer {
+    addCollectionItem(collection: IPropertySource): void;
+    removeItem(item: IPropertySource): void;
+}
+declare enum PropCategory {
+    DESIGN = "design",
+    BASIC = "basic",
+    TEXT = "text",
+    DATA = "data",
+    BOUND = "bound",
+    EVENT = "event",
+    EDITOR = "editor",
+    REPORT = "report",
+    PAPER = "paper",
+    BOX = "box",
+    TABLE = "table",
+    BARCODE = "barcode",
+    CELL = "cell",
+    BAND = "band",
+    BAND_GROUP = "band group",
+    BAND_CELL = "band cell",
+    FIELD = "field",
+    COLUMN = "column",
+    ROW = "row",
+    CHART = "chart",
+    TITLE = "title",
+    SUBTITLE = "subtitle",
+    AXIS = "axis",
+    XAXIS = "x Axis",
+    YAXIS = "y Axis",
+    SERIES = "series",
+    LABEL = "label",
+    LABELS = "labels",
+    DATA_LABELS = "dataLabels",
+    MARKER = "marker",
+    LEGEND = "legend"
 }
 interface IPropInfo {
     name: string;
@@ -4709,9 +5618,11 @@ interface IPropInfo {
     typeProps?: any;
     parent?: string;
     indented?: boolean;
+    calculated?: boolean;
+    collection?: boolean;
     visible?: (source: IPropertySource) => boolean;
-    multiple: boolean;
-    default: any;
+    multiple?: boolean;
+    default?: any;
     readonly?: boolean;
     domain?: any[] | any;
     label?: string;
@@ -4719,6 +5630,7 @@ interface IPropInfo {
     params?: any;
     signature?: string;
     validate?: (source: IPropertySource, inputValue: any) => void;
+    refresh?: boolean;
     description?: string;
 }
 
@@ -4912,7 +5824,6 @@ declare abstract class BoxContainerElement<T extends BoxContainer> extends Repor
     protected _paddings: any;
     protected _gap: number;
     constructor(doc: Document, model: T, name: string);
-    protected _doDispose(): void;
     get gap(): number;
     get debugLabel(): string;
     protected _needDesignBox(): boolean;
@@ -4958,7 +5869,7 @@ declare class PageBodyElement extends ReportElement {
     isPageDom(dom: HTMLElement): boolean;
     findElement(modelName: string): ReportItemElement<ReportItem>;
     findElementOf(dom: HTMLElement): ReportItemElement<ReportItem>;
-    getElementOf(model: ReportItem): ReportItemElement<ReportItem>;
+    getElementOf(model: ReportPageItem): ReportElement;
     /**
      * 페이지의 한 행을 전부 차지하는가?
      */
@@ -5023,7 +5934,7 @@ declare class PageView extends LayerElement {
     private _frontView;
     private _sections;
     private _sectionGuard;
-    constructor(doc: Document, printing?: boolean);
+    constructor(doc: Document);
     protected _doDispose(): void;
     /** model */
     get model(): ReportPage;
@@ -5049,7 +5960,7 @@ declare class PageView extends LayerElement {
     afterRender(ctx: PrintContext): void;
     findElement(modelName: string): ReportElement;
     findElementOf(dom: HTMLElement): ReportElement;
-    getElementOf(model: ReportItem): ReportElement;
+    getElementOf(model: ReportPageItem): ReportElement;
     getAllElements(root: ReportElement, bounds: Rectangle): ReportItemView[];
     print(doc: Document, ctx: PrintContext, y: number): PrintPage[];
     getSections(): ReportElement[];
@@ -5094,6 +6005,7 @@ declare class ReportView extends LayerElement implements IImageContainer {
     private _editable;
     private _emptyView;
     private _pageView;
+    private _activePage;
     private _boxMeasurer;
     private _boxInner;
     private _nameMap;
@@ -5123,7 +6035,7 @@ declare class ReportView extends LayerElement implements IImageContainer {
     };
     findElement(modelName: string): ReportElement;
     findElementOf(dom: HTMLElement): ReportElement;
-    getElementOf(model: ReportItem): ReportElement;
+    getElementOf(model: ReportPageItem): ReportElement;
     getItemBoundingRect(element: VisualElement): Rectangle;
     protected _getCssSelector(): string;
     protected _initDom(doc: Document, dom: HTMLElement): void;
@@ -5167,7 +6079,8 @@ declare class PrintContext extends Base {
     private _page;
     private _detailPageCount;
     private _detailPage;
-    private _noValueCallback;
+    detailRows: number[];
+    noValueCallback: boolean;
     report: Report;
     container: HTMLDivElement;
     headerHeight: number;
@@ -5187,6 +6100,7 @@ declare class PrintContext extends Base {
     contextValues: ReportItemView[];
     private _userData;
     private _tags;
+    private _bandSave;
     constructor(printing?: boolean);
     /**
      * printing
@@ -5252,6 +6166,8 @@ declare class PrintContext extends Base {
     unsetTag(tag: string): void;
     getTag(tag: string, def?: any): any;
     getValue(data: string, row: number, field: string): any;
+    saveBand(): void;
+    restoreBand(): void;
 }
 interface IReportData {
     name: string;
@@ -5268,7 +6184,7 @@ interface IReportDataProvider {
     getContextValue(path: string): any;
     getValue(path: string, row: number): any;
     getValueAt(data: string, path: string, row: number): any;
-    getFieldValues(data: string, field: string): any[];
+    getFieldValues(data: string, field: string, rows?: number[]): any[];
     addData?(data: IReportData): boolean;
     removeData?(data: string | IReportData): IReportData;
     dataNameChanged?(data: IReportData, oldName: string): void;
