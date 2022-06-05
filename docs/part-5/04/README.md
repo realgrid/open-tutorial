@@ -19,7 +19,7 @@ C:..> vue create realreport
 
 ## 기본 코드 준비
 
-### 기본 코드 복사
+### 리얼리포트 기본 코드 복사
 
 아래 링크를 클릭하고 기본 코드를 다운받고 압축을 해제합니다.
 * [기본코드 다운받기](https://github.com/realgrid/open-tutorial/raw/main/realreport.zip)
