@@ -71,7 +71,7 @@ C:..> vue create realreport
 ``` html
 <template>
     <div>
-        <div id="realreport" class="scroller"></div>
+        <div id="realreport"></div>
     </div>
 </template>
 
