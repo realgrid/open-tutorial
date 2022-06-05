@@ -27,7 +27,7 @@ C:..> vue create realreport
 ### 라이브러리 파일 복사
 
 ![](./pic-1.png)
-* 다운받은 기본코드 폴더에서 index.html을 제어한 나머지 파일을 Vue의 public 폴더로 복사합니다.
+* 다운받은 기본코드 폴더에서 index.html을 제외한 나머지 파일을 Vue의 public 폴더로 복사합니다.
 
 ### index.html 수정
 
