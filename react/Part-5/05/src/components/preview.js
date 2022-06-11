@@ -12,9 +12,24 @@ class Preview extends React.Component {
         this.viewer.preview();
     }
 
+    print = () => {
+        const container = printPreview.contentWindow.document.getElementById("realreport");
+        container.innerHTML = this.viewer.getHtml();
+        printPreview.contentWindow.print();
+    }
+
     render() {
         return (
-            <div id="realreport"></div>
+            <div>
+                <div style={{ height: '32px', position: 'fixed' }}>
+                    <button onClick={ this.print }>print</button>
+                </div>
+                <div style={{ height: '32px '}}></div>
+
+                <div id="realreport" className="scroller"></div>
+
+                <iframe id="printPreview"src="/print.html" style={{ display: 'none' }}></iframe>
+            </div>
         );
     }
 }

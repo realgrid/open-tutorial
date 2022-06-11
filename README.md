@@ -61,4 +61,5 @@
 * [줌 & 페이지 이동](/docs/part-5/02)
 * [내보내기 & 인쇄](/docs/part-5/03)
 * [Vue.js 연동하기](/docs/part-5/04)
+* [React 연동하기](/docs/part-5/05)
 

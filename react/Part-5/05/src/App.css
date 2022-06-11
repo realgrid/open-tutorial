@@ -36,3 +36,12 @@
     transform: rotate(360deg);
   }
 }
+
+.scroller {
+    flex: 1;
+    direction: ltr;
+    height: 90vh;
+    width: 100%;
+    overflow: auto;
+    position: relative;
+}
