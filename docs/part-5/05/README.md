@@ -12,7 +12,7 @@ React 개발환경을 준비하기 위해서는 NodeJS 설치가 필요합니다
 ### React 프로젝트 생성하기
 
 ```
-C:..> npx create-react-app realreport
+C:..> npx create-react-app example
 ```
 
 ## 기본 코드 준비
