@@ -58,8 +58,8 @@ C:..> npx create-react-app example
 ### 리포트 폼 및 데이터 파일 복사
 
 * src 밑에 data 폴더를 생성하고 아래 두 파일을 복사합니다.
-  * [리포트 폼 파일 복사](https://github.com/realgrid/open-tutorial/blob/main/react/part-5/05/src/data/reportForm.js)
-  * [리포트 데이터 파일 복사](https://github.com/realgrid/open-tutorial/blob/main/react/part-5/05/src/data/reportData.js)
+  * [리포트 폼 파일 복사](https://github.com/realgrid/open-tutorial/blob/main/react/Part-5/05/src/data/reportForm.js)
+  * [리포트 데이터 파일 복사](https://github.com/realgrid/open-tutorial/blob/main/react/Part-5/05/src/data/reportData.js)
 
 
 ## 실습
