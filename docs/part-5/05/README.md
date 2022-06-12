@@ -85,9 +85,7 @@ class Preview extends React.Component {
 
     render() {
         return (
-            <div>
-                <div id="realreport"></div>
-            </div>
+            <div id="realreport"></div>
         );
     }
 }
@@ -103,9 +101,7 @@ import './App.css';
 
 function App() {
   return (
-    <div className="App">
-        <Preview />
-    </div>
+    <Preview />
   );
 }
 
