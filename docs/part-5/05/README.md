@@ -66,23 +66,6 @@ C:..> npx create-react-app realreport
 
 ### 리얼리포트 표시하기
 
-#### App.js
-
-``` js
-import Preview from './components/preview';
-import './App.css';
-
-function App() {
-  return (
-    <div className="App">
-        <Preview />
-    </div>
-  );
-}
-
-export default App;
-```
-
 #### components/preview.js
 
 ``` js
@@ -110,6 +93,23 @@ class Preview extends React.Component {
 }
 
 export default Preview;
+```
+
+#### App.js
+
+``` js
+import Preview from './components/preview';
+import './App.css';
+
+function App() {
+  return (
+    <div className="App">
+        <Preview />
+    </div>
+  );
+}
+
+export default App;
 ```
 
 ### 리포트 출력하기 (components/preview.js)
