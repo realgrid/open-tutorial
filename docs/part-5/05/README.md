@@ -7,7 +7,7 @@
 React 개발환경을 준비하기 위해서는 NodeJS 설치가 필요합니다.
 아래의 영상의 초반부를 참고하시기 바랍니다.
 
-* [https://github.com/realgrid/open-tutorial/raw/main/docs/part-3/01/youtube-01.jpg](https://github.com/realgrid/open-tutorial/raw/main/docs/part-3/01/youtube-01.jpg)
+* [https://youtu.be/oV-vBrnkUyY](https://youtu.be/oV-vBrnkUyY)
 
 ### React 프로젝트 생성하기
 
