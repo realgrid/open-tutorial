@@ -125,6 +125,9 @@ class Preview extends React.Component {
         this.viewer.preview();
     }
 
+    // 이벤트 콜백함수에서 this를 쓰려면 고려사항이 있습니다
+    // 아래 링크를 참고하세요.
+    // https://ko.reactjs.org/docs/handling-events.html
     print = () => {
         const container = printPreview.contentWindow.document.getElementById("realreport");
         container.innerHTML = this.viewer.getHtml();
