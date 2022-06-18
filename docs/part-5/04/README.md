@@ -17,7 +17,7 @@ C:..> vue create realreport
 * 생성된 realreport 폴더를 VS Code를 이용해서 오픈합니다.
 
 
-## 기본 코드 준비
+## 리얼리포트 기본 코드 준비
 
 ### 리얼리포트 기본 코드 복사
 

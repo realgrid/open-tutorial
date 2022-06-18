@@ -54,6 +54,7 @@
 * [사용자 목록 마무리](/docs/part-4/07)
 * [회원별 게시물 목록 보기](/docs/part-4/08)
 * [통계](/docs/part-4/09)
+* [리얼리포트 연동하기](/docs/part-4/10)
 
 
 ## Part 5. Real Report
