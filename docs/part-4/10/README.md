@@ -56,9 +56,9 @@
 
 * [data/salaryMonthly.js](https://github.com/realgrid/open-tutorial/blob/main/vue.js/part-4/10/src/data/salaryMonthly.js)
 
-### Rest API 추가
+### Rest API 추가 (급여 데이터 가져오기)
 
-* [급여 데이터 가져오기](https://github.com/realgrid/open-tutorial/blob/main/vue.js/part-4/10/src/api/salary.js)
+* [api/salary.js](https://github.com/realgrid/open-tutorial/blob/main/vue.js/part-4/10/src/api/salary.js)
 
 
 ## 급여 명세서 출력 메뉴 추가
