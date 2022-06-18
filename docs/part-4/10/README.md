@@ -109,8 +109,6 @@ const routes = [
 </template>
 
 <script>
-/* eslint-disable */
-
 import RealReport from '@/components/RealReport';
 import salary from '@/api/salary';
 import salaryMonthly from '@/report/salaryMonthly';
