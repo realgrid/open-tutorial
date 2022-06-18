@@ -7,12 +7,12 @@
 React 개발환경을 준비하기 위해서는 NodeJS 설치가 필요합니다.
 아래의 영상의 초반부를 참고하시기 바랍니다.
 
-* [https://github.com/realgrid/open-tutorial/raw/main/docs/part-3/01/youtube-01.jpg](https://github.com/realgrid/open-tutorial/raw/main/docs/part-3/01/youtube-01.jpg)
+* [https://youtu.be/oV-vBrnkUyY](https://youtu.be/oV-vBrnkUyY)
 
 ### React 프로젝트 생성하기
 
 ```
-C:..> npx create-react-app realreport
+C:..> npx create-react-app example
 ```
 
 ## 기본 코드 준비
@@ -58,8 +58,8 @@ C:..> npx create-react-app realreport
 ### 리포트 폼 및 데이터 파일 복사
 
 * src 밑에 data 폴더를 생성하고 아래 두 파일을 복사합니다.
-  * [리포트 폼 파일 복사](https://github.com/realgrid/open-tutorial/blob/main/react/part-5/05/src/data/reportForm.js)
-  * [리포트 데이터 파일 복사](https://github.com/realgrid/open-tutorial/blob/main/react/part-5/05/src/data/reportData.js)
+  * [리포트 폼 파일 복사](https://github.com/realgrid/open-tutorial/blob/main/react/Part-5/05/src/data/reportForm.js)
+  * [리포트 데이터 파일 복사](https://github.com/realgrid/open-tutorial/blob/main/react/Part-5/05/src/data/reportData.js)
 
 
 ## 실습
