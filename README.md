@@ -68,4 +68,5 @@
 ## Part 6. R2 Designer
 * [R2 Designer 설치 및 기본 사용법](https://youtu.be/mKJuAErz3yA)
 * [리포트와 데이터 연동하기 (Simple Data)](https://youtu.be/48SX2gpgzKA)
+* [리포트와 데이터 연동하기 (Band Data)](/docs/part-6/03)
 
